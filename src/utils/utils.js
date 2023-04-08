@@ -26,12 +26,14 @@ export class SmartRequest {
 
         config = {
             ...config,
-            withCredentials: true,
+            withCredentials: false,
             headers: {
                 ...config.headers,
                 'X-CSRFToken': cookies.get('csrftoken'),
-                'Authorization': `Token ${auth_token}`,
             }
+        }
+        if (auth_token) {
+            config['headers']['Authorization'] = `Token ${auth_token}`
         }
 
         return [url, config]

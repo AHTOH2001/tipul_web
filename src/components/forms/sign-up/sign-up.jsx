@@ -1,14 +1,13 @@
-import React from 'react'
-import {Form, Input, Button, message} from 'antd'
+import { Button, Form, Input, message } from 'antd'
 import 'antd/dist/antd.css'
-import {useState} from 'react'
-import {SmartRequest} from '../../../utils/utils'
-import {useHistory} from 'react-router-dom'
+import React, { useState } from 'react'
+import { useHistory } from 'react-router-dom'
+import { SmartRequest } from '../../../utils/utils'
 
 
 const SignUp = () => {
     const [form] = Form.useForm()
-    const {getFieldError, validateFields} = form
+    const { getFieldError, validateFields } = form
     const [isButtonDisabled, setIsButtonDisabled] = useState(true)
     const [formError, setFormError] = useState('')
     const [fieldsErrors, setFieldsErrors] = useState({})
@@ -16,12 +15,14 @@ const SignUp = () => {
 
     const onFinish = (values) => {
         setFormError('')
+        console.log(values)
         SmartRequest.post(
-            'signup/',
-            {user: values},
-            {},
-            false,
-            false
+            'api/v1/auth/users/',
+            {
+                'username': values['username'],
+                'email': values['email'],
+                'password': values['password'],
+            },
         )
             .then(() => {
                 message.success('Successfully created account')
@@ -46,7 +47,7 @@ const SignUp = () => {
         setTimeout(() => {
             setFormError('')
             // https://stackoverflow.com/questions/56278830/how-to-know-when-all-fields-are-validated-values-added-in-ant-design-form
-            let resFieldsErrors = {...fieldsErrors}
+            let resFieldsErrors = { ...fieldsErrors }
             for (let val in changedValues) {
                 resFieldsErrors[val] = getFieldError(val)
             }
@@ -99,7 +100,7 @@ const SignUp = () => {
                     },
                 ]}
             >
-                <Input autoComplete="username"/>
+                <Input autoComplete="username" />
             </Form.Item>
 
             <Form.Item
@@ -114,7 +115,7 @@ const SignUp = () => {
                     },
                 ]}
             >
-                <Input type="email" autoComplete="email"/>
+                <Input type="email" autoComplete="email" />
             </Form.Item>
             <Form.Item
                 label="Password"
@@ -128,7 +129,7 @@ const SignUp = () => {
                     },
                 ]}
             >
-                <Input.Password autoComplete="current-password"/>
+                <Input.Password autoComplete="current-password" />
             </Form.Item>
 
             <Form.Item
