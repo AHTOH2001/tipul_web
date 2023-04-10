@@ -56,4 +56,11 @@ export class SmartRequest {
 
         return axios.patch(url, data, config)
     }
+
+    static setAuthToken(token) {
+        const cookies = new Cookies()
+        cookies.set('auth_token', token)
+        auth_token = token
+    }
+
 }

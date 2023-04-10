@@ -21,7 +21,7 @@ const PatchProfile = () => {
     const onFinish = (values) => {
         setFormError('')
         SmartRequest.patch(
-            'profile/',
+            'managment/whoiam/',
             {user: values},
             {}
         )
@@ -39,7 +39,7 @@ const PatchProfile = () => {
                         setFieldsErrors(error.response.data['detail']['user'])
                     }
                 } else {
-                    console.error('catch on profile patch: ', error)
+                    console.error('catch on whoiam patch: ', error)
                 }
             })
     }

@@ -17,7 +17,7 @@ function App() {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        SmartRequest.get('profile/')
+        SmartRequest.get('managment/whoiam/')
             .then(resp => {
                 console.log('success in get profile:', resp)
                 const actualUser = resp.data

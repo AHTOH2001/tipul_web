@@ -1,16 +1,15 @@
-import React from 'react'
-import {Form, Input, Button, message} from 'antd'
+import { Button, Form, Input, message } from 'antd'
 import 'antd/dist/antd.css'
-import {useState} from 'react'
-import {useDispatch} from 'react-redux'
-import {setCurrentUserAsync} from '../../../redux/user/user.actions'
-import {SmartRequest} from '../../../utils/utils'
-import {useHistory} from 'react-router-dom'
+import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { useHistory } from 'react-router-dom'
+import { setCurrentUserAsync } from '../../../redux/user/user.actions'
+import { SmartRequest } from '../../../utils/utils'
 
 
 const LogIn = () => {
     const [form] = Form.useForm()
-    const {getFieldError, isFieldTouched, validateFields} = form
+    const { getFieldError, isFieldTouched, validateFields } = form
     const dispatch = useDispatch()
 
     const [isButtonDisabled, setIsButtonDisabled] = useState(true)
@@ -22,17 +21,17 @@ const LogIn = () => {
 
     const onFinish = (values) => {
         SmartRequest.post(
-            'login/',
-            values,
-            {},
-            false,
-            false
+            'api/v1/auth-token/token/login/',
+            {
+                'username': values['username'],
+                'password': values['password'],
+            },
         )
             .then(resp => {
-                SmartRequest.setAccessToken(resp.data['access'])
-                SmartRequest.get('profile/')
+                SmartRequest.setAuthToken(resp.data['auth_token'])
+                SmartRequest.get('managment/whoiam/')
                     .then(resp => {
-                        console.log('success in get profile:', resp)
+                        console.log('success in get whoiam:', resp)
                         const actualUser = resp.data
                         dispatch(setCurrentUserAsync(actualUser))
                         message.success('Successfully logged in')
@@ -40,8 +39,8 @@ const LogIn = () => {
                     })
             })
             .catch(error => {
-                if (error.response && error.response.status === 401) {
-                    setFormError(error.response.data['detail'])
+                if (error.response && error.response.status === 400) {
+                    setFormError(error.response.data['non_field_errors'])
                     setIsFormErrorHidden(false)
                 } else {
                     console.error('catch on sign in: ', error)
@@ -101,7 +100,7 @@ const LogIn = () => {
                     },
                 ]}
             >
-                <Input/>
+                <Input />
             </Form.Item>
 
             <Form.Item
@@ -116,7 +115,7 @@ const LogIn = () => {
                     },
                 ]}
             >
-                <Input.Password/>
+                <Input.Password />
             </Form.Item>
 
             <Form.Item
