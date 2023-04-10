@@ -1,15 +1,15 @@
-import {Button, Form, Input, message} from 'antd'
-import React, {useState} from 'react'
-import {useDispatch, useSelector} from 'react-redux'
-import {useHistory} from 'react-router-dom'
-import {setCurrentUserAsync} from '../../../redux/user/user.actions'
-import {SmartRequest} from '../../../utils/utils'
+import { Button, Form, Input, message } from 'antd'
+import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useHistory } from 'react-router-dom'
+import { setCurrentUserAsync } from '../../../redux/user/user.actions'
+import { SmartRequest } from '../../../utils/utils'
 
 const selectCurrentUser = state => state.user.currentUser
 
 const PatchProfile = () => {
     const [form] = Form.useForm()
-    const {getFieldError, validateFields} = form
+    const { getFieldError, validateFields } = form
     const [isButtonDisabled, setIsButtonDisabled] = useState(false)
     const [formError, setFormError] = useState('')
     const [fieldsErrors, setFieldsErrors] = useState({})
@@ -21,22 +21,21 @@ const PatchProfile = () => {
     const onFinish = (values) => {
         setFormError('')
         SmartRequest.patch(
-            'managment/whoiam/',
-            {user: values},
-            {}
+            'api/v1/auth/users/me/',
+            values,
         )
             .then(resp => {
-                const actualUser = resp.data
-                dispatch(setCurrentUserAsync(actualUser))
-                message.success('Successfully updated account info')
+                currentUser['user'] = resp.data
+                dispatch(setCurrentUserAsync(currentUser))
+                message.success('Successfully updated email')
             })
             .catch(error => {
                 if (error.response && error.response.status === 400) {
                     setIsButtonDisabled(true)
-                    if (typeof error.response.data['detail'] !== 'object') {
-                        setFormError(error.response.data['detail'])
+                    if (typeof error.response.data !== 'object') {
+                        setFormError(error.response.data)
                     } else {
-                        setFieldsErrors(error.response.data['detail']['user'])
+                        setFieldsErrors(error.response.data)
                     }
                 } else {
                     console.error('catch on whoiam patch: ', error)
@@ -49,7 +48,7 @@ const PatchProfile = () => {
         setTimeout(() => {
             setFormError('')
             // https://stackoverflow.com/questions/56278830/how-to-know-when-all-fields-are-validated-values-added-in-ant-design-form
-            let resFieldsErrors = {...fieldsErrors}
+            let resFieldsErrors = { ...fieldsErrors }
             for (let val in changedValues) {
                 resFieldsErrors[val] = getFieldError(val)
             }
@@ -90,21 +89,6 @@ const PatchProfile = () => {
             >
                 <span className="ant-form-item-explain ant-form-item-explain-error">{formError}</span>
             </Form.Item>
-            <Form.Item
-                initialValue={currentUser.user.username}
-                label="Username"
-                name="username"
-                validateStatus={fieldsErrors['username'] && fieldsErrors['username'].length ? 'error' : ''}
-                help={fieldsErrors['username'] && fieldsErrors['username'].length ? fieldsErrors['username'][0] : ''}
-                rules={[
-                    {
-                        required: true,
-                        message: 'Please input your username!',
-                    },
-                ]}
-            >
-                <Input autoComplete="username"/>
-            </Form.Item>
 
             <Form.Item
                 initialValue={currentUser.user.email}
@@ -119,7 +103,7 @@ const PatchProfile = () => {
                     },
                 ]}
             >
-                <Input type="email" autoComplete="email"/>
+                <Input type="email" autoComplete="email" />
             </Form.Item>
 
             <Form.Item
@@ -129,7 +113,7 @@ const PatchProfile = () => {
                 }}
             >
                 <Button disabled={isButtonDisabled} type="primary" htmlType="submit">
-                    Update info
+                    Update email
                 </Button>
             </Form.Item>
         </Form>
