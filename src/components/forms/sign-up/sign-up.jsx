@@ -31,10 +31,10 @@ const SignUp = () => {
             .catch(error => {
                 if (error.response && error.response.status === 400) {
                     setIsButtonDisabled(true)
-                    if (typeof error.response.data['detail'] !== 'object') {
-                        setFormError(error.response.data['detail'])
+                    if (typeof error.response.data !== 'object') {
+                        setFormError(error.response.data)
                     } else {
-                        setFieldsErrors(error.response.data['detail']['user'])
+                        setFieldsErrors(error.response.data)
                     }
                 } else {
                     console.error('catch on sign up: ', error)
