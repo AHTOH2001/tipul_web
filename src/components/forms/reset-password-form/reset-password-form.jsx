@@ -1,10 +1,10 @@
-import {Button, Form, Input, message} from 'antd'
-import React, {useState} from 'react'
-import {SmartRequest} from '../../../utils/utils'
+import { Button, Form, Input, message } from 'antd'
+import React, { useState } from 'react'
+import { SmartRequest } from '../../../utils/utils'
 
-const ResetPasswordForm = ({setVisible}) => {
+const ResetPasswordForm = ({ setVisible }) => {
     const [form] = Form.useForm()
-    const {getFieldError, validateFields} = form
+    const { getFieldError, validateFields } = form
     const [isButtonDisabled, setIsButtonDisabled] = useState(true)
     const [formError, setFormError] = useState('')
     const [fieldsErrors, setFieldsErrors] = useState({})
@@ -12,7 +12,7 @@ const ResetPasswordForm = ({setVisible}) => {
 
     const onFinish = (values) => {
         setIsValidating(true)
-        SmartRequest.post('reset-password/', values, {}, false, false)
+        SmartRequest.post('api/v1/auth/users/reset_password/', values)
             .then(() => {
                 message.success('Mail for resetting password has been sent to your email', 5)
                 setIsValidating(false)
@@ -39,7 +39,7 @@ const ResetPasswordForm = ({setVisible}) => {
         setTimeout(() => {
             setFormError('')
             // https://stackoverflow.com/questions/56278830/how-to-know-when-all-fields-are-validated-values-added-in-ant-design-form
-            let resFieldsErrors = {...fieldsErrors}
+            let resFieldsErrors = { ...fieldsErrors }
             for (let val in changedValues) {
                 resFieldsErrors[val] = getFieldError(val)
             }
@@ -62,7 +62,7 @@ const ResetPasswordForm = ({setVisible}) => {
         <Form
             form={form}
             onFinish={onFinish}
-            style={{padding: '20px', alignContent: 'center'}}
+            style={{ padding: '20px', alignContent: 'center' }}
             wrapperCol={{
                 span: 16,
             }}
@@ -91,7 +91,7 @@ const ResetPasswordForm = ({setVisible}) => {
                     },
                 ]}
             >
-                <Input placeholder="Email" type="email" autoComplete="email"/>
+                <Input placeholder="Email" type="email" autoComplete="email" />
             </Form.Item>
             <Form.Item>
                 <Button disabled={isButtonDisabled} type="primary" htmlType="submit">

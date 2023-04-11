@@ -1,11 +1,11 @@
-import {Button, Form, Input, message} from 'antd'
-import React, {useState} from 'react'
-import {SmartRequest} from '../../../utils/utils'
+import { Button, Form, Input, message } from 'antd'
+import React, { useState } from 'react'
+import { SmartRequest } from '../../../utils/utils'
 
 
 const ChangePassword = () => {
     const [form] = Form.useForm()
-    const {getFieldError, validateFields, resetFields} = form
+    const { getFieldError, validateFields, resetFields } = form
     const [isButtonDisabled, setIsButtonDisabled] = useState(true)
     const [formError, setFormError] = useState('')
     const [fieldsErrors, setFieldsErrors] = useState({})
@@ -14,9 +14,8 @@ const ChangePassword = () => {
     const onFinish = (values) => {
         setFormError('')
         SmartRequest.patch(
-            'change-password/',
+            'managment/change-password/',
             values,
-            {}
         )
             .then(resp => {
                 console.log('success in change password:', resp)
@@ -42,7 +41,7 @@ const ChangePassword = () => {
         setTimeout(() => {
             setFormError('')
             // https://stackoverflow.com/questions/56278830/how-to-know-when-all-fields-are-validated-values-added-in-ant-design-form
-            let resFieldsErrors = {...fieldsErrors}
+            let resFieldsErrors = { ...fieldsErrors }
             for (let val in changedValues) {
                 resFieldsErrors[val] = getFieldError(val)
             }
@@ -95,7 +94,7 @@ const ChangePassword = () => {
                     },
                 ]}
             >
-                <Input.Password autoComplete="off"/>
+                <Input.Password autoComplete="off" />
             </Form.Item>
             <Form.Item
                 label="New password"
@@ -109,7 +108,7 @@ const ChangePassword = () => {
                     },
                 ]}
             >
-                <Input.Password autoComplete="off"/>
+                <Input.Password autoComplete="off" />
             </Form.Item>
             <Form.Item
                 wrapperCol={{
