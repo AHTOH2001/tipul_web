@@ -10,8 +10,7 @@ export function* setCurrentUserAsync(action) {
 
     if (actualUser === null) {
         console.log('call log out')
-        yield call([SmartRequest, SmartRequest.post], 'logout/', {}, {}, false, false)
-        SmartRequest.setAccessToken('')
+        SmartRequest.setAuthToken('')
     }
 
     if (JSON.stringify(actualUser) !== JSON.stringify(currentUser)) {
