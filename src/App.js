@@ -1,13 +1,14 @@
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { Redirect, Route, Switch } from 'react-router-dom'
 import './App.css'
-import React, {useEffect} from 'react'
-import {Route, Switch, Redirect} from 'react-router-dom'
-import LogInPage from './components/pages/log-in-page/log-in-page'
-import ProfilePage from './components/pages/profile-page/profile-page'
 import HomePage from './components/pages/home-page/home-page'
-import {useDispatch, useSelector} from 'react-redux'
+import LogInPage from './components/pages/log-in-page/log-in-page'
+import PasswordResetConfirmPage from './components/pages/password-reset-confirm-page/password-reset-confirm-page'
+import ProfilePage from './components/pages/profile-page/profile-page'
 import SignUpPage from './components/pages/sign-up-page/sign-up-page'
-import {setCurrentUserAsync} from './redux/user/user.actions'
-import {SmartRequest} from './utils/utils'
+import { setCurrentUserAsync } from './redux/user/user.actions'
+import { SmartRequest } from './utils/utils'
 
 
 const selectCurrentUser = state => state.user.currentUser
@@ -30,14 +31,18 @@ function App() {
         <>
             <Switch>
                 <Route exact path='/log-in'>
-                    {currentUser ? <Redirect to='/profile'/> : <LogInPage/>}
+                    {currentUser ? <Redirect to='/profile' /> : <LogInPage />}
                 </Route>
-                <Route exact path='/' component={HomePage}/>
+                <Route exact path='/' component={HomePage} />
                 <Route path='/profile'>
-                    {currentUser ? <ProfilePage/> : <Redirect to='/log-in'/>}
+                    {currentUser ? <ProfilePage /> : <Redirect to='/log-in' />}
                 </Route>
                 <Route exact path='/sign-up'>
-                    {currentUser ? <Redirect to='/profile'/> : <SignUpPage/>}
+                    {currentUser ? <Redirect to='/profile' /> : <SignUpPage />}
+                </Route>
+                <Route path='/password/reset/confirm/:uid/:token' component={PasswordResetConfirmPage} />
+                <Route>
+                    <Redirect to='/' />
                 </Route>
             </Switch>
         </>
