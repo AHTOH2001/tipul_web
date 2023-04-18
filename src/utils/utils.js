@@ -16,7 +16,9 @@ export class SmartRequest {
 
         if (auth_token === '') {
             auth_token = cookies.get('auth_token')
+            console.log('get cookies')
         }
+        console.log('auth_token:' + auth_token)
 
         url = url.replace(backend_host, '')
         if (!url.startsWith('/')) {
@@ -59,7 +61,13 @@ export class SmartRequest {
 
     static setAuthToken(token) {
         const cookies = new Cookies()
-        cookies.set('auth_token', token)
+        if (token == '') {
+            console.log('remove auth_token')
+            cookies.remove('auth_token')
+        } else {
+            console.log('set new auth token')
+            cookies.set('auth_token', token)
+        }
         auth_token = token
     }
 
