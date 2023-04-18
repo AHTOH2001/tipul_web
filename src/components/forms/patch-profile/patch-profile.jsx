@@ -1,7 +1,6 @@
 import { Button, Form, Input, message } from 'antd'
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useHistory } from 'react-router-dom'
 import { setCurrentUserAsync } from '../../../redux/user/user.actions'
 import { SmartRequest } from '../../../utils/utils'
 
@@ -15,7 +14,6 @@ const PatchProfile = () => {
     const [fieldsErrors, setFieldsErrors] = useState({})
     const currentUser = useSelector(selectCurrentUser)
     const dispatch = useDispatch()
-    const history = useHistory()
 
 
     const onFinish = (values) => {

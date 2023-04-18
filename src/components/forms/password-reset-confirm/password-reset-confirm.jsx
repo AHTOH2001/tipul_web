@@ -35,17 +35,16 @@ const PasswordResetConfirm = () => {
                     setIsButtonDisabled(true)
                     if (typeof error.response.data !== 'object') {
                         setFormError(error.response.data)
-                    } else {
-                        if ('uid' in error.response.data) {
-                            setFormError(error.response.data['uid'][0])
-                        } else
-                            if ('token' in error.response.data) {
-                                setFormError(error.response.data['token'][0])
-                            }
-                            else {
-                                setFieldsErrors(error.response.data)
-                            }
+                    } else if ('uid' in error.response.data) {
+                        setFormError(error.response.data['uid'][0])
                     }
+                    else if ('token' in error.response.data) {
+                        setFormError(error.response.data['token'][0])
+                    }
+                    else {
+                        setFieldsErrors(error.response.data)
+                    }
+
                 } else {
                     console.error('catch on confirm password: ', error)
                 }
