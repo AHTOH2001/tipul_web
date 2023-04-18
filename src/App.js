@@ -5,6 +5,7 @@ import './App.css'
 import HomePage from './components/pages/home-page/home-page'
 import LogInPage from './components/pages/log-in-page/log-in-page'
 import PasswordResetConfirmPage from './components/pages/password-reset-confirm-page/password-reset-confirm-page'
+import UserActivatePage from './components/pages/user-activate-page/user-activate-page'
 import ProfilePage from './components/pages/profile-page/profile-page'
 import SignUpPage from './components/pages/sign-up-page/sign-up-page'
 import { setCurrentUserAsync } from './redux/user/user.actions'
@@ -41,6 +42,7 @@ function App() {
                     {currentUser ? <Redirect to='/profile' /> : <SignUpPage />}
                 </Route>
                 <Route path='/password/reset/confirm/:uid/:token' component={PasswordResetConfirmPage} />
+                <Route path='/activate/:uid/:token' component={UserActivatePage} />
                 <Route>
                     <Redirect to='/' />
                 </Route>
