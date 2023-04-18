@@ -25,7 +25,7 @@ const SignUp = () => {
             },
         )
             .then(() => {
-                message.success('Successfully created account')
+                message.success(`Activation message was sent to email ${values['email']}`)
                 history.push('/log-in')
             })
             .catch(error => {
