@@ -25,9 +25,9 @@ const Sider = () => {
     }
 
     const onLogOut = () => {
-        dispatch(setCurrentUserAsync(null))
         console.log('call log out')
         SmartRequest.setAuthToken('')
+        dispatch(setCurrentUserAsync(null))
         message.success('Successful log out')
     }
 
@@ -35,7 +35,7 @@ const Sider = () => {
         <Layout.Sider collapsible collapsed={collapsed} onCollapse={onCollapse} className='sider'>
             <Link to='/' className="logo" />
             <Menu theme="dark" mode="inline">
-                <SubMenu key="sub1" icon={<UserOutlined />} title={currentUser.user.username}>
+                <SubMenu key="sub1" icon={<UserOutlined />} title={currentUser.user.user.username}>
                     <Menu.Item key="1" icon={<SettingOutlined />} onClick={() => history.push('/profile/settings')}>
                         Settings
                     </Menu.Item>

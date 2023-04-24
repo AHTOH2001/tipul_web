@@ -1,7 +1,9 @@
 import { Button, Form, Input, message } from 'antd'
 import 'antd/dist/antd.css'
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import { useHistory, useParams } from 'react-router-dom'
+import { setCurrentUserAsync } from '../../../redux/user/user.actions'
 import { SmartRequest } from '../../../utils/utils'
 
 
@@ -9,6 +11,7 @@ const PasswordResetConfirm = () => {
     const [form] = Form.useForm()
     const { getFieldError, validateFields } = form
 
+    const dispatch = useDispatch()
     const [isButtonDisabled, setIsButtonDisabled] = useState(true)
     const [formError, setFormError] = useState('')
     const [fieldsErrors, setFieldsErrors] = useState({})
@@ -26,6 +29,7 @@ const PasswordResetConfirm = () => {
         )
             .then(resp => {
                 SmartRequest.setAuthToken('')
+                dispatch(setCurrentUserAsync(null))
                 console.log('success in get reset pass:', resp)
                 message.success('Successfully reset password')
                 history.push('/log-in')

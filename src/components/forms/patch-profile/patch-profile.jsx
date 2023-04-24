@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setCurrentUserAsync } from '../../../redux/user/user.actions'
 import { SmartRequest } from '../../../utils/utils'
+import { check_whoiam } from '../../../utils/api'
 
 const selectCurrentUser = state => state.user.currentUser
 
@@ -22,9 +23,10 @@ const PatchProfile = () => {
             'api/v1/auth/users/me/',
             values,
         )
-            .then(resp => {
-                currentUser['user'] = resp.data
-                dispatch(setCurrentUserAsync(currentUser))
+            .then(() => {
+                check_whoiam().then((actualUser) => {
+                    dispatch(setCurrentUserAsync(actualUser))
+                })
                 message.success('Successfully updated email')
             })
             .catch(error => {
@@ -36,7 +38,7 @@ const PatchProfile = () => {
                         setFieldsErrors(error.response.data)
                     }
                 } else {
-                    console.error('catch on whoiam patch: ', error)
+                    console.error('catch on update email patch: ', error)
                 }
             })
     }
@@ -89,7 +91,7 @@ const PatchProfile = () => {
             </Form.Item>
 
             <Form.Item
-                initialValue={currentUser.user.email}
+                initialValue={currentUser.user.user.email}
                 label="Email"
                 name="email"
                 validateStatus={fieldsErrors['email'] && fieldsErrors['email'].length ? 'error' : ''}

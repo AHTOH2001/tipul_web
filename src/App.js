@@ -5,12 +5,12 @@ import './App.css'
 import HomePage from './components/pages/home-page/home-page'
 import LogInPage from './components/pages/log-in-page/log-in-page'
 import PasswordResetConfirmPage from './components/pages/password-reset-confirm-page/password-reset-confirm-page'
-import UserActivatePage from './components/pages/user-activate-page/user-activate-page'
 import ProfilePage from './components/pages/profile-page/profile-page'
 import SignUpPage from './components/pages/sign-up-page/sign-up-page'
+import UserActivatePage from './components/pages/user-activate-page/user-activate-page'
 import { setCurrentUserAsync } from './redux/user/user.actions'
 import { SmartRequest } from './utils/utils'
-
+import { check_whoiam } from './utils/api'
 
 const selectCurrentUser = state => state.user.currentUser
 
@@ -19,12 +19,15 @@ function App() {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        SmartRequest.get('managment/whoiam/')
-            .then(resp => {
-                console.log('success in get profile:', resp)
-                const actualUser = resp.data
+        check_whoiam().then((actualUser) => {
+            if (actualUser.type == 'patient') {
+                console.warn('Current user is patient, removing token')
+                SmartRequest.setAuthToken('')
+                dispatch(setCurrentUserAsync(null))
+            } else {
                 dispatch(setCurrentUserAsync(actualUser))
-            })
+            }
+        })
     })
 
 

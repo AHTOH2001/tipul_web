@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { setCurrentUserAsync } from '../../../redux/user/user.actions'
 import { SmartRequest } from '../../../utils/utils'
+import { check_whoiam } from '../../../utils/api'
 
 
 const LogIn = () => {
@@ -29,14 +30,11 @@ const LogIn = () => {
         )
             .then(resp => {
                 SmartRequest.setAuthToken(resp.data['auth_token'])
-                SmartRequest.get('managment/whoiam/')
-                    .then(resp => {
-                        console.log('success in get whoiam:', resp)
-                        const actualUser = resp.data
-                        dispatch(setCurrentUserAsync(actualUser))
-                        message.success('Successfully logged in')
-                        history.push('/profile')
-                    })
+                check_whoiam().then((actualUser) => {
+                    dispatch(setCurrentUserAsync(actualUser))
+                    history.push('/profile')
+                    message.success('Successfully logged in')
+                })
             })
             .catch(error => {
                 if (error.response && error.response.status === 400) {
