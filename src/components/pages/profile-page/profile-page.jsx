@@ -16,7 +16,6 @@ const ProfilePage = () => {
         <Layout style={{ minHeight: '100vh' }} className='profile'>
             <Sider />
             <Layout className="site-layout">
-                <Layout.Header className="site-layout-background" style={{ padding: 0 }} />
                 <Layout.Content style={{ padding: '10px' }}>
                     {currentUser.type == 'guardian'
                         ?
