@@ -19,6 +19,7 @@ function App() {
     const dispatch = useDispatch()
 
     useEffect(() => {
+        console.log('Check whoiam in app.js')
         check_whoiam().then((actualUser) => {
             if (actualUser.type == 'patient') {
                 console.warn('Current user is patient, removing token')
