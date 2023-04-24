@@ -37,14 +37,23 @@ const Buy = () => {
         },
     ]
     return (
-        <>
+        <div>
+            <Typography.Title className='center' style={{ fontSize: 100 }}>
+                Tipul
+            </Typography.Title>
+            <Typography className='center' style={{ fontSize: 20, paddingBottom: 20 }}>
+                С заботой о ваших родных и близких
+            </Typography>
             <Steps current={2}>
-                <Step title='Login' icon={<UserOutlined />} />
-                <Step title='Verification' icon={<SolutionOutlined />} />
+                <Step title='Register' description='Вы уже зарегистрировались' icon={<UserOutlined />} />
+                <Step title='Verification' description='Вы уже подтвердили свою почту' icon={<SolutionOutlined />} />
                 <Step title='Pay' description='You need to pay, to continue using our app' icon={<LoadingOutlined />} />
-                <Step title='Done' icon={<SmileOutlined />} />
+                <Step title='Done' description='После оплаты у вас будет полный доступ к приложению Типуль' icon={<SmileOutlined />} />
             </Steps>
             <Divider plain />
+            <Typography.Title className='center' style={{ fontSize: 30 }}>
+                Возможности после покупки приложения
+            </Typography.Title>
             <Image.PreviewGroup>
                 <Carousel autoplay className='center blue'>
                     {data.map(({ key, text, image }) => (
@@ -68,10 +77,10 @@ const Buy = () => {
             <Divider plain />
             <Col className='center'>
                 <Button type='default' shape='round' icon={<CheckOutlined />} size={'large'} >
-                    Proceed buying
+                    Proceed buying 31 руб.
                 </Button>
             </Col>
-        </>
+        </div>
     )
 }
 

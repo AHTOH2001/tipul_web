@@ -16,7 +16,7 @@ const HomePage = () => (
             <div className="site-layout-content">This is sales page</div>
         </Layout.Content>
         <Layout.Footer style={{ textAlign: 'center' }}>
-            © FrontieBontie
+            © Tipul
         </Layout.Footer>
     </Layout>
 )

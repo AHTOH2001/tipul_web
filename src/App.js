@@ -33,7 +33,7 @@ function App() {
 
 
     return (
-        <>
+        <div style={{ fontFamily: 'cursive' }}>
             <Switch>
                 <Route exact path='/log-in'>
                     {currentUser ? <Redirect to='/profile' /> : <LogInPage />}
@@ -51,7 +51,7 @@ function App() {
                     <Redirect to='/' />
                 </Route>
             </Switch>
-        </>
+        </div>
     )
 }
 

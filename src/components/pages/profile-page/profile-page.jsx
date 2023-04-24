@@ -32,7 +32,7 @@ const ProfilePage = () => {
 
                 </Layout.Content>
                 <Layout.Footer style={{ textAlign: 'center' }}>
-                    © FrontieBontie
+                    © Tipul
                 </Layout.Footer>
             </Layout>
         </Layout>
