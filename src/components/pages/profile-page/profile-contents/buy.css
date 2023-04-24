@@ -1,0 +1,12 @@
+.center {
+    /* display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%; */
+
+    text-align: center;
+}
+
+.blue {
+    background: #364d79;
+}
