@@ -33,8 +33,11 @@ const Sider = () => {
 
     return (
         <Layout.Sider collapsible collapsed={collapsed} onCollapse={onCollapse} className='sider'>
-            <Link to='/' className="logo" />
+            <Link to='/profile' className="logo" />
             <Menu theme="dark" mode="inline">
+                <Menu.Item key="3" icon={<HomeOutlined />} onClick={() => history.push('/profile')}>
+                    Home
+                </Menu.Item>
                 <SubMenu key="sub1" icon={<UserOutlined />} title={currentUser.user.user.username}>
                     <Menu.Item key="1" icon={<SettingOutlined />} onClick={() => history.push('/profile/settings')}>
                         Settings
@@ -43,9 +46,6 @@ const Sider = () => {
                         Log out
                     </Menu.Item>
                 </SubMenu>
-                <Menu.Item key="3" icon={<HomeOutlined />} onClick={() => history.push('/profile')}>
-                    Home
-                </Menu.Item>
             </Menu>
         </Layout.Sider>
     )

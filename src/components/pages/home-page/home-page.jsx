@@ -1,8 +1,8 @@
+import { Layout } from 'antd'
 import React from 'react'
-import {Layout} from 'antd'
-import './home-page.css'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import Header from '../../header/header'
+import './home-page.css'
 
 const HomePage = () => (
     <Layout className="home">
@@ -12,14 +12,13 @@ const HomePage = () => (
             </Link>
         ]}
         />
-        <Layout.Content style={{padding: '0 50px'}}>
-            <div className="site-layout-content">Content</div>
+        <Layout.Content style={{ padding: '0 50px' }}>
+            <div className="site-layout-content">This is sales page</div>
         </Layout.Content>
-        <Layout.Footer style={{textAlign: 'center'}}>
+        <Layout.Footer style={{ textAlign: 'center' }}>
             © FrontieBontie
         </Layout.Footer>
     </Layout>
 )
 
 export default HomePage
-
