@@ -1,6 +1,7 @@
 import { CheckOutlined, LoadingOutlined, SmileOutlined, SolutionOutlined, UserOutlined } from '@ant-design/icons'
-import { Button, Carousel, Col, Divider, Image, Row, Steps, Typography } from 'antd'
+import { Button, Carousel, Col, Divider, Image, message, Row, Steps, Typography } from 'antd'
 import React from 'react'
+import { useHistory } from 'react-router-dom'
 import screen_test from '../../../../images/slider/screen_test.png'
 import settings_test from '../../../../images/slider/settings_test.png'
 import './buy.css'
@@ -15,6 +16,9 @@ const contentStyle = {
 
 const { Step } = Steps
 const Buy = () => {
+    const history = useHistory()
+    // TODO
+    // Работа с несколькими пациентами
     // Просмотр таблеток опекуемых
     // Редактирование таблеток опекуемых
     // Просмотр посещений к варачам опекуемых
@@ -24,7 +28,7 @@ const Buy = () => {
     // Защита данных
     // Выбор языка
     // Выбор темы интерфейса
-    let data = [
+    let slider_data = [
         {
             key: 1,
             text: 'Просмотр таблеток опекуемых',
@@ -36,6 +40,12 @@ const Buy = () => {
             image: settings_test,
         },
     ]
+
+    const handleOnSubmit = () => {
+        message.success('Application was successfully bought! We glad to help you!', 5)
+        history.push('/profile/settings')
+    }
+
     return (
         <div>
             <Typography.Title className='center' style={{ fontSize: 100 }}>
@@ -56,7 +66,7 @@ const Buy = () => {
             </Typography.Title>
             <Image.PreviewGroup>
                 <Carousel autoplay className='center blue'>
-                    {data.map(({ key, text, image }) => (
+                    {slider_data.map(({ key, text, image }) => (
                         <Row key={key}>
                             <Col className='center'>
                                 <Image
@@ -76,7 +86,7 @@ const Buy = () => {
             </Image.PreviewGroup>
             <Divider plain />
             <Col className='center'>
-                <Button type='default' shape='round' icon={<CheckOutlined />} size={'large'} >
+                <Button type='default' shape='round' icon={<CheckOutlined />} size={'large'} onClick={handleOnSubmit} >
                     Proceed buying 31 руб.
                 </Button>
             </Col>
