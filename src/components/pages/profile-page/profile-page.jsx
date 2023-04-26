@@ -17,7 +17,7 @@ const ProfilePage = () => {
             <Sider />
             <Layout className="site-layout">
                 <Layout.Content style={{ padding: '10px' }}>
-                    {currentUser.type == 'guardian'
+                    {'guardian' in currentUser
                         ?
                         <Switch>
                             <Route exact path='/profile' component={Home} />

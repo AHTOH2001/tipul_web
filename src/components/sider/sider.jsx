@@ -38,7 +38,7 @@ const Sider = () => {
                 <Menu.Item key="3" icon={<HomeOutlined />} onClick={() => history.push('/profile')}>
                     Home
                 </Menu.Item>
-                <SubMenu key="sub1" icon={<UserOutlined />} title={currentUser.user.user.username}>
+                <SubMenu key="sub1" icon={<UserOutlined />} title={currentUser.user.username}>
                     <Menu.Item key="1" icon={<SettingOutlined />} onClick={() => history.push('/profile/settings')}>
                         Settings
                     </Menu.Item>

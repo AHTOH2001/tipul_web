@@ -91,7 +91,7 @@ const PatchProfile = () => {
             </Form.Item>
 
             <Form.Item
-                initialValue={currentUser.user.user.email}
+                initialValue={currentUser.user.email}
                 label="Email"
                 name="email"
                 validateStatus={fieldsErrors['email'] && fieldsErrors['email'].length ? 'error' : ''}
