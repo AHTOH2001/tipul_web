@@ -1,8 +1,8 @@
-import {Row, Col, Layout} from 'antd'
-import React from 'react'
-import {Link} from 'react-router-dom'
-import LogIn from '../../forms/log-in/log-in'
+import { Col, Layout, Row } from 'antd'
 import 'antd/dist/antd.css'
+import React from 'react'
+import { Link } from 'react-router-dom'
+import LogIn from '../../forms/log-in/log-in'
 import Header from '../../header/header'
 import ResetPasswordModal from '../../modals/reset-password-modal/reset-password-modal'
 
@@ -15,12 +15,12 @@ const LogInPage = () => {
                 </Link>
             ]}
             />
-            <Layout.Content style={{padding: '10px'}}>
+            <Layout.Content style={{ padding: '10px' }}>
                 <Row>
                     <Col span={8}>
-                        <LogIn/>
+                        <LogIn />
                         <Col offset={8}>
-                            <ResetPasswordModal/>
+                            <ResetPasswordModal />
                         </Col>
                     </Col>
                 </Row>

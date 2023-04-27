@@ -43,7 +43,7 @@ const Buy = () => {
 
     const handleOnSubmit = () => {
         message.success('Application was successfully bought! We glad to help you!', 5)
-        history.push('/profile/settings')
+        history.push('/profile')
     }
 
     return (

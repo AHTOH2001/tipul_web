@@ -1,63 +1,39 @@
 import { Button, Form, Input, message } from 'antd'
-import 'antd/dist/antd.css'
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { useHistory, useParams } from 'react-router-dom'
-import { setCurrentUserAsync } from '../../../redux/user/user.actions'
 import { SmartRequest } from '../../../utils/utils'
 
-
-const PasswordResetConfirm = () => {
+const CreateGuardianForm = () => {
     const [form] = Form.useForm()
     const { getFieldError, validateFields } = form
-
-    const dispatch = useDispatch()
     const [isButtonDisabled, setIsButtonDisabled] = useState(true)
     const [formError, setFormError] = useState('')
     const [fieldsErrors, setFieldsErrors] = useState({})
-    const history = useHistory()
-    let { uid, token } = useParams()
+    const [isValidating, setIsValidating] = useState(false)
 
     const onFinish = (values) => {
-        SmartRequest.post(
-            '/api/v1/auth/users/reset_password_confirm/',
-            {
-                'uid': uid,
-                'token': token,
-                'new_password': values['new_password'],
-            },
-        )
-            .then(resp => {
-                SmartRequest.setAuthToken('').then(
-                    () => {
-                        dispatch(setCurrentUserAsync(null))
-                        console.log('success in get reset pass:', resp)
-                        message.success('Successfully reset password')
-                        history.push('/log-in')
-                    }
-                )
+        setIsValidating(true)
+        SmartRequest.post('api/v1/auth/users/reset_password/', values)
+            .then(() => {
+                message.success('Mail for resetting password has been sent to your email', 5)
+                setIsValidating(false)
+                // setTimeout(() => setVisible(false), 1000)
             })
             .catch(error => {
+                setIsValidating(false)
                 if (error.response && error.response.status === 400) {
                     setIsButtonDisabled(true)
-                    if (typeof error.response.data !== 'object') {
-                        setFormError(error.response.data)
-                    } else if ('uid' in error.response.data) {
-                        setFormError(error.response.data['uid'][0])
+                    if (typeof error.response.data['detail'] !== 'object') {
+                        setFormError(error.response.data['detail'])
+                    } else {
+                        setFieldsErrors(error.response.data['detail'])
                     }
-                    else if ('token' in error.response.data) {
-                        setFormError(error.response.data['token'][0])
-                    }
-                    else {
-                        setFieldsErrors(error.response.data)
-                    }
-
                 } else {
-                    console.error('catch on confirm password: ', error)
+                    console.error('Error in reset password:', error)
                 }
-            })
-    }
 
+            })
+
+    }
 
     const onValuesChange = (changedValues) => {
         setTimeout(() => {
@@ -85,15 +61,14 @@ const PasswordResetConfirm = () => {
     return (
         <Form
             form={form}
-            labelCol={{
-                span: 8,
-            }}
+            onFinish={onFinish}
+            style={{ padding: '20px', alignContent: 'center' }}
             wrapperCol={{
                 span: 16,
             }}
-            onFinish={onFinish}
             onValuesChange={onValuesChange}
         >
+            <p>Enter the email you used to register</p>
             <Form.Item
                 name='form error'
                 hidden={!formError}
@@ -104,35 +79,27 @@ const PasswordResetConfirm = () => {
             >
                 <span className="ant-form-item-explain ant-form-item-explain-error">{formError}</span>
             </Form.Item>
-
             <Form.Item
-                label="New password"
-                name="new_password"
-                validateStatus={fieldsErrors['new_password'] && fieldsErrors['new_password'].length ? 'error' : ''}
-                help={fieldsErrors['new_password'] && fieldsErrors['new_password'].length ? fieldsErrors['new_password'][0] : ''}
+                name="email"
+                validateStatus={isValidating ? 'validating' : fieldsErrors['email'] && fieldsErrors['email'].length ? 'error' : ''}
+                help={fieldsErrors['email'] && fieldsErrors['email'].length ? fieldsErrors['email'][0] : ''}
+                hasFeedback
                 rules={[
                     {
                         required: true,
-                        message: 'Please input your password!',
+                        message: 'Please input your email!',
                     },
                 ]}
             >
-                <Input.Password />
+                <Input placeholder="Email" type="email" autoComplete="email" />
             </Form.Item>
-
-            <Form.Item
-                wrapperCol={{
-                    offset: 8,
-                    span: 16,
-                }}
-            >
+            <Form.Item>
                 <Button disabled={isButtonDisabled} type="primary" htmlType="submit">
-                    Update password
+                    Request
                 </Button>
             </Form.Item>
         </Form>
     )
 }
 
-
-export default PasswordResetConfirm
+export default CreateGuardianForm

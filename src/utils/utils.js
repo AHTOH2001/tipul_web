@@ -59,11 +59,12 @@ export class SmartRequest {
         return axios.patch(url, data, config)
     }
 
-    static setAuthToken(token) {
+    static async setAuthToken(token) {
         const cookies = new Cookies()
         if (token == '') {
             console.log('remove auth_token')
             cookies.remove('auth_token')
+            await new Promise(r => setTimeout(r, 0.3))
         } else {
             console.log('set new auth token')
             cookies.set('auth_token', token)
