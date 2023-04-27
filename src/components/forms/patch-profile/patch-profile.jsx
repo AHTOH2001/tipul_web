@@ -95,7 +95,7 @@ const PatchProfile = () => {
                 label="Email"
                 name="email"
                 validateStatus={fieldsErrors['email'] && fieldsErrors['email'].length ? 'error' : ''}
-                help={fieldsErrors['email'] && fieldsErrors['email'].length ? fieldsErrors['email'][0] : ''}
+                help={fieldsErrors['email'] && fieldsErrors['email'].length ? fieldsErrors['email'][0] : null}
                 rules={[
                     {
                         required: true,

@@ -2,6 +2,12 @@ import { Button, Form, Input, message } from 'antd'
 import React, { useState } from 'react'
 import { SmartRequest } from '../../../utils/utils'
 
+// {
+//     "first_name": "guardianSet",
+//     "last_name": "testovich",
+//     "age": 22,
+//     "phone": 375440943822
+//   }
 const CreateGuardianForm = () => {
     const [form] = Form.useForm()
     const { getFieldError, validateFields } = form
@@ -57,6 +63,12 @@ const CreateGuardianForm = () => {
         }, 0)
     }
 
+    const getValidateStatus = (field) => {
+        return isValidating ? 'validating' : fieldsErrors[field] && fieldsErrors[field].length ? 'error' : ''
+    }
+    const getHelp = (field) => {
+        return fieldsErrors[field] && fieldsErrors[field].length ? fieldsErrors[field][0] : null
+    }
 
     return (
         <Form
@@ -68,7 +80,6 @@ const CreateGuardianForm = () => {
             }}
             onValuesChange={onValuesChange}
         >
-            <p>Enter the email you used to register</p>
             <Form.Item
                 name='form error'
                 hidden={!formError}
@@ -80,22 +91,28 @@ const CreateGuardianForm = () => {
                 <span className="ant-form-item-explain ant-form-item-explain-error">{formError}</span>
             </Form.Item>
             <Form.Item
-                name="email"
-                validateStatus={isValidating ? 'validating' : fieldsErrors['email'] && fieldsErrors['email'].length ? 'error' : ''}
-                help={fieldsErrors['email'] && fieldsErrors['email'].length ? fieldsErrors['email'][0] : ''}
-                hasFeedback
+                label="First name"
+                name="name"
+                validateStatus={getValidateStatus('name')}
+                help={getHelp('name')}
+                // hasFeedback
                 rules={[
                     {
                         required: true,
-                        message: 'Please input your email!',
+                        message: 'Please input first name!',
                     },
                 ]}
             >
-                <Input placeholder="Email" type="email" autoComplete="email" />
+                <Input />
             </Form.Item>
-            <Form.Item>
+            <Form.Item
+                wrapperCol={{
+                    offset: 5,
+                    span: 16,
+                }}
+            >
                 <Button disabled={isButtonDisabled} type="primary" htmlType="submit">
-                    Request
+                    Register
                 </Button>
             </Form.Item>
         </Form>

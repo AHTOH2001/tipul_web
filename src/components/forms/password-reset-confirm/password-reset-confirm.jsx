@@ -109,7 +109,7 @@ const PasswordResetConfirm = () => {
                 label="New password"
                 name="new_password"
                 validateStatus={fieldsErrors['new_password'] && fieldsErrors['new_password'].length ? 'error' : ''}
-                help={fieldsErrors['new_password'] && fieldsErrors['new_password'].length ? fieldsErrors['new_password'][0] : ''}
+                help={fieldsErrors['new_password'] && fieldsErrors['new_password'].length ? fieldsErrors['new_password'][0] : null}
                 rules={[
                     {
                         required: true,

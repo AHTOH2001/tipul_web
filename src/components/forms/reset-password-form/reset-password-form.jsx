@@ -82,7 +82,7 @@ const ResetPasswordForm = ({ setVisible }) => {
             <Form.Item
                 name="email"
                 validateStatus={isValidating ? 'validating' : fieldsErrors['email'] && fieldsErrors['email'].length ? 'error' : ''}
-                help={fieldsErrors['email'] && fieldsErrors['email'].length ? fieldsErrors['email'][0] : ''}
+                help={fieldsErrors['email'] && fieldsErrors['email'].length ? fieldsErrors['email'][0] : null}
                 hasFeedback
                 rules={[
                     {

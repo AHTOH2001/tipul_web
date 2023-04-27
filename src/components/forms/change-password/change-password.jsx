@@ -86,7 +86,7 @@ const ChangePassword = () => {
                 label="Old password"
                 name="password_old"
                 validateStatus={fieldsErrors['password_old'] && fieldsErrors['password_old'].length ? 'error' : ''}
-                help={fieldsErrors['password_old'] && fieldsErrors['password_old'].length ? fieldsErrors['password_old'][0] : ''}
+                help={fieldsErrors['password_old'] && fieldsErrors['password_old'].length ? fieldsErrors['password_old'][0] : null}
                 rules={[
                     {
                         required: true,
@@ -100,7 +100,7 @@ const ChangePassword = () => {
                 label="New password"
                 name="password_new"
                 validateStatus={fieldsErrors['password_new'] && fieldsErrors['password_new'].length ? 'error' : ''}
-                help={fieldsErrors['password_new'] && fieldsErrors['password_new'].length ? fieldsErrors['password_new'][0] : ''}
+                help={fieldsErrors['password_new'] && fieldsErrors['password_new'].length ? fieldsErrors['password_new'][0] : null}
                 rules={[
                     {
                         required: true,

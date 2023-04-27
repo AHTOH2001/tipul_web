@@ -15,7 +15,7 @@ export class SmartRequest {
         const cookies = new Cookies()
 
         if (auth_token === '') {
-            auth_token = cookies.get('auth_token')
+            auth_token = cookies.get('auth_token', { path: '/' })
             console.log('get cookies')
         }
         console.log('auth_token:' + auth_token)
@@ -31,7 +31,7 @@ export class SmartRequest {
             withCredentials: false,
             headers: {
                 ...config.headers,
-                'X-CSRFToken': cookies.get('csrftoken'),
+                'X-CSRFToken': cookies.get('csrftoken', { path: '/' }),
             }
         }
         if (auth_token) {
@@ -63,11 +63,10 @@ export class SmartRequest {
         const cookies = new Cookies()
         if (token == '') {
             console.log('remove auth_token')
-            cookies.remove('auth_token')
-            await new Promise(r => setTimeout(r, 0.3))
+            cookies.remove('auth_token', { path: '/' })
         } else {
             console.log('set new auth token')
-            cookies.set('auth_token', token)
+            cookies.set('auth_token', token, { path: '/' })
         }
         auth_token = token
     }

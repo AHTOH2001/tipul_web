@@ -92,7 +92,7 @@ const SignUp = () => {
                 label="Username"
                 name="username"
                 validateStatus={fieldsErrors['username'] && fieldsErrors['username'].length ? 'error' : ''}
-                help={fieldsErrors['username'] && fieldsErrors['username'].length ? fieldsErrors['username'][0] : ''}
+                help={fieldsErrors['username'] && fieldsErrors['username'].length ? fieldsErrors['username'][0] : null}
                 rules={[
                     {
                         required: true,
@@ -107,7 +107,7 @@ const SignUp = () => {
                 label="Email"
                 name="email"
                 validateStatus={fieldsErrors['email'] && fieldsErrors['email'].length ? 'error' : ''}
-                help={fieldsErrors['email'] && fieldsErrors['email'].length ? fieldsErrors['email'][0] : ''}
+                help={fieldsErrors['email'] && fieldsErrors['email'].length ? fieldsErrors['email'][0] : null}
                 rules={[
                     {
                         required: true,
@@ -121,7 +121,7 @@ const SignUp = () => {
                 label="Password"
                 name="password"
                 validateStatus={fieldsErrors['password'] && fieldsErrors['password'].length ? 'error' : ''}
-                help={fieldsErrors['password'] && fieldsErrors['password'].length ? fieldsErrors['password'][0] : ''}
+                help={fieldsErrors['password'] && fieldsErrors['password'].length ? fieldsErrors['password'][0] : null}
                 rules={[
                     {
                         required: true,

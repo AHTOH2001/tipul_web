@@ -48,7 +48,7 @@ const Buy = () => {
 
     return (
         <div>
-            <Typography.Title className='center' style={{ fontSize: 100 }}>
+            <Typography.Title className='center' style={{ fsuontSize: 100 }}>
                 Tipul
             </Typography.Title>
             <Typography className='center' style={{ fontSize: 20, paddingBottom: 20 }}>
