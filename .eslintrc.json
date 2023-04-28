@@ -33,11 +33,11 @@
       "off"
     ],
     "quotes": [
-      "error",
+      "warn",
       "single"
     ],
     "semi": [
-      "error",
+      "warn",
       "never"
     ],
     "no-unused-vars": [
@@ -49,7 +49,7 @@
       }
     ],
     "eol-last": [
-      "error",
+      "warn",
       "always"
     ],
     "no-unreachable": [

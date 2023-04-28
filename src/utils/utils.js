@@ -18,7 +18,7 @@ export class SmartRequest {
             auth_token = cookies.get('auth_token', { path: '/' })
             console.log('get cookies')
         }
-        console.log('auth_token:' + auth_token)
+        console.log('auth_token: ' + auth_token)
 
         url = url.replace(backend_host, '')
         if (!url.startsWith('/')) {

@@ -1,13 +1,12 @@
-import { Button, Form, Input, message } from 'antd'
+import { Button, Form, Input, InputNumber, message } from 'antd'
 import React, { useState } from 'react'
 import { SmartRequest } from '../../../utils/utils'
 
-// {
-//     "first_name": "guardianSet",
-//     "last_name": "testovich",
-//     "age": 22,
-//     "phone": 375440943822
-//   }
+const layout = {
+    labelCol: { span: 6 },
+    wrapperCol: { span: 16 },
+}
+
 const CreateGuardianForm = () => {
     const [form] = Form.useForm()
     const { getFieldError, validateFields } = form
@@ -18,27 +17,31 @@ const CreateGuardianForm = () => {
 
     const onFinish = (values) => {
         setIsValidating(true)
-        SmartRequest.post('api/v1/auth/users/reset_password/', values)
+        SmartRequest.post('managment/guardians/', {
+            'first_name': values['first_name'],
+            'last_name': values['last_name'],
+            'age': values['age'],
+            'phone': values['phone']
+        })
             .then(() => {
-                message.success('Mail for resetting password has been sent to your email', 5)
+                message.success('Guardian account has been created succesfully')
                 setIsValidating(false)
-                // setTimeout(() => setVisible(false), 1000)
+                window.location.reload(false)
             })
             .catch(error => {
                 setIsValidating(false)
                 if (error.response && error.response.status === 400) {
                     setIsButtonDisabled(true)
-                    if (typeof error.response.data['detail'] !== 'object') {
-                        setFormError(error.response.data['detail'])
+                    if (typeof error.response.data !== 'object') {
+                        setFormError(error.response.data)
                     } else {
-                        setFieldsErrors(error.response.data['detail'])
+                        setFieldsErrors(error.response.data)
                     }
                 } else {
                     console.error('Error in reset password:', error)
                 }
 
             })
-
     }
 
     const onValuesChange = (changedValues) => {
@@ -67,12 +70,14 @@ const CreateGuardianForm = () => {
         return isValidating ? 'validating' : fieldsErrors[field] && fieldsErrors[field].length ? 'error' : ''
     }
     const getHelp = (field) => {
+        console.log(fieldsErrors)
         return fieldsErrors[field] && fieldsErrors[field].length ? fieldsErrors[field][0] : null
     }
 
     return (
         <Form
             form={form}
+            {...layout}
             onFinish={onFinish}
             style={{ padding: '20px', alignContent: 'center' }}
             wrapperCol={{
@@ -88,14 +93,13 @@ const CreateGuardianForm = () => {
                     span: 16,
                 }}
             >
-                <span className="ant-form-item-explain ant-form-item-explain-error">{formError}</span>
+                <span className='ant-form-item-explain ant-form-item-explain-error'>{formError}</span>
             </Form.Item>
             <Form.Item
-                label="First name"
-                name="name"
-                validateStatus={getValidateStatus('name')}
-                help={getHelp('name')}
-                // hasFeedback
+                label='First name'
+                name='first_name'
+                validateStatus={getValidateStatus('first_name')}
+                help={getHelp('first_name')}
                 rules={[
                     {
                         required: true,
@@ -106,12 +110,64 @@ const CreateGuardianForm = () => {
                 <Input />
             </Form.Item>
             <Form.Item
+                label='Last name'
+                name='last_name'
+                validateStatus={getValidateStatus('last_name')}
+                help={getHelp('last_name')}
+                rules={[
+                    {
+                        required: true,
+                        message: 'Please input last name!',
+                    },
+                ]}
+            >
+                <Input />
+            </Form.Item>
+            <Form.Item
+                label='Age'
+                name='age'
+                validateStatus={getValidateStatus('age')}
+                help={getHelp('age')}
+                rules={[
+                    {
+                        required: true,
+                        message: 'Please input age!',
+                    },
+                    {
+                        type: 'number',
+                        min: 1,
+                        max: 99,
+                        message: 'Age must be between 1 and 99'
+                    }
+                ]}
+            >
+                <InputNumber />
+            </Form.Item>
+            <Form.Item
+                label='Phone'
+                name='phone'
+                validateStatus={getValidateStatus('phone')}
+                help={getHelp('phone')}
+                rules={[
+                    {
+                        required: true,
+                        message: 'Please input phone!',
+                    },
+                    {
+                        pattern: '^[1-9][0-9]{10,11}$',
+                        message: 'Phone should consist only 11-12 numbers and start with 1'
+                    }
+                ]}
+            >
+                <Input />
+            </Form.Item>
+            <Form.Item
                 wrapperCol={{
-                    offset: 5,
+                    offset: 6,
                     span: 16,
                 }}
             >
-                <Button disabled={isButtonDisabled} type="primary" htmlType="submit">
+                <Button disabled={isButtonDisabled} type='primary' htmlType='submit'>
                     Register
                 </Button>
             </Form.Item>
