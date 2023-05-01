@@ -6,7 +6,6 @@ const GuardianFields = ({ formError, isValidating, fieldsErrors, initialValues =
         return isValidating ? 'validating' : fieldsErrors[field] && fieldsErrors[field].length ? 'error' : ''
     }
     const getHelp = (field) => {
-        console.log(fieldsErrors)
         return fieldsErrors[field] && fieldsErrors[field].length ? fieldsErrors[field][0] : null
     }
 

@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux'
 import ChangePassword from '../../../forms/change-password/change-password'
 import PatchProfile from '../../../forms/patch-profile/patch-profile'
 import UpdateGuardianForm from '../../../forms/update-guardian-form/update-guardian-form'
+import PreferencesForm from '../../../forms/preferences-form/preferences-form'
 
 const headerTextStyle = {
     fontSize: 40,
@@ -19,6 +20,19 @@ const Settings = () => {
         <div>
             {currentUser.guardian ?
                 <>
+                    <Row>
+                        <Col span={24}>
+                            <Typography.Title style={headerTextStyle}>
+                                Preferences
+                            </Typography.Title>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col span={8}>
+                            <PreferencesForm />
+                        </Col>
+                    </Row>
+                    <Divider plain />
                     <Row>
                         <Col span={24}>
                             <Typography.Title style={headerTextStyle}>
