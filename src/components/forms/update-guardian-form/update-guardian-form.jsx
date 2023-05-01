@@ -22,7 +22,7 @@ const UpdateGuardianForm = () => {
 
     const onFinish = (values) => {
         setIsValidating(true)
-        SmartRequest.patch(`managment/guardians/${currentUser.guardian.id}/`, {
+        SmartRequest.patch(`managment/guardians/98/`, {
             'first_name': values['first_name'],
             'last_name': values['last_name'],
             'age': values['age'],
@@ -31,7 +31,6 @@ const UpdateGuardianForm = () => {
             .then(() => {
                 message.success('Guardian account has been modified')
                 setIsValidating(false)
-                window.location.reload(false)
             })
             .catch(error => {
                 setIsValidating(false)

@@ -33,15 +33,9 @@ const PreferencesForm = () => {
             resp => {
                 setInitialValues(resp.data)
                 setIsLoading(false)
-                setIsButtonDisabled(false)
             }
         )
     }, [])
-
-    useEffect(() => {
-        console.log(`New initialValues: ${JSON.stringify(initialValues)}`)
-
-    })
 
     const onFinish = (values) => {
         setIsValidating(true)

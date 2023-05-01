@@ -15,7 +15,7 @@ const layout = {
 const PatchProfile = () => {
     const [form] = Form.useForm()
     const { getFieldError, validateFields } = form
-    const [isButtonDisabled, setIsButtonDisabled] = useState(false)
+    const [isButtonDisabled, setIsButtonDisabled] = useState(true)
     const [formError, setFormError] = useState('')
     const [fieldsErrors, setFieldsErrors] = useState({})
     const currentUser = useSelector(selectCurrentUser)
