@@ -1,4 +1,4 @@
-import { Button, Form, message, Input } from 'antd'
+import { Button, Form, message, Select } from 'antd'
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { SmartRequest } from '../../../utils/utils'
@@ -131,10 +131,13 @@ const PreferencesForm = () => {
                                 },
                             ]}
                         >
-                            <select defaultValue={initialValues['language']}>
-                                <option value="RUSSIAN">Русский</option>
-                                <option value="ENGLISH">English</option>
-                            </select>
+                            <Select
+                                defaultValue={initialValues['language']}
+                                options={[
+                                    { value: 'RUSSIAN', label: 'Русский' },
+                                    { value: 'ENGLISH', label: 'English' },
+                                ]}
+                            />
                         </Form.Item>
                         <Form.Item
                             label='Theme'
@@ -149,14 +152,17 @@ const PreferencesForm = () => {
                                 },
                             ]}
                         >
-                            <select defaultValue={initialValues['theme']}>
-                                <option value="black">Black</option>
-                                <option value="white">White</option>
-                            </select>
+                            <Select
+                                defaultValue={initialValues['theme']}
+                                options={[
+                                    { value: 'black', label: 'Black' },
+                                    { value: 'white', label: 'White' },
+                                ]}
+                            />
                         </Form.Item>
                         <Form.Item
                             wrapperCol={{
-                                offset: 4,
+                                offset: 8,
                                 span: 16,
                             }}
                         >
