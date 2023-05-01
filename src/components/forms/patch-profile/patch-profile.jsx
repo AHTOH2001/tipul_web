@@ -7,6 +7,11 @@ import { check_whoiam } from '../../../utils/api'
 
 const selectCurrentUser = state => state.user.currentUser
 
+const layout = {
+    labelCol: { span: 8 },
+    wrapperCol: { span: 16 },
+}
+
 const PatchProfile = () => {
     const [form] = Form.useForm()
     const { getFieldError, validateFields } = form
@@ -70,12 +75,8 @@ const PatchProfile = () => {
     return (
         <Form
             form={form}
-            labelCol={{
-                span: 8,
-            }}
-            wrapperCol={{
-                span: 16,
-            }}
+            {...layout}
+            style={{ padding: '20px', alignContent: 'center' }}
             onFinish={onFinish}
             onValuesChange={onValuesChange}
         >
@@ -83,7 +84,7 @@ const PatchProfile = () => {
                 name='form error'
                 hidden={!formError}
                 wrapperCol={{
-                    offset: 8,
+                    offset: 6,
                     span: 16,
                 }}
             >

@@ -1,5 +1,6 @@
 import { Button, Form, message } from 'antd'
 import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
 import { SmartRequest } from '../../../utils/utils'
 import GuardianFields from '../form-fields/guardian-fields'
 
@@ -8,7 +9,10 @@ const layout = {
     wrapperCol: { span: 16 },
 }
 
-const CreateGuardianForm = () => {
+const selectCurrentUser = state => state.user.currentUser
+
+const UpdateGuardianForm = () => {
+    const currentUser = useSelector(selectCurrentUser)
     const [form] = Form.useForm()
     const { getFieldError, validateFields } = form
     const [isButtonDisabled, setIsButtonDisabled] = useState(true)
@@ -18,14 +22,14 @@ const CreateGuardianForm = () => {
 
     const onFinish = (values) => {
         setIsValidating(true)
-        SmartRequest.post('managment/guardians/', {
+        SmartRequest.patch(`managment/guardians/${currentUser.guardian.id}/`, {
             'first_name': values['first_name'],
             'last_name': values['last_name'],
             'age': values['age'],
             'phone': values['phone']
         })
             .then(() => {
-                message.success('Guardian account has been created succesfully')
+                message.success('Guardian account has been modified')
                 setIsValidating(false)
                 window.location.reload(false)
             })
@@ -41,7 +45,6 @@ const CreateGuardianForm = () => {
                 } else {
                     console.error('Error in reset password:', error)
                 }
-
             })
     }
 
@@ -72,11 +75,18 @@ const CreateGuardianForm = () => {
         <Form
             form={form}
             {...layout}
-            style={{ padding: '20px', alignContent: 'center' }}
             onFinish={onFinish}
+            style={{ padding: '20px', alignContent: 'center' }}
             onValuesChange={onValuesChange}
         >
-            <GuardianFields formError={formError}  isValidating={isValidating} fieldsErrors={fieldsErrors} />
+            <GuardianFields
+                formError={formError}
+                isValidating={isValidating}
+                fieldsErrors={fieldsErrors}
+                initialValues={{
+                    ...currentUser.guardian
+                }}
+            />
             <Form.Item
                 wrapperCol={{
                     offset: 8,
@@ -84,11 +94,11 @@ const CreateGuardianForm = () => {
                 }}
             >
                 <Button disabled={isButtonDisabled} type='primary' htmlType='submit'>
-                    Register
+                    Update guardian
                 </Button>
             </Form.Item>
         </Form>
     )
 }
 
-export default CreateGuardianForm
+export default UpdateGuardianForm

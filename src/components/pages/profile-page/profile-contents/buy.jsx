@@ -6,14 +6,6 @@ import screen_test from '../../../../images/slider/screen_test.png'
 import settings_test from '../../../../images/slider/settings_test.png'
 import './buy.css'
 
-const contentStyle = {
-    height: '520px',
-    color: '#fff',
-    lineHeight: '160px',
-    textAlign: 'center',
-    background: '#364d79',
-}
-
 const { Step } = Steps
 const Buy = () => {
     const history = useHistory()
@@ -48,7 +40,7 @@ const Buy = () => {
 
     return (
         <div>
-            <Typography.Title className='center' style={{ fsuontSize: 100 }}>
+            <Typography.Title className='center' style={{ fontSize: 50 }}>
                 Tipul
             </Typography.Title>
             <Typography className='center' style={{ fontSize: 20, paddingBottom: 20 }}>
@@ -70,7 +62,7 @@ const Buy = () => {
                         <Row key={key}>
                             <Col className='center'>
                                 <Image
-                                    height={contentStyle.height}
+                                    height='520px'
                                     src={image}
                                 />
                             </Col>

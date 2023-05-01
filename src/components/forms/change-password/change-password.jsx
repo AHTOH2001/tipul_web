@@ -3,6 +3,11 @@ import React, { useState } from 'react'
 import { SmartRequest } from '../../../utils/utils'
 
 
+const layout = {
+    labelCol: { span: 8 },
+    wrapperCol: { span: 16 },
+}
+
 const ChangePassword = () => {
     const [form] = Form.useForm()
     const { getFieldError, validateFields, resetFields } = form
@@ -63,12 +68,8 @@ const ChangePassword = () => {
     return (
         <Form
             form={form}
-            labelCol={{
-                span: 8,
-            }}
-            wrapperCol={{
-                span: 16,
-            }}
+            {...layout}
+            style={{ padding: '20px', alignContent: 'center' }}
             onFinish={onFinish}
             onValuesChange={onValuesChange}
         >
