@@ -131,7 +131,10 @@ const PreferencesForm = () => {
                                 },
                             ]}
                         >
-                            <Input />
+                            <select defaultValue={initialValues['language']}>
+                                <option value="RUSSIAN">Русский</option>
+                                <option value="ENGLISH">English</option>
+                            </select>
                         </Form.Item>
                         <Form.Item
                             label='Theme'
@@ -146,11 +149,14 @@ const PreferencesForm = () => {
                                 },
                             ]}
                         >
-                            <Input />
+                            <select defaultValue={initialValues['theme']}>
+                                <option value="black">Black</option>
+                                <option value="white">White</option>
+                            </select>
                         </Form.Item>
                         <Form.Item
                             wrapperCol={{
-                                offset: 8,
+                                offset: 4,
                                 span: 16,
                             }}
                         >
