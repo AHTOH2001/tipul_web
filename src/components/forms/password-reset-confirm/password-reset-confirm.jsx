@@ -102,12 +102,12 @@ const PasswordResetConfirm = () => {
                     span: 16,
                 }}
             >
-                <span className="ant-form-item-explain ant-form-item-explain-error">{formError}</span>
+                <span className='ant-form-item-explain ant-form-item-explain-error'>{formError}</span>
             </Form.Item>
 
             <Form.Item
-                label="New password"
-                name="new_password"
+                label='New password'
+                name='new_password'
                 validateStatus={fieldsErrors['new_password'] && fieldsErrors['new_password'].length ? 'error' : ''}
                 help={fieldsErrors['new_password'] && fieldsErrors['new_password'].length ? fieldsErrors['new_password'][0] : null}
                 rules={[
@@ -126,7 +126,7 @@ const PasswordResetConfirm = () => {
                     span: 16,
                 }}
             >
-                <Button disabled={isButtonDisabled} type="primary" htmlType="submit">
+                <Button disabled={isButtonDisabled} type='primary' htmlType='submit'>
                     Update password
                 </Button>
             </Form.Item>

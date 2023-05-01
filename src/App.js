@@ -12,9 +12,11 @@ import { setCurrentUserAsync } from './redux/user/user.actions'
 import { check_whoiam } from './utils/api'
 
 const selectCurrentUser = state => state.user.currentUser
+const selectRefresh = state => state.refresh.refresh_token
 
 function App() {
     const currentUser = useSelector(selectCurrentUser)
+    const refresh = useSelector(selectRefresh)
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -22,7 +24,7 @@ function App() {
         check_whoiam().then((actualUser) => {
             dispatch(setCurrentUserAsync(actualUser))
         })
-    })
+    }, [refresh])
 
 
     return (

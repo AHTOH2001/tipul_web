@@ -6,10 +6,10 @@ import {Link} from 'react-router-dom'
 
 const Header = ({content, justify}) => {
     return (
-        <Layout.Header className="header">
-            <Link to='/' className="logo"/>
+        <Layout.Header className='header'>
+            <Link to='/' className='logo'/>
             <Row justify={justify}>
-                <Menu theme="dark" mode="horizontal">
+                <Menu theme='dark' mode='horizontal'>
                     {content.map(e => <Menu.Item key={e.key}>{e}</Menu.Item>)}
                 </Menu>
             </Row>

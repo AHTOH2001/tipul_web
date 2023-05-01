@@ -1,6 +1,8 @@
 import { Button, Form, message } from 'antd'
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import { SmartRequest } from '../../../utils/utils'
+import { setRefresh } from '../../../redux/refresh/refresh.actions.js'
 import GuardianFields from '../form-fields/guardian-fields'
 
 const layout = {
@@ -15,6 +17,7 @@ const CreateGuardianForm = () => {
     const [formError, setFormError] = useState('')
     const [fieldsErrors, setFieldsErrors] = useState({})
     const [isValidating, setIsValidating] = useState(false)
+    const dispatch = useDispatch()
 
     const onFinish = (values) => {
         setIsValidating(true)
@@ -27,7 +30,7 @@ const CreateGuardianForm = () => {
             .then(() => {
                 message.success('Guardian account has been created succesfully')
                 setIsValidating(false)
-                window.location.reload(false)
+                dispatch(setRefresh())
             })
             .catch(error => {
                 setIsValidating(false)
@@ -39,7 +42,7 @@ const CreateGuardianForm = () => {
                         setFieldsErrors(error.response.data)
                     }
                 } else {
-                    console.error('Error in reset password:', error)
+                    console.error('Error in create guardian:', error)
                 }
 
             })
@@ -76,7 +79,7 @@ const CreateGuardianForm = () => {
             onFinish={onFinish}
             onValuesChange={onValuesChange}
         >
-            <GuardianFields formError={formError}  isValidating={isValidating} fieldsErrors={fieldsErrors} />
+            <GuardianFields formError={formError} isValidating={isValidating} fieldsErrors={fieldsErrors} />
             <Form.Item
                 wrapperCol={{
                     offset: 8,

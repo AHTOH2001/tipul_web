@@ -5,7 +5,7 @@ import Header from '../../header/header'
 import './home-page.css'
 
 const HomePage = () => (
-    <Layout className="home">
+    <Layout className='home'>
         <Header content={[
             <Link to='/log-in' key={1}>
                 Log in
@@ -13,7 +13,7 @@ const HomePage = () => (
         ]}
         />
         <Layout.Content style={{ padding: '0 50px' }}>
-            <div className="site-layout-content">This is sales page</div>
+            <div className='site-layout-content'>This is sales page</div>
         </Layout.Content>
         <Layout.Footer style={{ textAlign: 'center' }}>
             © Tipul

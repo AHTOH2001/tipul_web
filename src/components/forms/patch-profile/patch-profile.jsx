@@ -88,13 +88,13 @@ const PatchProfile = () => {
                     span: 16,
                 }}
             >
-                <span className="ant-form-item-explain ant-form-item-explain-error">{formError}</span>
+                <span className='ant-form-item-explain ant-form-item-explain-error'>{formError}</span>
             </Form.Item>
 
             <Form.Item
                 initialValue={currentUser.user.email}
-                label="Email"
-                name="email"
+                label='Email'
+                name='email'
                 validateStatus={fieldsErrors['email'] && fieldsErrors['email'].length ? 'error' : ''}
                 help={fieldsErrors['email'] && fieldsErrors['email'].length ? fieldsErrors['email'][0] : null}
                 rules={[
@@ -104,7 +104,7 @@ const PatchProfile = () => {
                     },
                 ]}
             >
-                <Input type="email" autoComplete="email" />
+                <Input type='email' autoComplete='email' />
             </Form.Item>
 
             <Form.Item
@@ -113,7 +113,7 @@ const PatchProfile = () => {
                     span: 16,
                 }}
             >
-                <Button disabled={isButtonDisabled} type="primary" htmlType="submit">
+                <Button disabled={isButtonDisabled} type='primary' htmlType='submit'>
                     Update email
                 </Button>
             </Form.Item>

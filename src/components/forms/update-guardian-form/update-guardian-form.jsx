@@ -22,7 +22,7 @@ const UpdateGuardianForm = () => {
 
     const onFinish = (values) => {
         setIsValidating(true)
-        SmartRequest.patch(`managment/guardians/98/`, {
+        SmartRequest.patch('managment/guardians/98/', {
             'first_name': values['first_name'],
             'last_name': values['last_name'],
             'age': values['age'],

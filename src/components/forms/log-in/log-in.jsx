@@ -4,15 +4,15 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { setCurrentUserAsync } from '../../../redux/user/user.actions'
-import { SmartRequest } from '../../../utils/utils'
 import { check_whoiam } from '../../../utils/api'
+import { SmartRequest } from '../../../utils/utils'
 
 
 const LogIn = () => {
     const [form] = Form.useForm()
     const { getFieldError, isFieldTouched, validateFields } = form
     const dispatch = useDispatch()
-
+    const [isButtonLoading, setIsButtonLoading] = useState(false)
     const [isButtonDisabled, setIsButtonDisabled] = useState(true)
     const [isFormErrorHidden, setIsFormErrorHidden] = useState(true)
     const [formError, setFormError] = useState('')
@@ -21,6 +21,7 @@ const LogIn = () => {
     const history = useHistory()
 
     const onFinish = (values) => {
+        setIsButtonLoading(true)
         SmartRequest.post(
             'api/v1/auth-token/token/login/',
             {
@@ -31,12 +32,14 @@ const LogIn = () => {
             .then(resp => {
                 SmartRequest.setAuthToken(resp.data['auth_token'])
                 check_whoiam().then((actualUser) => {
+                    setIsButtonLoading(false)
                     dispatch(setCurrentUserAsync(actualUser))
                     history.push('/profile')
                     message.success('Successfully logged in')
                 })
             })
             .catch(error => {
+                setIsButtonLoading(false)
                 if (error.response && error.response.status === 400) {
                     setFormError(error.response.data['non_field_errors'])
                     setIsFormErrorHidden(false)
@@ -84,11 +87,11 @@ const LogIn = () => {
                     span: 16,
                 }}
             >
-                <span className="ant-form-item-explain ant-form-item-explain-error">{formError}</span>
+                <span className='ant-form-item-explain ant-form-item-explain-error'>{formError}</span>
             </Form.Item>
             <Form.Item
-                label="Username"
-                name="username"
+                label='Username'
+                name='username'
                 validateStatus={usernameError ? 'error' : ''}
                 help={usernameError ? null : ''}
                 rules={[
@@ -102,8 +105,8 @@ const LogIn = () => {
             </Form.Item>
 
             <Form.Item
-                label="Password"
-                name="password"
+                label='Password'
+                name='password'
                 validateStatus={passwordError ? 'error' : ''}
                 help={passwordError ? null : ''}
                 rules={[
@@ -122,7 +125,7 @@ const LogIn = () => {
                     span: 16,
                 }}
             >
-                <Button disabled={isButtonDisabled} type="primary" htmlType="submit">
+                <Button disabled={isButtonDisabled} type='primary' htmlType='submit' loading={isButtonLoading}>
                     Log in
                 </Button>
             </Form.Item>

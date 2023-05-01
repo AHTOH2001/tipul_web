@@ -15,7 +15,7 @@ const ProfilePage = () => {
     return (
         <Layout style={{ minHeight: '100vh' }} className='profile'>
             <Sider />
-            <Layout className="site-layout">
+            <Layout className='site-layout'>
                 <Layout.Content style={{ padding: '10px' }}>
                     {currentUser['bought']
                         ?

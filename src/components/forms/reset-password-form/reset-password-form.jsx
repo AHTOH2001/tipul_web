@@ -77,10 +77,10 @@ const ResetPasswordForm = ({ setVisible }) => {
                     span: 16,
                 }}
             >
-                <span className="ant-form-item-explain ant-form-item-explain-error">{formError}</span>
+                <span className='ant-form-item-explain ant-form-item-explain-error'>{formError}</span>
             </Form.Item>
             <Form.Item
-                name="email"
+                name='email'
                 validateStatus={isValidating ? 'validating' : fieldsErrors['email'] && fieldsErrors['email'].length ? 'error' : ''}
                 help={fieldsErrors['email'] && fieldsErrors['email'].length ? fieldsErrors['email'][0] : null}
                 hasFeedback
@@ -91,10 +91,10 @@ const ResetPasswordForm = ({ setVisible }) => {
                     },
                 ]}
             >
-                <Input placeholder="Email" type="email" autoComplete="email" />
+                <Input placeholder='Email' type='email' autoComplete='email' />
             </Form.Item>
             <Form.Item>
-                <Button disabled={isButtonDisabled} type="primary" htmlType="submit">
+                <Button disabled={isButtonDisabled} type='primary' htmlType='submit'>
                     Request
                 </Button>
             </Form.Item>

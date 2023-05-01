@@ -1,6 +1,5 @@
 import { Button, Form, message, Select } from 'antd'
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
 import { SmartRequest } from '../../../utils/utils'
 
 const layout = {
@@ -8,16 +7,7 @@ const layout = {
     wrapperCol: { span: 16 },
 }
 
-const selectCurrentUser = state => state.user.currentUser
-
-// {
-//     "language": "ENGLISH",
-//     "theme": "white"
-// }
-
-
 const PreferencesForm = () => {
-    const currentUser = useSelector(selectCurrentUser)
     const [form] = Form.useForm()
     const { getFieldError, validateFields } = form
     const [isButtonDisabled, setIsButtonDisabled] = useState(true)
@@ -29,7 +19,7 @@ const PreferencesForm = () => {
 
     useEffect(() => {
         console.log('Get preferences')
-        SmartRequest.get(`managment/settings_guard/99/`).then(
+        SmartRequest.get('managment/settings_guard/99/').then(
             resp => {
                 setInitialValues(resp.data)
                 setIsLoading(false)
@@ -39,7 +29,7 @@ const PreferencesForm = () => {
 
     const onFinish = (values) => {
         setIsValidating(true)
-        SmartRequest.patch(`managment/settings_guard/99/`, {
+        SmartRequest.patch('managment/settings_guard/99/', {
             'language': values['language'],
             'theme': values['theme'],
         })
@@ -132,7 +122,7 @@ const PreferencesForm = () => {
                             ]}
                         >
                             <Select
-                                defaultValue={initialValues['language']}
+                                // initialValue={initialValues['language']}
                                 options={[
                                     { value: 'RUSSIAN', label: 'Русский' },
                                     { value: 'ENGLISH', label: 'English' },
@@ -153,7 +143,7 @@ const PreferencesForm = () => {
                             ]}
                         >
                             <Select
-                                defaultValue={initialValues['theme']}
+                                // defaultValue={initialValues['theme']}
                                 options={[
                                     { value: 'black', label: 'Black' },
                                     { value: 'white', label: 'White' },

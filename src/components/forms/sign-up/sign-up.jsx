@@ -9,12 +9,14 @@ const SignUp = () => {
     const [form] = Form.useForm()
     const { getFieldError, validateFields } = form
     const [isButtonDisabled, setIsButtonDisabled] = useState(true)
+    const [isButtonLoading, setIsButtonLoading] = useState(false)
     const [formError, setFormError] = useState('')
     const [fieldsErrors, setFieldsErrors] = useState({})
     const history = useHistory()
 
     const onFinish = (values) => {
         setFormError('')
+        setIsButtonLoading(true)
         console.log(values)
         SmartRequest.post(
             'api/v1/auth/users/',
@@ -25,12 +27,13 @@ const SignUp = () => {
             },
         )
             .then(() => {
+                setIsButtonLoading(false)
                 message.success(`Activation message was sent to email ${values['email']}`)
                 history.push('/log-in')
             })
             .catch(error => {
+                setIsButtonLoading(false)
                 if (error.response && error.response.status === 400) {
-                    setIsButtonDisabled(true)
                     if (typeof error.response.data !== 'object') {
                         setFormError(error.response.data)
                     } else {
@@ -86,11 +89,11 @@ const SignUp = () => {
                     span: 16,
                 }}
             >
-                <span className="ant-form-item-explain ant-form-item-explain-error">{formError}</span>
+                <span className='ant-form-item-explain ant-form-item-explain-error'>{formError}</span>
             </Form.Item>
             <Form.Item
-                label="Username"
-                name="username"
+                label='Username'
+                name='username'
                 validateStatus={fieldsErrors['username'] && fieldsErrors['username'].length ? 'error' : ''}
                 help={fieldsErrors['username'] && fieldsErrors['username'].length ? fieldsErrors['username'][0] : null}
                 rules={[
@@ -100,12 +103,12 @@ const SignUp = () => {
                     },
                 ]}
             >
-                <Input autoComplete="username" />
+                <Input autoComplete='username' />
             </Form.Item>
 
             <Form.Item
-                label="Email"
-                name="email"
+                label='Email'
+                name='email'
                 validateStatus={fieldsErrors['email'] && fieldsErrors['email'].length ? 'error' : ''}
                 help={fieldsErrors['email'] && fieldsErrors['email'].length ? fieldsErrors['email'][0] : null}
                 rules={[
@@ -115,11 +118,11 @@ const SignUp = () => {
                     },
                 ]}
             >
-                <Input type="email" autoComplete="email" />
+                <Input type='email' autoComplete='email' />
             </Form.Item>
             <Form.Item
-                label="Password"
-                name="password"
+                label='Password'
+                name='password'
                 validateStatus={fieldsErrors['password'] && fieldsErrors['password'].length ? 'error' : ''}
                 help={fieldsErrors['password'] && fieldsErrors['password'].length ? fieldsErrors['password'][0] : null}
                 rules={[
@@ -129,7 +132,7 @@ const SignUp = () => {
                     },
                 ]}
             >
-                <Input.Password autoComplete="current-password" />
+                <Input.Password autoComplete='current-password' />
             </Form.Item>
 
             <Form.Item
@@ -138,7 +141,7 @@ const SignUp = () => {
                     span: 16,
                 }}
             >
-                <Button disabled={isButtonDisabled} type="primary" htmlType="submit">
+                <Button disabled={isButtonDisabled} type='primary' htmlType='submit' loading={isButtonLoading}>
                     Sign up
                 </Button>
             </Form.Item>

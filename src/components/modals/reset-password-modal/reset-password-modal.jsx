@@ -20,7 +20,7 @@ const ResetPasswordModal = () => {
                 Reset your password
             </a>
             <Modal
-                title="Request a Password Reset"
+                title='Request a Password Reset'
                 visible={visible}
                 onCancel={handleCancel}
                 okButtonProps={{hidden: true}}

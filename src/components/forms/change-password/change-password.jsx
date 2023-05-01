@@ -81,11 +81,11 @@ const ChangePassword = () => {
                     span: 16,
                 }}
             >
-                <span className="ant-form-item-explain ant-form-item-explain-error">{formError}</span>
+                <span className='ant-form-item-explain ant-form-item-explain-error'>{formError}</span>
             </Form.Item>
             <Form.Item
-                label="Old password"
-                name="password_old"
+                label='Old password'
+                name='password_old'
                 validateStatus={fieldsErrors['password_old'] && fieldsErrors['password_old'].length ? 'error' : ''}
                 help={fieldsErrors['password_old'] && fieldsErrors['password_old'].length ? fieldsErrors['password_old'][0] : null}
                 rules={[
@@ -95,11 +95,11 @@ const ChangePassword = () => {
                     },
                 ]}
             >
-                <Input.Password autoComplete="off" />
+                <Input.Password autoComplete='off' />
             </Form.Item>
             <Form.Item
-                label="New password"
-                name="password_new"
+                label='New password'
+                name='password_new'
                 validateStatus={fieldsErrors['password_new'] && fieldsErrors['password_new'].length ? 'error' : ''}
                 help={fieldsErrors['password_new'] && fieldsErrors['password_new'].length ? fieldsErrors['password_new'][0] : null}
                 rules={[
@@ -109,7 +109,7 @@ const ChangePassword = () => {
                     },
                 ]}
             >
-                <Input.Password autoComplete="off" />
+                <Input.Password autoComplete='off' />
             </Form.Item>
             <Form.Item
                 wrapperCol={{
@@ -117,7 +117,7 @@ const ChangePassword = () => {
                     span: 16,
                 }}
             >
-                <Button disabled={isButtonDisabled} type="primary" htmlType="submit">
+                <Button disabled={isButtonDisabled} type='primary' htmlType='submit'>
                     Change password
                 </Button>
             </Form.Item>

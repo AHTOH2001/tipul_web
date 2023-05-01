@@ -18,7 +18,7 @@ const CreateGuardianModal = ({ visible }) => {
     return (
         <>
             <Modal
-                title="Register guardian"
+                title='Register guardian'
                 visible={visible}
                 onCancel={handleCancel}
                 okButtonProps={{ hidden: true }}

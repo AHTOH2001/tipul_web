@@ -3,8 +3,6 @@ import React from 'react'
 
 const GuardianFields = ({ formError, isValidating, fieldsErrors, initialValues = {} }) => {
     const getValidateStatus = (field) => {
-        console.log('initialValues')
-        console.log(initialValues)
         return isValidating ? 'validating' : fieldsErrors[field] && fieldsErrors[field].length ? 'error' : ''
     }
     const getHelp = (field) => {

@@ -1,15 +1,21 @@
 import { CheckOutlined, LoadingOutlined, SmileOutlined, SolutionOutlined, UserOutlined } from '@ant-design/icons'
 import { Button, Carousel, Col, Divider, Image, message, Row, Steps, Typography } from 'antd'
-import React from 'react'
-import { useHistory } from 'react-router-dom'
+import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import screen_test from '../../../../images/slider/screen_test.png'
 import settings_test from '../../../../images/slider/settings_test.png'
+import { setRefresh } from '../../../../redux/refresh/refresh.actions.js'
+import { SmartRequest } from '../../../../utils/utils'
 import './buy.css'
 
+
 const { Step } = Steps
+
+
 const Buy = () => {
-    const history = useHistory()
-    // TODO
+    const dispatch = useDispatch()
+    const [isButtonLoading, setIsButtonLoading] = useState(false)
+    // TODO тект на слайдере
     // Работа с несколькими пациентами
     // Просмотр таблеток опекуемых
     // Редактирование таблеток опекуемых
@@ -34,8 +40,24 @@ const Buy = () => {
     ]
 
     const handleOnSubmit = () => {
-        message.success('Application was successfully bought! We glad to help you!', 5)
-        history.push('/profile')
+        setIsButtonLoading(true)
+        SmartRequest.post(
+            'managment/buy/',
+            {
+                'token': 'wd342342hf34hv2g34h23v4n2bv3n42v34g2vb3bw'
+            }
+        )
+            .then(() => {
+                dispatch(setRefresh())
+                message.success('Application was successfully bought! We glad to help you!', 5)
+            })
+            .catch(error => {
+                if (error.response.data && error.response.data.detail) {
+                    message.error(error.response.data.detail)
+                } else {
+                    console.error('catch on buy: ', error)
+                }
+            })
     }
 
     return (
@@ -78,7 +100,13 @@ const Buy = () => {
             </Image.PreviewGroup>
             <Divider plain />
             <Col className='center'>
-                <Button type='default' shape='round' icon={<CheckOutlined />} size={'large'} onClick={handleOnSubmit} >
+                <Button
+                    type='default'
+                    shape='round'
+                    icon={<CheckOutlined />}
+                    size={'large'}
+                    onClick={handleOnSubmit}
+                    loading={isButtonLoading} >
                     Proceed buying 31 руб.
                 </Button>
             </Col>

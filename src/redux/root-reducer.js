@@ -1,8 +1,10 @@
+import refreshReducer from './refresh/refresh.reducer'
 import userReducer from './user/user.reducer'
 
-import {combineReducers} from 'redux'
+import { combineReducers } from 'redux'
 
 
 export default combineReducers({
-    user: userReducer
+    user: userReducer,
+    refresh: refreshReducer
 })
