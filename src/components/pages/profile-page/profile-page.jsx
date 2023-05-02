@@ -1,7 +1,8 @@
 import { Layout, Select } from 'antd'
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Route, Switch } from 'react-router-dom'
+import { setCurrentPatient } from '../../../redux/patient/patient.actions'
 import Header from '../../header/header'
 import Sider from '../../sider/sider'
 import Buy from './profile-contents/buy'
@@ -13,7 +14,13 @@ const selectCurrentUser = state => state.user.currentUser
 
 const ProfilePage = () => {
     const currentUser = useSelector(selectCurrentUser)
-    console.log('Patients', currentUser.guardian)
+    const dispatch = useDispatch()
+
+    const onSelectChange = (value) => {
+        let patient = currentUser.guardian.connected_patients.find(patient => patient.id == value)
+        dispatch(setCurrentPatient(patient))
+    }
+
     return (
         <Layout style={{ minHeight: '100vh' }} className='profile'>
             <Header
@@ -26,16 +33,13 @@ const ProfilePage = () => {
                                 bordered={false}
                                 key={1}
                                 style={{ color: 'white' }}
+                                onChange={onSelectChange}
                                 options={
                                     currentUser.guardian.connected_patients.map(patient => {
                                         return {
                                             value: patient.id, label: `${patient.relationship}: ${patient.first_name} ${patient.last_name}`
                                         }
                                     })
-                                    // [
-                                    // { value: 'black', label: 'Black' },
-                                    // { value: 'white', label: 'White' },
-                                    // ]
                                 }
                             />
                             :
