@@ -1,17 +1,25 @@
-import {Menu, Row} from 'antd'
+import { Col, Layout, Menu, Row } from 'antd'
 import React from 'react'
+import { Link } from 'react-router-dom'
+import logo from '../../images/tipul_logo_long_blue.png'
 import './header.css'
-import {Layout} from 'antd'
-import {Link} from 'react-router-dom'
 
-const Header = ({content, justify}) => {
+const Header = ({ header_link, content, justify }) => {
     return (
-        <Layout.Header className='header'>
-            <Link to='/' className='logo'/>
-            <Row justify={justify}>
-                <Menu theme='dark' mode='horizontal'>
-                    {content.map(e => <Menu.Item key={e.key}>{e}</Menu.Item>)}
-                </Menu>
+        <Layout.Header className='header' style={{ padding: 0 }}>
+            <Row>
+                <Col flex="200px">
+                    <Link to={header_link} >
+                        <img src={logo} alt="Paris" className='logo' />
+                    </Link>
+                </Col>
+                <Col flex="auto" >
+                    <Row justify={justify}>
+                        <Menu theme='dark' mode='horizontal'>
+                            {content.map(e => <Menu.Item key={e.key}>{e}</Menu.Item>)}
+                        </Menu>
+                    </Row>
+                </Col>
             </Row>
         </Layout.Header>
     )

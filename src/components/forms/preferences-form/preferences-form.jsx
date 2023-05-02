@@ -122,7 +122,6 @@ const PreferencesForm = () => {
                             ]}
                         >
                             <Select
-                                // initialValue={initialValues['language']}
                                 options={[
                                     { value: 'RUSSIAN', label: 'Русский' },
                                     { value: 'ENGLISH', label: 'English' },
@@ -143,7 +142,6 @@ const PreferencesForm = () => {
                             ]}
                         >
                             <Select
-                                // defaultValue={initialValues['theme']}
                                 options={[
                                     { value: 'black', label: 'Black' },
                                     { value: 'white', label: 'White' },

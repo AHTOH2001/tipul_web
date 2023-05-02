@@ -8,11 +8,14 @@ import Header from '../../header/header'
 const PasswordResetConfirmPage = () => {
     return (
         <Layout className='log-in'>
-            <Header justify='end' content={[
-                <Link to='/sign-up' key={1}>
-                    Create an account
-                </Link>
-            ]}
+            <Header
+                header_link={'/'}
+                justify='end'
+                content={[
+                    <Link to='/sign-up' key={1}>
+                        Create an account
+                    </Link>
+                ]}
             />
             <Layout.Content style={{ padding: '10px' }}>
                 <Row>

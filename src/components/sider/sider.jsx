@@ -4,7 +4,7 @@ import {
 import { Layout, Menu, message } from 'antd'
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, useHistory, useLocation } from 'react-router-dom'
+import { useHistory, useLocation } from 'react-router-dom'
 import { setCurrentUserAsync } from '../../redux/user/user.actions'
 import { SmartRequest } from '../../utils/utils'
 import './sider.css'
@@ -38,12 +38,11 @@ const Sider = () => {
 
     return (
         <Layout.Sider collapsible collapsed={collapsed} onCollapse={onCollapse} className='sider'>
-            <Link to='/profile' className='logo' />
             <Menu theme='dark' mode='inline' selectedKeys={location.pathname}>
                 <Menu.Item key='/profile' icon={<HomeOutlined />} onClick={() => history.push('/profile')}>
                     Home
                 </Menu.Item>
-                <SubMenu key='sub1' icon={<UserOutlined />} title={currentUser.user.username}>
+                <SubMenu key='sub1' icon={<UserOutlined />} title={currentUser.guardian ? `${currentUser.guardian.first_name} ${currentUser.guardian.last_name}` : currentUser.user.username}>
                     <Menu.Item key='/profile/settings' icon={<SettingOutlined />} onClick={() => history.push('/profile/settings')}>
                         Settings
                     </Menu.Item>

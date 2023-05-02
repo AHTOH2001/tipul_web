@@ -30,11 +30,14 @@ const UserActivatePage = () => {
 
     return (
         <Layout className='log-in'>
-            <Header justify='end' content={[
-                <Link to='/log-in' key={1}>
-                    Log in
-                </Link>
-            ]}
+            <Header
+                header_link={'/'}
+                justify='end'
+                content={[
+                    <Link to='/log-in' key={1}>
+                        Log in
+                    </Link>
+                ]}
             />
             <Layout.Content style={{ padding: '10px' }}>
                 <Row>
