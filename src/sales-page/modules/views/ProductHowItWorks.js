@@ -47,7 +47,7 @@ function ProductHowItWorks() {
             >
                 <Box
                     component="img"
-                    src="/static/themes/onepirate/productCurvyLines.png"
+                    src="https://mui.com/static/themes/onepirate/productCurvyLines.png"
                     alt="curvy lines"
                     sx={{
                         pointerEvents: 'none',
@@ -71,7 +71,7 @@ function ProductHowItWorks() {
                                 <Box sx={number}>1.</Box>
                                 <Box
                                     component="img"
-                                    src="/static/themes/onepirate/productHowItWorks1.svg"
+                                    src="https://mui.com/static/themes/onepirate/productHowItWorks1.svg"
                                     alt="suitcase"
                                     sx={image}
                                 />
@@ -85,7 +85,7 @@ function ProductHowItWorks() {
                                 <Box sx={number}>2.</Box>
                                 <Box
                                     component="img"
-                                    src="/static/themes/onepirate/productHowItWorks2.svg"
+                                    src="https://mui.com/static/themes/onepirate/productHowItWorks2.svg"
                                     alt="graph"
                                     sx={image}
                                 />
@@ -100,7 +100,7 @@ function ProductHowItWorks() {
                                 <Box sx={number}>3.</Box>
                                 <Box
                                     component="img"
-                                    src="/static/themes/onepirate/productHowItWorks3.svg"
+                                    src="https://mui.com/static/themes/onepirate/productHowItWorks3.svg"
                                     alt="clock"
                                     sx={image}
                                 />
@@ -119,7 +119,7 @@ function ProductHowItWorks() {
                     size="large"
                     variant="contained"
                     component="a"
-                    href="/premium-themes/onepirate/sign-up/"
+                    href="/sign-up"
                     sx={{ mt: 8 }}
                 >
                     Get started

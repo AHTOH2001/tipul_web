@@ -27,7 +27,7 @@ function ProductValues() {
             >
                 <Box
                     component="img"
-                    src="/static/themes/onepirate/productCurvyLines.png"
+                    src="https://mui.com/static/themes/onepirate/productCurvyLines.png"
                     alt="curvy lines"
                     sx={{
                         pointerEvents: 'none',
@@ -40,7 +40,7 @@ function ProductValues() {
                         <Box sx={item}>
                             <Box
                                 component="img"
-                                src="/static/themes/onepirate/productValues1.svg"
+                                src="https://mui.com/static/themes/onepirate/productValues1.svg"
                                 alt="suitcase"
                                 sx={{ height: 55 }}
                             />
@@ -62,7 +62,7 @@ function ProductValues() {
                         <Box sx={item}>
                             <Box
                                 component="img"
-                                src="/static/themes/onepirate/productValues2.svg"
+                                src="https://mui.com/static/themes/onepirate/productValues2.svg"
                                 alt="graph"
                                 sx={{ height: 55 }}
                             />
@@ -82,7 +82,7 @@ function ProductValues() {
                         <Box sx={item}>
                             <Box
                                 component="img"
-                                src="/static/themes/onepirate/productValues3.svg"
+                                src="https://mui.com/static/themes/onepirate/productValues3.svg"
                                 alt="clock"
                                 sx={{ height: 55 }}
                             />

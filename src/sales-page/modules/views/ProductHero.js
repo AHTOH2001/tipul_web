@@ -2,9 +2,9 @@ import * as React from 'react'
 import Button from '../components/Button'
 import Typography from '../components/Typography'
 import ProductHeroLayout from './ProductHeroLayout'
+import backgroundImage from '../../../images/sales/photo-1534854638093-bada1813ca19.avif'
 
-const backgroundImage =
-    'https://images.unsplash.com/photo-1534854638093-bada1813ca19?auto=format&fit=crop&w=1400'
+
 
 export default function ProductHero() {
     return (
@@ -43,7 +43,7 @@ export default function ProductHero() {
                 variant="contained"
                 size="large"
                 component="a"
-                href="/premium-themes/onepirate/sign-up/"
+                href="/sign-up"
                 sx={{ minWidth: 200 }}
             >
                 Register

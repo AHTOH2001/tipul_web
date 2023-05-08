@@ -65,7 +65,7 @@ export default function AppFooter() {
                                     sx={iconStyle}
                                 >
                                     <img
-                                        src="/static/themes/onepirate/appFooterFacebook.png"
+                                        src="https://mui.com/static/themes/onepirate/appFooterFacebook.png"
                                         alt="Facebook"
                                     />
                                 </Box>
@@ -75,7 +75,7 @@ export default function AppFooter() {
                                     sx={iconStyle}
                                 >
                                     <img
-                                        src="/static/themes/onepirate/appFooterTwitter.png"
+                                        src="https://mui.com/static/themes/onepirate/appFooterTwitter.png"
                                         alt="Twitter"
                                     />
                                 </Box>

@@ -83,7 +83,7 @@ function ProductCTA() {
                             bottom: 0,
                             width: '100%',
                             background:
-                                'url(/static/themes/onepirate/productCTAImageDots.png)',
+                                'url(https://mui.com/static/themes/onepirate/productCTAImageDots.png)',
                         }}
                     />
                     <Box

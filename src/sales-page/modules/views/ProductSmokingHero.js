@@ -33,7 +33,7 @@ function ProductSmokingHero() {
             </Typography>
             <Box
                 component="img"
-                src="/static/themes/onepirate/productBuoy.svg"
+                src="https://mui.com/static/themes/onepirate/productBuoy.svg"
                 alt="buoy"
                 sx={{ width: 60 }}
             />
