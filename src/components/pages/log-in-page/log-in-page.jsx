@@ -8,14 +8,14 @@ import ResetPasswordModal from '../../modals/reset-password-modal/reset-password
 
 const LogInPage = () => {
     return (
-        <Layout className='log-in'>
+        <Layout className="log-in">
             <Header
                 header_link={'/'}
-                justify='end'
+                justify="end"
                 content={[
-                    <Link to='/sign-up' key={1}>
+                    <Link to="/sign-up" key={1}>
                         Create an account
-                    </Link>
+                    </Link>,
                 ]}
             />
             <Layout.Content style={{ padding: '10px' }}>
@@ -31,6 +31,5 @@ const LogInPage = () => {
         </Layout>
     )
 }
-
 
 export default LogInPage

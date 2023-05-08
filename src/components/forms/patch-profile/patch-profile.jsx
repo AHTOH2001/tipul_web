@@ -5,7 +5,7 @@ import { setCurrentUserAsync } from '../../../redux/user/user.actions'
 import { SmartRequest } from '../../../utils/utils'
 import { check_whoiam } from '../../../utils/api'
 
-const selectCurrentUser = state => state.user.currentUser
+const selectCurrentUser = (state) => state.user.currentUser
 
 const layout = {
     labelCol: { span: 8 },
@@ -21,20 +21,16 @@ const PatchProfile = () => {
     const currentUser = useSelector(selectCurrentUser)
     const dispatch = useDispatch()
 
-
     const onFinish = (values) => {
         setFormError('')
-        SmartRequest.patch(
-            'api/v1/auth/users/me/',
-            values,
-        )
+        SmartRequest.patch('api/v1/auth/users/me/', values)
             .then(() => {
                 check_whoiam().then((actualUser) => {
                     dispatch(setCurrentUserAsync(actualUser))
                 })
                 message.success('Successfully updated email')
             })
-            .catch(error => {
+            .catch((error) => {
                 if (error.response && error.response.status === 400) {
                     setIsButtonDisabled(true)
                     if (typeof error.response.data !== 'object') {
@@ -48,7 +44,6 @@ const PatchProfile = () => {
             })
     }
 
-
     const onValuesChange = (changedValues) => {
         setTimeout(() => {
             setFormError('')
@@ -60,17 +55,18 @@ const PatchProfile = () => {
             setFieldsErrors(resFieldsErrors)
             validateFields()
                 .then(() => {
-                    if (Object.values(resFieldsErrors).filter(e => e.length).length === 0)
+                    if (
+                        Object.values(resFieldsErrors).filter((e) => e.length)
+                            .length === 0
+                    )
                         setIsButtonDisabled(false)
-                    else
-                        setIsButtonDisabled(true)
+                    else setIsButtonDisabled(true)
                 })
                 .catch(() => {
                     setIsButtonDisabled(true)
                 })
         }, 0)
     }
-
 
     return (
         <Form
@@ -81,22 +77,32 @@ const PatchProfile = () => {
             onValuesChange={onValuesChange}
         >
             <Form.Item
-                name='form error'
+                name="form error"
                 hidden={!formError}
                 wrapperCol={{
                     offset: 6,
                     span: 16,
                 }}
             >
-                <span className='ant-form-item-explain ant-form-item-explain-error'>{formError}</span>
+                <span className="ant-form-item-explain ant-form-item-explain-error">
+                    {formError}
+                </span>
             </Form.Item>
 
             <Form.Item
                 initialValue={currentUser.user.email}
-                label='Email'
-                name='email'
-                validateStatus={fieldsErrors['email'] && fieldsErrors['email'].length ? 'error' : ''}
-                help={fieldsErrors['email'] && fieldsErrors['email'].length ? fieldsErrors['email'][0] : null}
+                label="Email"
+                name="email"
+                validateStatus={
+                    fieldsErrors['email'] && fieldsErrors['email'].length
+                        ? 'error'
+                        : ''
+                }
+                help={
+                    fieldsErrors['email'] && fieldsErrors['email'].length
+                        ? fieldsErrors['email'][0]
+                        : null
+                }
                 rules={[
                     {
                         required: true,
@@ -104,7 +110,7 @@ const PatchProfile = () => {
                     },
                 ]}
             >
-                <Input type='email' autoComplete='email' />
+                <Input type="email" autoComplete="email" />
             </Form.Item>
 
             <Form.Item
@@ -113,7 +119,11 @@ const PatchProfile = () => {
                     span: 16,
                 }}
             >
-                <Button disabled={isButtonDisabled} type='primary' htmlType='submit'>
+                <Button
+                    disabled={isButtonDisabled}
+                    type="primary"
+                    htmlType="submit"
+                >
                     Update email
                 </Button>
             </Form.Item>

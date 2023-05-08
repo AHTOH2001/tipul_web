@@ -7,13 +7,14 @@ import Header from '../../header/header'
 
 const SignUpPage = () => {
     return (
-        <Layout className='log-in'>
+        <Layout className="log-in">
             <Header
                 header_link={'/'}
-                justify='end' content={[
-                    <Link to='/log-in' key={1}>
+                justify="end"
+                content={[
+                    <Link to="/log-in" key={1}>
                         Log in
-                    </Link>
+                    </Link>,
                 ]}
             />
             <Layout.Content style={{ padding: '10px' }}>
@@ -26,6 +27,5 @@ const SignUpPage = () => {
         </Layout>
     )
 }
-
 
 export default SignUpPage

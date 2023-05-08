@@ -4,7 +4,6 @@ import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { SmartRequest } from '../../../utils/utils'
 
-
 const SignUp = () => {
     const [form] = Form.useForm()
     const { getFieldError, validateFields } = form
@@ -18,20 +17,19 @@ const SignUp = () => {
         setFormError('')
         setIsButtonLoading(true)
         console.log(values)
-        SmartRequest.post(
-            'api/v1/auth/users/',
-            {
-                'username': values['username'],
-                'email': values['email'],
-                'password': values['password'],
-            },
-        )
+        SmartRequest.post('api/v1/auth/users/', {
+            username: values['username'],
+            email: values['email'],
+            password: values['password'],
+        })
             .then(() => {
                 setIsButtonLoading(false)
-                message.success(`Activation message was sent to email ${values['email']}`)
+                message.success(
+                    `Activation message was sent to email ${values['email']}`
+                )
                 history.push('/log-in')
             })
-            .catch(error => {
+            .catch((error) => {
                 setIsButtonLoading(false)
                 if (error.response && error.response.status === 400) {
                     if (typeof error.response.data !== 'object') {
@@ -45,7 +43,6 @@ const SignUp = () => {
             })
     }
 
-
     const onValuesChange = (changedValues) => {
         setTimeout(() => {
             setFormError('')
@@ -57,17 +54,18 @@ const SignUp = () => {
             setFieldsErrors(resFieldsErrors)
             validateFields()
                 .then(() => {
-                    if (Object.values(resFieldsErrors).filter(e => e.length).length === 0)
+                    if (
+                        Object.values(resFieldsErrors).filter((e) => e.length)
+                            .length === 0
+                    )
                         setIsButtonDisabled(false)
-                    else
-                        setIsButtonDisabled(true)
+                    else setIsButtonDisabled(true)
                 })
                 .catch(() => {
                     setIsButtonDisabled(true)
                 })
         }, 0)
     }
-
 
     return (
         <Form
@@ -82,20 +80,30 @@ const SignUp = () => {
             onValuesChange={onValuesChange}
         >
             <Form.Item
-                name='form error'
+                name="form error"
                 hidden={!formError}
                 wrapperCol={{
                     offset: 8,
                     span: 16,
                 }}
             >
-                <span className='ant-form-item-explain ant-form-item-explain-error'>{formError}</span>
+                <span className="ant-form-item-explain ant-form-item-explain-error">
+                    {formError}
+                </span>
             </Form.Item>
             <Form.Item
-                label='Username'
-                name='username'
-                validateStatus={fieldsErrors['username'] && fieldsErrors['username'].length ? 'error' : ''}
-                help={fieldsErrors['username'] && fieldsErrors['username'].length ? fieldsErrors['username'][0] : null}
+                label="Username"
+                name="username"
+                validateStatus={
+                    fieldsErrors['username'] && fieldsErrors['username'].length
+                        ? 'error'
+                        : ''
+                }
+                help={
+                    fieldsErrors['username'] && fieldsErrors['username'].length
+                        ? fieldsErrors['username'][0]
+                        : null
+                }
                 rules={[
                     {
                         required: true,
@@ -103,14 +111,22 @@ const SignUp = () => {
                     },
                 ]}
             >
-                <Input autoComplete='username' />
+                <Input autoComplete="username" />
             </Form.Item>
 
             <Form.Item
-                label='Email'
-                name='email'
-                validateStatus={fieldsErrors['email'] && fieldsErrors['email'].length ? 'error' : ''}
-                help={fieldsErrors['email'] && fieldsErrors['email'].length ? fieldsErrors['email'][0] : null}
+                label="Email"
+                name="email"
+                validateStatus={
+                    fieldsErrors['email'] && fieldsErrors['email'].length
+                        ? 'error'
+                        : ''
+                }
+                help={
+                    fieldsErrors['email'] && fieldsErrors['email'].length
+                        ? fieldsErrors['email'][0]
+                        : null
+                }
                 rules={[
                     {
                         required: true,
@@ -118,13 +134,21 @@ const SignUp = () => {
                     },
                 ]}
             >
-                <Input type='email' autoComplete='email' />
+                <Input type="email" autoComplete="email" />
             </Form.Item>
             <Form.Item
-                label='Password'
-                name='password'
-                validateStatus={fieldsErrors['password'] && fieldsErrors['password'].length ? 'error' : ''}
-                help={fieldsErrors['password'] && fieldsErrors['password'].length ? fieldsErrors['password'][0] : null}
+                label="Password"
+                name="password"
+                validateStatus={
+                    fieldsErrors['password'] && fieldsErrors['password'].length
+                        ? 'error'
+                        : ''
+                }
+                help={
+                    fieldsErrors['password'] && fieldsErrors['password'].length
+                        ? fieldsErrors['password'][0]
+                        : null
+                }
                 rules={[
                     {
                         required: true,
@@ -132,7 +156,7 @@ const SignUp = () => {
                     },
                 ]}
             >
-                <Input.Password autoComplete='current-password' />
+                <Input.Password autoComplete="current-password" />
             </Form.Item>
 
             <Form.Item
@@ -141,13 +165,17 @@ const SignUp = () => {
                     span: 16,
                 }}
             >
-                <Button disabled={isButtonDisabled} type='primary' htmlType='submit' loading={isButtonLoading}>
+                <Button
+                    disabled={isButtonDisabled}
+                    type="primary"
+                    htmlType="submit"
+                    loading={isButtonLoading}
+                >
                     Sign up
                 </Button>
             </Form.Item>
         </Form>
     )
 }
-
 
 export default SignUp

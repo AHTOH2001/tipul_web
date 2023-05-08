@@ -11,14 +11,13 @@ const headerTextStyle = {
     textAlign: 'center',
 }
 
-
-const selectCurrentUser = state => state.user.currentUser
+const selectCurrentUser = (state) => state.user.currentUser
 
 const Settings = () => {
     const currentUser = useSelector(selectCurrentUser)
     return (
         <div>
-            {currentUser.guardian ?
+            {currentUser.guardian ? (
                 <>
                     <Row>
                         <Col span={12}>
@@ -42,9 +41,7 @@ const Settings = () => {
                     </Row>
                     <Divider plain />
                 </>
-                :
-                null
-            }
+            ) : null}
             <Row>
                 <Col span={24}>
                     <Typography.Title style={headerTextStyle}>
@@ -64,6 +61,5 @@ const Settings = () => {
         </div>
     )
 }
-
 
 export default Settings

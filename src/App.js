@@ -11,8 +11,8 @@ import UserActivatePage from './components/pages/user-activate-page/user-activat
 import { setCurrentUserAsync } from './redux/user/user.actions'
 import { check_whoiam } from './utils/api'
 
-const selectCurrentUser = state => state.user.currentUser
-const selectRefresh = state => state.refresh.refresh_token
+const selectCurrentUser = (state) => state.user.currentUser
+const selectRefresh = (state) => state.refresh.refresh_token
 
 function App() {
     const currentUser = useSelector(selectCurrentUser)
@@ -26,29 +26,33 @@ function App() {
         })
     }, [refresh])
 
-
     return (
         <div style={{ fontFamily: 'cursive' }}>
             <Switch>
-                <Route exact path='/log-in'>
-                    {currentUser ? <Redirect to='/profile' /> : <LogInPage />}
+                <Route exact path="/log-in">
+                    {currentUser ? <Redirect to="/profile" /> : <LogInPage />}
                 </Route>
-                <Route exact path='/' component={HomePage} />
-                <Route path='/profile'>
-                    {currentUser ? <ProfilePage /> : <Redirect to='/log-in' />}
+                <Route exact path="/" component={HomePage} />
+                <Route path="/profile">
+                    {currentUser ? <ProfilePage /> : <Redirect to="/log-in" />}
                 </Route>
-                <Route exact path='/sign-up'>
-                    {currentUser ? <Redirect to='/profile' /> : <SignUpPage />}
+                <Route exact path="/sign-up">
+                    {currentUser ? <Redirect to="/profile" /> : <SignUpPage />}
                 </Route>
-                <Route path='/password/reset/confirm/:uid/:token' component={PasswordResetConfirmPage} />
-                <Route path='/activate/:uid/:token' component={UserActivatePage} />
+                <Route
+                    path="/password/reset/confirm/:uid/:token"
+                    component={PasswordResetConfirmPage}
+                />
+                <Route
+                    path="/activate/:uid/:token"
+                    component={UserActivatePage}
+                />
                 <Route>
-                    <Redirect to='/' />
+                    <Redirect to="/" />
                 </Route>
             </Switch>
         </div>
     )
 }
-
 
 export default App

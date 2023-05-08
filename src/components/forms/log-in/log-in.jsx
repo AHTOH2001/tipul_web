@@ -7,7 +7,6 @@ import { setCurrentUserAsync } from '../../../redux/user/user.actions'
 import { check_whoiam } from '../../../utils/api'
 import { SmartRequest } from '../../../utils/utils'
 
-
 const LogIn = () => {
     const [form] = Form.useForm()
     const { getFieldError, isFieldTouched, validateFields } = form
@@ -22,14 +21,11 @@ const LogIn = () => {
 
     const onFinish = (values) => {
         setIsButtonLoading(true)
-        SmartRequest.post(
-            'api/v1/auth-token/token/login/',
-            {
-                'username': values['username'],
-                'password': values['password'],
-            },
-        )
-            .then(resp => {
+        SmartRequest.post('api/v1/auth-token/token/login/', {
+            username: values['username'],
+            password: values['password'],
+        })
+            .then((resp) => {
                 SmartRequest.setAuthToken(resp.data['auth_token'])
                 check_whoiam().then((actualUser) => {
                     setIsButtonLoading(false)
@@ -38,7 +34,7 @@ const LogIn = () => {
                     message.success('Successfully logged in')
                 })
             })
-            .catch(error => {
+            .catch((error) => {
                 setIsButtonLoading(false)
                 if (error.response && error.response.status === 400) {
                     setFormError(error.response.data['non_field_errors'])
@@ -49,13 +45,18 @@ const LogIn = () => {
             })
     }
 
-
     const onValuesChange = () => {
         setTimeout(() => {
             setIsFormErrorHidden(true)
             // https://stackoverflow.com/questions/56278830/how-to-know-when-all-fields-are-validated-values-added-in-ant-design-form
-            setUsernameError(isFieldTouched('username') && Boolean(getFieldError('username').length))
-            setPasswordError(isFieldTouched('password') && Boolean(getFieldError('password').length))
+            setUsernameError(
+                isFieldTouched('username') &&
+                    Boolean(getFieldError('username').length)
+            )
+            setPasswordError(
+                isFieldTouched('password') &&
+                    Boolean(getFieldError('password').length)
+            )
             validateFields()
                 .then(() => {
                     setIsButtonDisabled(false)
@@ -65,7 +66,6 @@ const LogIn = () => {
                 })
         }, 0)
     }
-
 
     return (
         <Form
@@ -80,18 +80,20 @@ const LogIn = () => {
             onValuesChange={onValuesChange}
         >
             <Form.Item
-                name='form error'
+                name="form error"
                 hidden={isFormErrorHidden}
                 wrapperCol={{
                     offset: 8,
                     span: 16,
                 }}
             >
-                <span className='ant-form-item-explain ant-form-item-explain-error'>{formError}</span>
+                <span className="ant-form-item-explain ant-form-item-explain-error">
+                    {formError}
+                </span>
             </Form.Item>
             <Form.Item
-                label='Username'
-                name='username'
+                label="Username"
+                name="username"
                 validateStatus={usernameError ? 'error' : ''}
                 help={usernameError ? null : ''}
                 rules={[
@@ -105,8 +107,8 @@ const LogIn = () => {
             </Form.Item>
 
             <Form.Item
-                label='Password'
-                name='password'
+                label="Password"
+                name="password"
                 validateStatus={passwordError ? 'error' : ''}
                 help={passwordError ? null : ''}
                 rules={[
@@ -125,13 +127,17 @@ const LogIn = () => {
                     span: 16,
                 }}
             >
-                <Button disabled={isButtonDisabled} type='primary' htmlType='submit' loading={isButtonLoading}>
+                <Button
+                    disabled={isButtonDisabled}
+                    type="primary"
+                    htmlType="submit"
+                    loading={isButtonLoading}
+                >
                     Log in
                 </Button>
             </Form.Item>
         </Form>
     )
 }
-
 
 export default LogIn

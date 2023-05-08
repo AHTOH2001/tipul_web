@@ -1,7 +1,7 @@
 import { SET_REFRESH } from './refresh.types'
 
 const INITIAL_STATE = {
-    refresh_token: 0
+    refresh_token: 0,
 }
 
 const refreshReducer = (state = INITIAL_STATE, action) => {

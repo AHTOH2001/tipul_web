@@ -1,7 +1,6 @@
-import React, {useState} from 'react'
-import {Modal} from 'antd'
+import React, { useState } from 'react'
+import { Modal } from 'antd'
 import ResetPasswordForm from '../../forms/reset-password-form/reset-password-form'
-
 
 const ResetPasswordModal = () => {
     const [visible, setVisible] = useState(false)
@@ -16,16 +15,14 @@ const ResetPasswordModal = () => {
 
     return (
         <>
-            <a onClick={showModal}>
-                Reset your password
-            </a>
+            <a onClick={showModal}>Reset your password</a>
             <Modal
-                title='Request a Password Reset'
+                title="Request a Password Reset"
                 visible={visible}
                 onCancel={handleCancel}
-                okButtonProps={{hidden: true}}
+                okButtonProps={{ hidden: true }}
             >
-                <ResetPasswordForm setVisible={setVisible}/>
+                <ResetPasswordForm setVisible={setVisible} />
             </Modal>
         </>
     )

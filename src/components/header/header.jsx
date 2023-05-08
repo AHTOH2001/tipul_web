@@ -6,17 +6,19 @@ import './header.css'
 
 const Header = ({ header_link, content, justify }) => {
     return (
-        <Layout.Header className='header' style={{ padding: 0 }}>
+        <Layout.Header className="header" style={{ padding: 0 }}>
             <Row>
                 <Col flex="200px">
-                    <Link to={header_link} >
-                        <img src={logo} alt="Paris" className='logo' />
+                    <Link to={header_link}>
+                        <img src={logo} alt="Paris" className="logo" />
                     </Link>
                 </Col>
-                <Col flex="auto" >
+                <Col flex="auto">
                     <Row justify={justify}>
-                        <Menu theme='dark' mode='horizontal'>
-                            {content.map(e => <Menu.Item key={e.key}>{e}</Menu.Item>)}
+                        <Menu theme="dark" mode="horizontal">
+                            {content.map((e) => (
+                                <Menu.Item key={e.key}>{e}</Menu.Item>
+                            ))}
                         </Menu>
                     </Row>
                 </Col>
@@ -26,8 +28,7 @@ const Header = ({ header_link, content, justify }) => {
 }
 
 Header.defaultProps = {
-    content: []
+    content: [],
 }
-
 
 export default Header

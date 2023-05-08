@@ -10,60 +10,66 @@ import Home from './profile-contents/home'
 import Settings from './profile-contents/settings'
 import './profile-page.css'
 
-const selectCurrentUser = state => state.user.currentUser
+const selectCurrentUser = (state) => state.user.currentUser
 
 const ProfilePage = () => {
     const currentUser = useSelector(selectCurrentUser)
     const dispatch = useDispatch()
 
     const onSelectChange = (value) => {
-        let patient = currentUser.guardian.connected_patients.find(patient => patient.id == value)
+        let patient = currentUser.guardian.connected_patients.find(
+            (patient) => patient.id == value
+        )
         dispatch(setCurrentPatient(patient))
     }
 
     return (
-        <Layout style={{ minHeight: '100vh' }} className='profile'>
+        <Layout style={{ minHeight: '100vh' }} className="profile">
             <Header
                 header_link={'/profile'}
-                content={
-                    [
-                        currentUser.guardian ?
-                            <Select
-                                placeholder="Select a patient"
-                                bordered={false}
-                                key={1}
-                                style={{ color: 'white' }}
-                                onChange={onSelectChange}
-                                options={
-                                    currentUser.guardian.connected_patients.map(patient => {
-                                        return {
-                                            value: patient.id, label: `${patient.relationship}: ${patient.first_name} ${patient.last_name}`
-                                        }
-                                    })
+                content={[
+                    currentUser.guardian ? (
+                        <Select
+                            placeholder="Select a patient"
+                            bordered={false}
+                            key={1}
+                            style={{ color: 'white' }}
+                            onChange={onSelectChange}
+                            options={currentUser.guardian.connected_patients.map(
+                                (patient) => {
+                                    return {
+                                        value: patient.id,
+                                        label: `${patient.relationship}: ${patient.first_name} ${patient.last_name}`,
+                                    }
                                 }
-                            />
-                            :
-                            null
-
-                    ]}
+                            )}
+                        />
+                    ) : null,
+                ]}
             />
-            <Layout style={{ minHeight: '100vh' }} className='profile'>
+            <Layout style={{ minHeight: '100vh' }} className="profile">
                 <Sider />
-                <Layout className='site-layout'>
+                <Layout className="site-layout">
                     <Layout.Content style={{ padding: '10px' }}>
-                        {currentUser['bought']
-                            ?
+                        {currentUser['bought'] ? (
                             <Switch>
-                                <Route exact path='/profile' component={Home} />
-                                <Route exact path='/profile/settings' component={Settings} />
+                                <Route exact path="/profile" component={Home} />
+                                <Route
+                                    exact
+                                    path="/profile/settings"
+                                    component={Settings}
+                                />
                             </Switch>
-                            :
+                        ) : (
                             <Switch>
-                                <Route exact path='/profile' component={Buy} />
-                                <Route exact path='/profile/settings' component={Settings} />
+                                <Route exact path="/profile" component={Buy} />
+                                <Route
+                                    exact
+                                    path="/profile/settings"
+                                    component={Settings}
+                                />
                             </Switch>
-                        }
-
+                        )}
                     </Layout.Content>
                     <Layout.Footer style={{ textAlign: 'center' }}>
                         © Tipul

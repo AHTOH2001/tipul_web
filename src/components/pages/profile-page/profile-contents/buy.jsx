@@ -1,5 +1,21 @@
-import { CheckOutlined, LoadingOutlined, SmileOutlined, SolutionOutlined, UserOutlined } from '@ant-design/icons'
-import { Button, Carousel, Col, Divider, Image, message, Row, Steps, Typography } from 'antd'
+import {
+    CheckOutlined,
+    LoadingOutlined,
+    SmileOutlined,
+    SolutionOutlined,
+    UserOutlined,
+} from '@ant-design/icons'
+import {
+    Button,
+    Carousel,
+    Col,
+    Divider,
+    Image,
+    message,
+    Row,
+    Steps,
+    Typography,
+} from 'antd'
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import screen_test from '../../../../images/slider/screen_test.png'
@@ -8,9 +24,7 @@ import { setRefresh } from '../../../../redux/refresh/refresh.actions.js'
 import { SmartRequest } from '../../../../utils/utils'
 import './buy.css'
 
-
 const { Step } = Steps
-
 
 const Buy = () => {
     const dispatch = useDispatch()
@@ -41,17 +55,17 @@ const Buy = () => {
 
     const handleOnSubmit = () => {
         setIsButtonLoading(true)
-        SmartRequest.post(
-            'managment/buy/',
-            {
-                'token': 'wd342342hf34hv2g34h23v4n2bv3n42v34g2vb3bw'
-            }
-        )
+        SmartRequest.post('managment/buy/', {
+            token: 'wd342342hf34hv2g34h23v4n2bv3n42v34g2vb3bw',
+        })
             .then(() => {
                 dispatch(setRefresh())
-                message.success('Application was successfully bought! We glad to help you!', 5)
+                message.success(
+                    'Application was successfully bought! We glad to help you!',
+                    5
+                )
             })
-            .catch(error => {
+            .catch((error) => {
                 if (error.response.data && error.response.data.detail) {
                     message.error(error.response.data.detail)
                 } else {
@@ -62,31 +76,47 @@ const Buy = () => {
 
     return (
         <div>
-            <Typography.Title className='center' style={{ fontSize: 50 }}>
+            <Typography.Title className="center" style={{ fontSize: 50 }}>
                 Tipul
             </Typography.Title>
-            <Typography className='center' style={{ fontSize: 20, paddingBottom: 20 }}>
+            <Typography
+                className="center"
+                style={{ fontSize: 20, paddingBottom: 20 }}
+            >
                 С заботой о ваших родных и близких
             </Typography>
             <Steps current={2}>
-                <Step title='Register' description='Вы уже зарегистрировались' icon={<UserOutlined />} />
-                <Step title='Verification' description='Вы уже подтвердили свою почту' icon={<SolutionOutlined />} />
-                <Step title='Pay' description='You need to pay, to continue using our app' icon={<LoadingOutlined />} />
-                <Step title='Done' description='После оплаты у вас будет полный доступ к приложению Типуль' icon={<SmileOutlined />} />
+                <Step
+                    title="Register"
+                    description="Вы уже зарегистрировались"
+                    icon={<UserOutlined />}
+                />
+                <Step
+                    title="Verification"
+                    description="Вы уже подтвердили свою почту"
+                    icon={<SolutionOutlined />}
+                />
+                <Step
+                    title="Pay"
+                    description="You need to pay, to continue using our app"
+                    icon={<LoadingOutlined />}
+                />
+                <Step
+                    title="Done"
+                    description="После оплаты у вас будет полный доступ к приложению Типуль"
+                    icon={<SmileOutlined />}
+                />
             </Steps>
             <Divider plain />
-            <Typography.Title className='center' style={{ fontSize: 30 }}>
+            <Typography.Title className="center" style={{ fontSize: 30 }}>
                 Возможности после покупки приложения
             </Typography.Title>
             <Image.PreviewGroup>
-                <Carousel autoplay className='center blue'>
+                <Carousel autoplay className="center blue">
                     {slider_data.map(({ key, text, image }) => (
                         <Row key={key}>
-                            <Col className='center'>
-                                <Image
-                                    height='520px'
-                                    src={image}
-                                />
+                            <Col className="center">
+                                <Image height="520px" src={image} />
                             </Col>
                             <Col>
                                 <Typography.Title style={{ color: 'white' }}>
@@ -99,20 +129,20 @@ const Buy = () => {
                 </Carousel>
             </Image.PreviewGroup>
             <Divider plain />
-            <Col className='center'>
+            <Col className="center">
                 <Button
-                    type='default'
-                    shape='round'
+                    type="default"
+                    shape="round"
                     icon={<CheckOutlined />}
                     size={'large'}
                     onClick={handleOnSubmit}
-                    loading={isButtonLoading} >
+                    loading={isButtonLoading}
+                >
                     Proceed buying 31 руб.
                 </Button>
             </Col>
         </div>
     )
 }
-
 
 export default Buy

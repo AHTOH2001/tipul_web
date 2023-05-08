@@ -15,13 +15,16 @@ const UserActivatePage = () => {
         if (!isSent) {
             setIsSent(true)
             SmartRequest.post('api/v1/auth/users/activation/', {
-                'uid': uid,
-                'token': token,
+                uid: uid,
+                token: token,
             })
-                .then(resp => {
+                .then((resp) => {
                     console.log('success in activate user:', resp)
-                    setMessage('Your account has been successfully activated. You can leave this page.')
-                }).catch(error => {
+                    setMessage(
+                        'Your account has been successfully activated. You can leave this page.'
+                    )
+                })
+                .catch((error) => {
                     setMessage('You have already activated account.')
                     console.error('catch on activation: ', error)
                 })
@@ -29,28 +32,25 @@ const UserActivatePage = () => {
     })
 
     return (
-        <Layout className='log-in'>
+        <Layout className="log-in">
             <Header
                 header_link={'/'}
-                justify='end'
+                justify="end"
                 content={[
-                    <Link to='/log-in' key={1}>
+                    <Link to="/log-in" key={1}>
                         Log in
-                    </Link>
+                    </Link>,
                 ]}
             />
             <Layout.Content style={{ padding: '10px' }}>
                 <Row>
                     <Col span={24} style={{ textAlign: 'center' }}>
-                        <Typography.Title level={1}>
-                            {message}
-                        </Typography.Title>
+                        <Typography.Title level={1}>{message}</Typography.Title>
                     </Col>
                 </Row>
             </Layout.Content>
         </Layout>
     )
 }
-
 
 export default UserActivatePage

@@ -3,23 +3,22 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import Header from '../../header/header'
 import './home-page.css'
+import HomeSales from '../../../sales-page/Home'
 
 const HomePage = () => (
-    <Layout className='home'>
+    <Layout className="home">
         <Header
             header_link={'/'}
             content={[
-                <Link to='/log-in' key={1}>
+                <Link to="/log-in" key={1}>
                     Log in
-                </Link>
+                </Link>,
             ]}
         />
         <Layout.Content style={{ padding: '0 50px' }}>
-            <div className='site-layout-content'>This is sales page</div>
+            <HomeSales />
         </Layout.Content>
-        <Layout.Footer style={{ textAlign: 'center' }}>
-            © Tipul
-        </Layout.Footer>
+        <Layout.Footer style={{ textAlign: 'center' }}>© Tipul</Layout.Footer>
     </Layout>
 )
 

@@ -1,7 +1,7 @@
 import { SET_CURRENT_PATIENT } from './patient.types'
 
 const INITIAL_STATE = {
-    currentPatient: null
+    currentPatient: null,
 }
 
 const patientReducer = (state = INITIAL_STATE, action) => {
@@ -9,7 +9,7 @@ const patientReducer = (state = INITIAL_STATE, action) => {
     case SET_CURRENT_PATIENT:
         return {
             ...state,
-            currentPatient: action.payload
+            currentPatient: action.payload,
         }
     default:
         return state

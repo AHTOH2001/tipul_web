@@ -2,7 +2,6 @@ import { Button, Form, Input, message } from 'antd'
 import React, { useState } from 'react'
 import { SmartRequest } from '../../../utils/utils'
 
-
 const layout = {
     labelCol: { span: 8 },
     wrapperCol: { span: 16 },
@@ -15,19 +14,15 @@ const ChangePassword = () => {
     const [formError, setFormError] = useState('')
     const [fieldsErrors, setFieldsErrors] = useState({})
 
-
     const onFinish = (values) => {
         setFormError('')
-        SmartRequest.patch(
-            'managment/change-password/',
-            values,
-        )
-            .then(resp => {
+        SmartRequest.patch('managment/change-password/', values)
+            .then((resp) => {
                 console.log('success in change password:', resp)
                 message.success('Successfully changed password')
                 resetFields()
             })
-            .catch(error => {
+            .catch((error) => {
                 if (error.response && error.response.status === 400) {
                     setIsButtonDisabled(true)
                     if (typeof error.response.data['detail'] !== 'object') {
@@ -41,7 +36,6 @@ const ChangePassword = () => {
             })
     }
 
-
     const onValuesChange = (changedValues) => {
         setTimeout(() => {
             setFormError('')
@@ -53,17 +47,18 @@ const ChangePassword = () => {
             setFieldsErrors(resFieldsErrors)
             validateFields()
                 .then(() => {
-                    if (Object.values(resFieldsErrors).filter(e => e.length).length === 0)
+                    if (
+                        Object.values(resFieldsErrors).filter((e) => e.length)
+                            .length === 0
+                    )
                         setIsButtonDisabled(false)
-                    else
-                        setIsButtonDisabled(true)
+                    else setIsButtonDisabled(true)
                 })
                 .catch(() => {
                     setIsButtonDisabled(true)
                 })
         }, 0)
     }
-
 
     return (
         <Form
@@ -74,20 +69,32 @@ const ChangePassword = () => {
             onValuesChange={onValuesChange}
         >
             <Form.Item
-                name='form error'
+                name="form error"
                 hidden={!formError}
                 wrapperCol={{
                     offset: 8,
                     span: 16,
                 }}
             >
-                <span className='ant-form-item-explain ant-form-item-explain-error'>{formError}</span>
+                <span className="ant-form-item-explain ant-form-item-explain-error">
+                    {formError}
+                </span>
             </Form.Item>
             <Form.Item
-                label='Old password'
-                name='password_old'
-                validateStatus={fieldsErrors['password_old'] && fieldsErrors['password_old'].length ? 'error' : ''}
-                help={fieldsErrors['password_old'] && fieldsErrors['password_old'].length ? fieldsErrors['password_old'][0] : null}
+                label="Old password"
+                name="password_old"
+                validateStatus={
+                    fieldsErrors['password_old'] &&
+                    fieldsErrors['password_old'].length
+                        ? 'error'
+                        : ''
+                }
+                help={
+                    fieldsErrors['password_old'] &&
+                    fieldsErrors['password_old'].length
+                        ? fieldsErrors['password_old'][0]
+                        : null
+                }
                 rules={[
                     {
                         required: true,
@@ -95,13 +102,23 @@ const ChangePassword = () => {
                     },
                 ]}
             >
-                <Input.Password autoComplete='off' />
+                <Input.Password autoComplete="off" />
             </Form.Item>
             <Form.Item
-                label='New password'
-                name='password_new'
-                validateStatus={fieldsErrors['password_new'] && fieldsErrors['password_new'].length ? 'error' : ''}
-                help={fieldsErrors['password_new'] && fieldsErrors['password_new'].length ? fieldsErrors['password_new'][0] : null}
+                label="New password"
+                name="password_new"
+                validateStatus={
+                    fieldsErrors['password_new'] &&
+                    fieldsErrors['password_new'].length
+                        ? 'error'
+                        : ''
+                }
+                help={
+                    fieldsErrors['password_new'] &&
+                    fieldsErrors['password_new'].length
+                        ? fieldsErrors['password_new'][0]
+                        : null
+                }
                 rules={[
                     {
                         required: true,
@@ -109,7 +126,7 @@ const ChangePassword = () => {
                     },
                 ]}
             >
-                <Input.Password autoComplete='off' />
+                <Input.Password autoComplete="off" />
             </Form.Item>
             <Form.Item
                 wrapperCol={{
@@ -117,11 +134,14 @@ const ChangePassword = () => {
                     span: 16,
                 }}
             >
-                <Button disabled={isButtonDisabled} type='primary' htmlType='submit'>
+                <Button
+                    disabled={isButtonDisabled}
+                    type="primary"
+                    htmlType="submit"
+                >
                     Change password
                 </Button>
             </Form.Item>
-
         </Form>
     )
 }

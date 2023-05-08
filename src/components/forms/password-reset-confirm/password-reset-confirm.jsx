@@ -6,7 +6,6 @@ import { useHistory, useParams } from 'react-router-dom'
 import { setCurrentUserAsync } from '../../../redux/user/user.actions'
 import { SmartRequest } from '../../../utils/utils'
 
-
 const PasswordResetConfirm = () => {
     const [form] = Form.useForm()
     const { getFieldError, validateFields } = form
@@ -19,45 +18,36 @@ const PasswordResetConfirm = () => {
     let { uid, token } = useParams()
 
     const onFinish = (values) => {
-        SmartRequest.post(
-            '/api/v1/auth/users/reset_password_confirm/',
-            {
-                'uid': uid,
-                'token': token,
-                'new_password': values['new_password'],
-            },
-        )
-            .then(resp => {
-                SmartRequest.setAuthToken('').then(
-                    () => {
-                        dispatch(setCurrentUserAsync(null))
-                        console.log('success in get reset pass:', resp)
-                        message.success('Successfully reset password')
-                        history.push('/log-in')
-                    }
-                )
+        SmartRequest.post('/api/v1/auth/users/reset_password_confirm/', {
+            uid: uid,
+            token: token,
+            new_password: values['new_password'],
+        })
+            .then((resp) => {
+                SmartRequest.setAuthToken('').then(() => {
+                    dispatch(setCurrentUserAsync(null))
+                    console.log('success in get reset pass:', resp)
+                    message.success('Successfully reset password')
+                    history.push('/log-in')
+                })
             })
-            .catch(error => {
+            .catch((error) => {
                 if (error.response && error.response.status === 400) {
                     setIsButtonDisabled(true)
                     if (typeof error.response.data !== 'object') {
                         setFormError(error.response.data)
                     } else if ('uid' in error.response.data) {
                         setFormError(error.response.data['uid'][0])
-                    }
-                    else if ('token' in error.response.data) {
+                    } else if ('token' in error.response.data) {
                         setFormError(error.response.data['token'][0])
-                    }
-                    else {
+                    } else {
                         setFieldsErrors(error.response.data)
                     }
-
                 } else {
                     console.error('catch on confirm password: ', error)
                 }
             })
     }
-
 
     const onValuesChange = (changedValues) => {
         setTimeout(() => {
@@ -70,17 +60,18 @@ const PasswordResetConfirm = () => {
             setFieldsErrors(resFieldsErrors)
             validateFields()
                 .then(() => {
-                    if (Object.values(resFieldsErrors).filter(e => e.length).length === 0)
+                    if (
+                        Object.values(resFieldsErrors).filter((e) => e.length)
+                            .length === 0
+                    )
                         setIsButtonDisabled(false)
-                    else
-                        setIsButtonDisabled(true)
+                    else setIsButtonDisabled(true)
                 })
                 .catch(() => {
                     setIsButtonDisabled(true)
                 })
         }, 0)
     }
-
 
     return (
         <Form
@@ -95,21 +86,33 @@ const PasswordResetConfirm = () => {
             onValuesChange={onValuesChange}
         >
             <Form.Item
-                name='form error'
+                name="form error"
                 hidden={!formError}
                 wrapperCol={{
                     offset: 8,
                     span: 16,
                 }}
             >
-                <span className='ant-form-item-explain ant-form-item-explain-error'>{formError}</span>
+                <span className="ant-form-item-explain ant-form-item-explain-error">
+                    {formError}
+                </span>
             </Form.Item>
 
             <Form.Item
-                label='New password'
-                name='new_password'
-                validateStatus={fieldsErrors['new_password'] && fieldsErrors['new_password'].length ? 'error' : ''}
-                help={fieldsErrors['new_password'] && fieldsErrors['new_password'].length ? fieldsErrors['new_password'][0] : null}
+                label="New password"
+                name="new_password"
+                validateStatus={
+                    fieldsErrors['new_password'] &&
+                    fieldsErrors['new_password'].length
+                        ? 'error'
+                        : ''
+                }
+                help={
+                    fieldsErrors['new_password'] &&
+                    fieldsErrors['new_password'].length
+                        ? fieldsErrors['new_password'][0]
+                        : null
+                }
                 rules={[
                     {
                         required: true,
@@ -126,13 +129,16 @@ const PasswordResetConfirm = () => {
                     span: 16,
                 }}
             >
-                <Button disabled={isButtonDisabled} type='primary' htmlType='submit'>
+                <Button
+                    disabled={isButtonDisabled}
+                    type="primary"
+                    htmlType="submit"
+                >
                     Update password
                 </Button>
             </Form.Item>
         </Form>
     )
 }
-
 
 export default PasswordResetConfirm

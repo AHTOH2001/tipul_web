@@ -9,7 +9,7 @@ const layout = {
     wrapperCol: { span: 16 },
 }
 
-const selectCurrentUser = state => state.user.currentUser
+const selectCurrentUser = (state) => state.user.currentUser
 
 const UpdateGuardianForm = () => {
     const currentUser = useSelector(selectCurrentUser)
@@ -23,16 +23,16 @@ const UpdateGuardianForm = () => {
     const onFinish = (values) => {
         setIsValidating(true)
         SmartRequest.patch('managment/guardians/98/', {
-            'first_name': values['first_name'],
-            'last_name': values['last_name'],
-            'age': values['age'],
-            'phone': values['phone']
+            first_name: values['first_name'],
+            last_name: values['last_name'],
+            age: values['age'],
+            phone: values['phone'],
         })
             .then(() => {
                 message.success('Guardian account has been modified')
                 setIsValidating(false)
             })
-            .catch(error => {
+            .catch((error) => {
                 setIsValidating(false)
                 if (error.response && error.response.status === 400) {
                     setIsButtonDisabled(true)
@@ -58,17 +58,18 @@ const UpdateGuardianForm = () => {
             setFieldsErrors(resFieldsErrors)
             validateFields()
                 .then(() => {
-                    if (Object.values(resFieldsErrors).filter(e => e.length).length === 0)
+                    if (
+                        Object.values(resFieldsErrors).filter((e) => e.length)
+                            .length === 0
+                    )
                         setIsButtonDisabled(false)
-                    else
-                        setIsButtonDisabled(true)
+                    else setIsButtonDisabled(true)
                 })
                 .catch(() => {
                     setIsButtonDisabled(true)
                 })
         }, 0)
     }
-
 
     return (
         <Form
@@ -83,7 +84,7 @@ const UpdateGuardianForm = () => {
                 isValidating={isValidating}
                 fieldsErrors={fieldsErrors}
                 initialValues={{
-                    ...currentUser.guardian
+                    ...currentUser.guardian,
                 }}
             />
             <Form.Item
@@ -92,7 +93,11 @@ const UpdateGuardianForm = () => {
                     span: 16,
                 }}
             >
-                <Button disabled={isButtonDisabled} type='primary' htmlType='submit'>
+                <Button
+                    disabled={isButtonDisabled}
+                    type="primary"
+                    htmlType="submit"
+                >
                     Update guardian
                 </Button>
             </Form.Item>

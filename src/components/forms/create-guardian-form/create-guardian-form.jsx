@@ -22,17 +22,17 @@ const CreateGuardianForm = () => {
     const onFinish = (values) => {
         setIsValidating(true)
         SmartRequest.post('managment/guardians/', {
-            'first_name': values['first_name'],
-            'last_name': values['last_name'],
-            'age': values['age'],
-            'phone': values['phone']
+            first_name: values['first_name'],
+            last_name: values['last_name'],
+            age: values['age'],
+            phone: values['phone'],
         })
             .then(() => {
                 message.success('Guardian account has been created succesfully')
                 setIsValidating(false)
                 dispatch(setRefresh())
             })
-            .catch(error => {
+            .catch((error) => {
                 setIsValidating(false)
                 if (error.response && error.response.status === 400) {
                     setIsButtonDisabled(true)
@@ -44,7 +44,6 @@ const CreateGuardianForm = () => {
                 } else {
                     console.error('Error in create guardian:', error)
                 }
-
             })
     }
 
@@ -59,17 +58,18 @@ const CreateGuardianForm = () => {
             setFieldsErrors(resFieldsErrors)
             validateFields()
                 .then(() => {
-                    if (Object.values(resFieldsErrors).filter(e => e.length).length === 0)
+                    if (
+                        Object.values(resFieldsErrors).filter((e) => e.length)
+                            .length === 0
+                    )
                         setIsButtonDisabled(false)
-                    else
-                        setIsButtonDisabled(true)
+                    else setIsButtonDisabled(true)
                 })
                 .catch(() => {
                     setIsButtonDisabled(true)
                 })
         }, 0)
     }
-
 
     return (
         <Form
@@ -79,14 +79,22 @@ const CreateGuardianForm = () => {
             onFinish={onFinish}
             onValuesChange={onValuesChange}
         >
-            <GuardianFields formError={formError} isValidating={isValidating} fieldsErrors={fieldsErrors} />
+            <GuardianFields
+                formError={formError}
+                isValidating={isValidating}
+                fieldsErrors={fieldsErrors}
+            />
             <Form.Item
                 wrapperCol={{
                     offset: 8,
                     span: 16,
                 }}
             >
-                <Button disabled={isButtonDisabled} type='primary' htmlType='submit'>
+                <Button
+                    disabled={isButtonDisabled}
+                    type="primary"
+                    htmlType="submit"
+                >
                     Register
                 </Button>
             </Form.Item>

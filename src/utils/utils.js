@@ -6,7 +6,6 @@ const backend_host = 'http://localhost:8000'
 let auth_token = ''
 
 export class SmartRequest {
-
     static async prepareData(url, config) {
         if (!url) {
             throw new TypeError('Url cannot be empty')
@@ -32,7 +31,7 @@ export class SmartRequest {
             headers: {
                 ...config.headers,
                 'X-CSRFToken': cookies.get('csrftoken', { path: '/' }),
-            }
+            },
         }
         if (auth_token) {
             config['headers']['Authorization'] = `Token ${auth_token}`
@@ -42,19 +41,19 @@ export class SmartRequest {
     }
 
     static async post(url, data = {}, config = {}) {
-        [url, config] = await this.prepareData(url, config)
+        ;[url, config] = await this.prepareData(url, config)
 
         return axios.post(url, data, config)
     }
 
     static async get(url, config = {}) {
-        [url, config] = await this.prepareData(url, config)
+        ;[url, config] = await this.prepareData(url, config)
 
         return axios.get(url, config)
     }
 
     static async patch(url, data = {}, config = {}) {
-        [url, config] = await this.prepareData(url, config)
+        ;[url, config] = await this.prepareData(url, config)
 
         return axios.patch(url, data, config)
     }
@@ -70,5 +69,4 @@ export class SmartRequest {
         }
         auth_token = token
     }
-
 }

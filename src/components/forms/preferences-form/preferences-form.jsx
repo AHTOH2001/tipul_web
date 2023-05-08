@@ -19,25 +19,23 @@ const PreferencesForm = () => {
 
     useEffect(() => {
         console.log('Get preferences')
-        SmartRequest.get('managment/settings_guard/99/').then(
-            resp => {
-                setInitialValues(resp.data)
-                setIsLoading(false)
-            }
-        )
+        SmartRequest.get('managment/settings_guard/99/').then((resp) => {
+            setInitialValues(resp.data)
+            setIsLoading(false)
+        })
     }, [])
 
     const onFinish = (values) => {
         setIsValidating(true)
         SmartRequest.patch('managment/settings_guard/99/', {
-            'language': values['language'],
-            'theme': values['theme'],
+            language: values['language'],
+            theme: values['theme'],
         })
             .then(() => {
                 message.success('Preferences has been successfully updated')
                 setIsValidating(false)
             })
-            .catch(error => {
+            .catch((error) => {
                 setIsValidating(false)
                 if (error.response && error.response.status === 400) {
                     setIsButtonDisabled(true)
@@ -63,10 +61,12 @@ const PreferencesForm = () => {
             setFieldsErrors(resFieldsErrors)
             validateFields()
                 .then(() => {
-                    if (Object.values(resFieldsErrors).filter(e => e.length).length === 0)
+                    if (
+                        Object.values(resFieldsErrors).filter((e) => e.length)
+                            .length === 0
+                    )
                         setIsButtonDisabled(false)
-                    else
-                        setIsButtonDisabled(true)
+                    else setIsButtonDisabled(true)
                 })
                 .catch(() => {
                     setIsButtonDisabled(true)
@@ -75,91 +75,96 @@ const PreferencesForm = () => {
     }
 
     const getValidateStatus = (field) => {
-        return isValidating ? 'validating' : fieldsErrors[field] && fieldsErrors[field].length ? 'error' : ''
+        return isValidating
+            ? 'validating'
+            : fieldsErrors[field] && fieldsErrors[field].length
+                ? 'error'
+                : ''
     }
     const getHelp = (field) => {
-        return fieldsErrors[field] && fieldsErrors[field].length ? fieldsErrors[field][0] : null
+        return fieldsErrors[field] && fieldsErrors[field].length
+            ? fieldsErrors[field][0]
+            : null
     }
-
 
     return (
         <>
-            {
-                isLoading
-                    ?
-                    null
-                    :
-
-                    < Form
-                        form={form}
-                        {...layout}
-                        onFinish={onFinish}
-                        style={{ padding: '20px', alignContent: 'center' }
-                        }
-                        onValuesChange={onValuesChange}
+            {isLoading ? null : (
+                <Form
+                    form={form}
+                    {...layout}
+                    onFinish={onFinish}
+                    style={{ padding: '20px', alignContent: 'center' }}
+                    onValuesChange={onValuesChange}
+                >
+                    <Form.Item
+                        name="form error"
+                        hidden={!formError}
+                        wrapperCol={{
+                            offset: 8,
+                            span: 16,
+                        }}
                     >
-                        <Form.Item
-                            name='form error'
-                            hidden={!formError}
-                            wrapperCol={{
-                                offset: 8,
-                                span: 16,
-                            }}
-                        >
-                            <span className='ant-form-item-explain ant-form-item-explain-error'>{formError}</span>
-                        </Form.Item>
-                        <Form.Item
-                            label='Language'
-                            name='language'
-                            initialValue={initialValues['language']}
-                            validateStatus={getValidateStatus('language')}
-                            help={getHelp('language')}
-                            rules={[
-                                {
-                                    required: true,
-                                    message: 'Please input first name!',
-                                },
+                        <span className="ant-form-item-explain ant-form-item-explain-error">
+                            {formError}
+                        </span>
+                    </Form.Item>
+                    <Form.Item
+                        label="Language"
+                        name="language"
+                        initialValue={initialValues['language']}
+                        validateStatus={getValidateStatus('language')}
+                        help={getHelp('language')}
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Please input first name!',
+                            },
+                        ]}
+                    >
+                        <Select
+                            options={[
+                                { value: 'RUSSIAN', label: 'Русский' },
+                                { value: 'ENGLISH', label: 'English' },
                             ]}
-                        >
-                            <Select
-                                options={[
-                                    { value: 'RUSSIAN', label: 'Русский' },
-                                    { value: 'ENGLISH', label: 'English' },
-                                ]}
-                            />
-                        </Form.Item>
-                        <Form.Item
-                            label='Theme'
-                            name='theme'
-                            initialValue={initialValues['theme']}
-                            validateStatus={getValidateStatus('theme')}
-                            help={getHelp('theme')}
-                            rules={[
-                                {
-                                    required: true,
-                                    message: 'Please input last name!',
-                                },
+                        />
+                    </Form.Item>
+                    <Form.Item
+                        label="Theme"
+                        name="theme"
+                        initialValue={initialValues['theme']}
+                        validateStatus={getValidateStatus('theme')}
+                        help={getHelp('theme')}
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Please input last name!',
+                            },
+                        ]}
+                    >
+                        <Select
+                            options={[
+                                { value: 'black', label: 'Black' },
+                                { value: 'white', label: 'White' },
                             ]}
+                        />
+                    </Form.Item>
+                    <Form.Item
+                        wrapperCol={{
+                            offset: 8,
+                            span: 16,
+                        }}
+                    >
+                        <Button
+                            disabled={isButtonDisabled}
+                            type="primary"
+                            htmlType="submit"
                         >
-                            <Select
-                                options={[
-                                    { value: 'black', label: 'Black' },
-                                    { value: 'white', label: 'White' },
-                                ]}
-                            />
-                        </Form.Item>
-                        <Form.Item
-                            wrapperCol={{
-                                offset: 8,
-                                span: 16,
-                            }}
-                        >
-                            <Button disabled={isButtonDisabled} type='primary' htmlType='submit'>
-                                Update preferences
-                            </Button>
-                        </Form.Item>
-                    </Form >
-            }
+                            Update preferences
+                        </Button>
+                    </Form.Item>
+                </Form>
+            )}
         </>
     )
 }

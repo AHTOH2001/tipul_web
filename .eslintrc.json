@@ -6,7 +6,8 @@
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
-    "plugin:react-redux/recommended"
+    "plugin:react-redux/recommended",
+    "prettier"
   ],
   "parserOptions": {
     "ecmaFeatures": {
@@ -17,7 +18,8 @@
   },
   "plugins": [
     "react",
-    "react-redux"
+    "react-redux",
+    "prettier"
   ],
   "settings": {
     "react": {

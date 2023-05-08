@@ -4,7 +4,6 @@ import CreateGuardianForm from '../../forms/create-guardian-form/create-guardian
 import { useHistory } from 'react-router-dom'
 
 const CreateGuardianModal = ({ visible }) => {
-    
     const history = useHistory()
 
     // const showModal = () => {
@@ -18,7 +17,7 @@ const CreateGuardianModal = ({ visible }) => {
     return (
         <>
             <Modal
-                title='Register guardian'
+                title="Register guardian"
                 visible={visible}
                 onCancel={handleCancel}
                 okButtonProps={{ hidden: true }}

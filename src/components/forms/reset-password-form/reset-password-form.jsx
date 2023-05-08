@@ -14,11 +14,14 @@ const ResetPasswordForm = ({ setVisible }) => {
         setIsValidating(true)
         SmartRequest.post('api/v1/auth/users/reset_password/', values)
             .then(() => {
-                message.success('Mail for resetting password has been sent to your email', 5)
+                message.success(
+                    'Mail for resetting password has been sent to your email',
+                    5
+                )
                 setIsValidating(false)
                 setTimeout(() => setVisible(false), 1000)
             })
-            .catch(error => {
+            .catch((error) => {
                 setIsValidating(false)
                 if (error.response && error.response.status === 400) {
                     setIsButtonDisabled(true)
@@ -30,9 +33,7 @@ const ResetPasswordForm = ({ setVisible }) => {
                 } else {
                     console.error('Error in reset password:', error)
                 }
-
             })
-
     }
 
     const onValuesChange = (changedValues) => {
@@ -46,17 +47,18 @@ const ResetPasswordForm = ({ setVisible }) => {
             setFieldsErrors(resFieldsErrors)
             validateFields()
                 .then(() => {
-                    if (Object.values(resFieldsErrors).filter(e => e.length).length === 0)
+                    if (
+                        Object.values(resFieldsErrors).filter((e) => e.length)
+                            .length === 0
+                    )
                         setIsButtonDisabled(false)
-                    else
-                        setIsButtonDisabled(true)
+                    else setIsButtonDisabled(true)
                 })
                 .catch(() => {
                     setIsButtonDisabled(true)
                 })
         }, 0)
     }
-
 
     return (
         <Form
@@ -70,19 +72,31 @@ const ResetPasswordForm = ({ setVisible }) => {
         >
             <p>Enter the email you used to register</p>
             <Form.Item
-                name='form error'
+                name="form error"
                 hidden={!formError}
                 wrapperCol={{
                     offset: 8,
                     span: 16,
                 }}
             >
-                <span className='ant-form-item-explain ant-form-item-explain-error'>{formError}</span>
+                <span className="ant-form-item-explain ant-form-item-explain-error">
+                    {formError}
+                </span>
             </Form.Item>
             <Form.Item
-                name='email'
-                validateStatus={isValidating ? 'validating' : fieldsErrors['email'] && fieldsErrors['email'].length ? 'error' : ''}
-                help={fieldsErrors['email'] && fieldsErrors['email'].length ? fieldsErrors['email'][0] : null}
+                name="email"
+                validateStatus={
+                    isValidating
+                        ? 'validating'
+                        : fieldsErrors['email'] && fieldsErrors['email'].length
+                            ? 'error'
+                            : ''
+                }
+                help={
+                    fieldsErrors['email'] && fieldsErrors['email'].length
+                        ? fieldsErrors['email'][0]
+                        : null
+                }
                 hasFeedback
                 rules={[
                     {
@@ -91,10 +105,14 @@ const ResetPasswordForm = ({ setVisible }) => {
                     },
                 ]}
             >
-                <Input placeholder='Email' type='email' autoComplete='email' />
+                <Input placeholder="Email" type="email" autoComplete="email" />
             </Form.Item>
             <Form.Item>
-                <Button disabled={isButtonDisabled} type='primary' htmlType='submit'>
+                <Button
+                    disabled={isButtonDisabled}
+                    type="primary"
+                    htmlType="submit"
+                >
                     Request
                 </Button>
             </Form.Item>
