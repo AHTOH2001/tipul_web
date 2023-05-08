@@ -21,27 +21,22 @@ const Settings = () => {
             {currentUser.guardian ?
                 <>
                     <Row>
-                        <Col span={24}>
+                        <Col span={12}>
                             <Typography.Title style={headerTextStyle}>
                                 Preferences
                             </Typography.Title>
                         </Col>
-                    </Row>
-                    <Row>
-                        <Col span={8}>
-                            <PreferencesForm />
-                        </Col>
-                    </Row>
-                    <Divider plain />
-                    <Row>
-                        <Col span={24}>
+                        <Col span={12}>
                             <Typography.Title style={headerTextStyle}>
                                 Guardian settings
                             </Typography.Title>
                         </Col>
                     </Row>
                     <Row>
-                        <Col span={8}>
+                        <Col span={8} offset={1}>
+                            <PreferencesForm />
+                        </Col>
+                        <Col span={8} offset={4}>
                             <UpdateGuardianForm />
                         </Col>
                     </Row>
@@ -58,7 +53,7 @@ const Settings = () => {
                 </Col>
             </Row>
             <Row>
-                <Col span={8}>
+                <Col span={8} offset={1}>
                     <PatchProfile />
                 </Col>
                 <Col span={8} offset={4}>
