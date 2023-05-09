@@ -6,10 +6,6 @@ import { useHistory } from 'react-router-dom'
 const CreateGuardianModal = ({ visible }) => {
     const history = useHistory()
 
-    // const showModal = () => {
-    //     setVisible(true)
-    // }
-
     const handleCancel = () => {
         history.push('/profile/settings')
     }

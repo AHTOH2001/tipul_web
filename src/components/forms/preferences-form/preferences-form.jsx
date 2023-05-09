@@ -111,6 +111,7 @@ const PreferencesForm = () => {
                     </Form.Item>
                     <Form.Item
                         label="Language"
+                        hasFeedback
                         name="language"
                         initialValue={initialValues['language']}
                         validateStatus={getValidateStatus('language')}
@@ -131,6 +132,7 @@ const PreferencesForm = () => {
                     </Form.Item>
                     <Form.Item
                         label="Theme"
+                        hasFeedback
                         name="theme"
                         initialValue={initialValues['theme']}
                         validateStatus={getValidateStatus('theme')}

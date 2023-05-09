@@ -36,6 +36,7 @@ const GuardianFields = ({
             </Form.Item>
             <Form.Item
                 label="First name"
+                hasFeedback
                 name="first_name"
                 initialValue={initialValues['first_name']}
                 validateStatus={getValidateStatus('first_name')}
@@ -51,6 +52,7 @@ const GuardianFields = ({
             </Form.Item>
             <Form.Item
                 label="Last name"
+                hasFeedback
                 name="last_name"
                 initialValue={initialValues['last_name']}
                 validateStatus={getValidateStatus('last_name')}
@@ -66,6 +68,7 @@ const GuardianFields = ({
             </Form.Item>
             <Form.Item
                 label="Age"
+                hasFeedback
                 name="age"
                 initialValue={initialValues['age']}
                 validateStatus={getValidateStatus('age')}
@@ -87,6 +90,7 @@ const GuardianFields = ({
             </Form.Item>
             <Form.Item
                 label="Phone"
+                hasFeedback
                 name="phone"
                 initialValue={initialValues['phone']}
                 validateStatus={getValidateStatus('phone')}

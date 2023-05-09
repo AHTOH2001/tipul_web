@@ -82,6 +82,7 @@ const ChangePassword = () => {
             </Form.Item>
             <Form.Item
                 label="Old password"
+                hasFeedback
                 name="password_old"
                 validateStatus={
                     fieldsErrors['password_old'] &&
@@ -106,6 +107,7 @@ const ChangePassword = () => {
             </Form.Item>
             <Form.Item
                 label="New password"
+                hasFeedback
                 name="password_new"
                 validateStatus={
                     fieldsErrors['password_new'] &&

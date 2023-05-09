@@ -93,6 +93,7 @@ const LogIn = () => {
             </Form.Item>
             <Form.Item
                 label="Username"
+                hasFeedback
                 name="username"
                 validateStatus={usernameError ? 'error' : ''}
                 help={usernameError ? null : ''}
@@ -108,6 +109,7 @@ const LogIn = () => {
 
             <Form.Item
                 label="Password"
+                hasFeedback
                 name="password"
                 validateStatus={passwordError ? 'error' : ''}
                 help={passwordError ? null : ''}

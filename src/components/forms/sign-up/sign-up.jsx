@@ -93,6 +93,7 @@ const SignUp = () => {
             </Form.Item>
             <Form.Item
                 label="Username"
+                hasFeedback
                 name="username"
                 validateStatus={
                     fieldsErrors['username'] && fieldsErrors['username'].length
@@ -116,6 +117,7 @@ const SignUp = () => {
 
             <Form.Item
                 label="Email"
+                hasFeedback
                 name="email"
                 validateStatus={
                     fieldsErrors['email'] && fieldsErrors['email'].length
@@ -138,6 +140,7 @@ const SignUp = () => {
             </Form.Item>
             <Form.Item
                 label="Password"
+                hasFeedback
                 name="password"
                 validateStatus={
                     fieldsErrors['password'] && fieldsErrors['password'].length

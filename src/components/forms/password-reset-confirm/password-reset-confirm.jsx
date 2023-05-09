@@ -100,6 +100,7 @@ const PasswordResetConfirm = () => {
 
             <Form.Item
                 label="New password"
+                hasFeedback
                 name="new_password"
                 validateStatus={
                     fieldsErrors['new_password'] &&

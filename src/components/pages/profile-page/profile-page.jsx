@@ -1,10 +1,11 @@
 import { PlusOutlined } from '@ant-design/icons';
 import { Button, Layout, Select } from 'antd';
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 import { setCurrentPatient } from '../../../redux/patient/patient.actions';
 import Header from '../../header/header';
+import ConnectPatientModal from '../../modals/connect-patient-modal/connect-patient-modal';
 import Sider from '../../sider/sider';
 import Buy from './profile-contents/buy';
 import Home from './profile-contents/home';
@@ -16,6 +17,7 @@ const selectCurrentUser = (state) => state.user.currentUser
 const ProfilePage = () => {
     const currentUser = useSelector(selectCurrentUser)
     const dispatch = useDispatch()
+    const [modalVisible, setModalVisible] = useState(false)
 
     const onSelectChange = (value) => {
         let patient = currentUser.guardian.connected_patients.find(
@@ -47,10 +49,10 @@ const ProfilePage = () => {
             (
                 <Button
                     type="text"
-                    htmlType="submit"
                     key={2}
                     style={{ color: 'white' }}
                     icon={<PlusOutlined />}
+                    onClick={() => setModalVisible(true)}
                 >
                     Add patient
                 </Button>
@@ -95,6 +97,7 @@ const ProfilePage = () => {
                     </Layout.Footer>
                 </Layout>
             </Layout>
+            <ConnectPatientModal visible={modalVisible} setVisible={setModalVisible} />
         </Layout>
     )
 }
