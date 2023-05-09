@@ -1,10 +1,12 @@
 import * as React from 'react'
 
 import Box from '@mui/material/Box'
-import Grid from '@mui/material/Grid'
 import Container from '@mui/material/Container'
+import Grid from '@mui/material/Grid'
 import Button from '../components/Button'
 import Typography from '../components/Typography'
+import webImage from '../../../images/sales/mono_terminals_section.svg'
+import mobileImage from '../../../images/sales/Smartphone-openslipart-ciubotaru.svg'
 
 const item = {
     display: 'flex',
@@ -62,21 +64,25 @@ function ProductHowItWorks() {
                     component="h2"
                     sx={{ mb: 14 }}
                 >
-                    How it works
+                    Как это работает
                 </Typography>
                 <div>
-                    <Grid container spacing={5}>
+                    <Grid container spacing={0}>
                         <Grid item xs={12} md={4}>
                             <Box sx={item}>
                                 <Box sx={number}>1.</Box>
                                 <Box
                                     component="img"
-                                    src="https://mui.com/static/themes/onepirate/productHowItWorks1.svg"
-                                    alt="suitcase"
+                                    src={mobileImage}
+                                    alt="mobile"
                                     sx={image}
                                 />
-                                <Typography variant="h5" align="center">
-                                    Appointment every Wednesday 9am.
+                                <Typography variant="h5" align="center" style={{ fontSize: 25, fontWeight: 'bold', textAlign: 'start' }}>
+                                    Мобильное приложение
+                                </Typography>
+                                <Typography variant="h5" align="center" style={{ fontSize: 20, textAlign: 'start' }}>
+                                    Позволяет вашим подопечным вести учёт приёма лекарств, врачей и визиты к ним самостоятельно.
+                                    Разработан удобный и простой интерфейс, подходящий для слабовидящих людей.
                                 </Typography>
                             </Box>
                         </Grid>
@@ -85,13 +91,16 @@ function ProductHowItWorks() {
                                 <Box sx={number}>2.</Box>
                                 <Box
                                     component="img"
-                                    src="https://mui.com/static/themes/onepirate/productHowItWorks2.svg"
-                                    alt="graph"
+                                    src={webImage}
+                                    alt="web"
                                     sx={image}
                                 />
-                                <Typography variant="h5" align="center">
-                                    First come, first served. Our offers are in
-                                    limited quantities, so be quick.
+                                <Typography variant="h5" align="center" style={{ fontSize: 25, fontWeight: 'bold', textAlign: 'start' }}>
+                                    Веб-приложение
+                                </Typography>
+                                <Typography variant="h5" align="center" style={{ fontSize: 20, textAlign: 'start' }}>
+                                    Позволяет Вам как опекуну контролировать процесс приёма лекарств и корректировать его.
+                                    Вы сможете получать подробные отчёты о деятельности вашего подопечного.
                                 </Typography>
                             </Box>
                         </Grid>
@@ -100,15 +109,19 @@ function ProductHowItWorks() {
                                 <Box sx={number}>3.</Box>
                                 <Box
                                     component="img"
-                                    src="https://mui.com/static/themes/onepirate/productHowItWorks3.svg"
-                                    alt="clock"
+                                    // src="https://mui.com/static/themes/onepirate/productHowItWorks3.svg"
+                                    src="https://mui.com/static/themes/onepirate/productValues3.svg"
+                                    alt="money"
                                     sx={image}
                                 />
-                                <Typography variant="h5" align="center">
-                                    {
-                                        'New offers every week. New experiences, new surprises. '
-                                    }
-                                    {'Your Sundays will no longer be alike.'}
+                                <Typography variant="h5" align="center" style={{ fontSize: 25, fontWeight: 'bold', textAlign: 'start' }}>
+                                    Тарифы
+                                </Typography>
+                                <Typography variant="h5" align="center" style={{ fontSize: 20, textAlign: 'start' }}>
+                                    Годовая подписка 32 рубля на веб-приложение.
+                                </Typography>
+                                <Typography variant="h5" align="center" style={{ fontSize: 20, textAlign: 'start' }}>
+                                    Годовая подписка 31 рубль на мобильное приложение.
                                 </Typography>
                             </Box>
                         </Grid>
@@ -122,7 +135,7 @@ function ProductHowItWorks() {
                     href="/sign-up"
                     sx={{ mt: 8 }}
                 >
-                    Get started
+                    И это ещё не всё
                 </Button>
             </Container>
         </Box>

@@ -44,7 +44,7 @@ const ProfilePage = () => {
                                 }
                             )}
                         />
-                    ) : null,
+                    ) : [],
                 ]}
             />
             <Layout style={{ minHeight: '100vh' }} className="profile">

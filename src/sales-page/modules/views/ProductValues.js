@@ -4,6 +4,8 @@ import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
 import Container from '@mui/material/Container'
 import Typography from '../components/Typography'
+import durableImage from '../../../images/sales/Baum-lineart.svg'
+import sophisticatedImage from '../../../images/sales/mono-favorites.svg'
 
 const item = {
     display: 'flex',
@@ -41,19 +43,15 @@ function ProductValues() {
                             <Box
                                 component="img"
                                 src="https://mui.com/static/themes/onepirate/productValues1.svg"
-                                alt="suitcase"
+                                alt="comfort"
                                 sx={{ height: 55 }}
                             />
                             <Typography variant="h6" sx={{ my: 5 }}>
-                                The best luxury hotels
+                                Удобство
                             </Typography>
                             <Typography variant="h5">
                                 {
-                                    'From the latest trendy boutique hotel to the iconic palace with XXL pool'
-                                }
-
-                                {
-                                    ', go for a mini-vacation just a few subway stops away from your home.'
+                                    'Все наши приложения удобны и просты в использовании'
                                 }
                             </Typography>
                         </Box>
@@ -62,19 +60,17 @@ function ProductValues() {
                         <Box sx={item}>
                             <Box
                                 component="img"
-                                src="https://mui.com/static/themes/onepirate/productValues2.svg"
-                                alt="graph"
+                                src={durableImage}
+                                alt="durable"
                                 sx={{ height: 55 }}
                             />
                             <Typography variant="h6" sx={{ my: 5 }}>
-                                New experiences
+                                Надёжность
                             </Typography>
                             <Typography variant="h5">
                                 {
-                                    'Privatize a pool, take a Japanese bath or wake up in 900m2 of garden… '
+                                    'Ваши данные надёжно шифруются и хранятся на отдельных серверах'
                                 }
-
-                                {'your Sundays will not be alike.'}
                             </Typography>
                         </Box>
                     </Grid>
@@ -82,18 +78,17 @@ function ProductValues() {
                         <Box sx={item}>
                             <Box
                                 component="img"
-                                src="https://mui.com/static/themes/onepirate/productValues3.svg"
-                                alt="clock"
+                                src={sophisticatedImage}
+                                alt="sophisticated"
                                 sx={{ height: 55 }}
                             />
                             <Typography variant="h6" sx={{ my: 5 }}>
-                                Exclusive rates
+                                Продуманность
                             </Typography>
                             <Typography variant="h5">
                                 {
-                                    'By registering, you will access specially negotiated rates '
+                                    'Продуманный интерфейс, адаптированный под ваши нужды'
                                 }
-                                {'that you will not find anywhere else.'}
                             </Typography>
                         </Box>
                     </Grid>

@@ -2,7 +2,7 @@ import * as React from 'react'
 import Button from '../components/Button'
 import Typography from '../components/Typography'
 import ProductHeroLayout from './ProductHeroLayout'
-import backgroundImage from '../../../images/sales/photo-1534854638093-bada1813ca19.avif'
+import backgroundImage from '../../../images/sales/babulya.jpg'
 
 
 
@@ -27,7 +27,7 @@ export default function ProductHero() {
                 variant="h2"
                 marked="center"
             >
-                Upgrade your Sundays
+                ТИПУЛЬ
             </Typography>
             <Typography
                 color="inherit"
@@ -35,8 +35,7 @@ export default function ProductHero() {
                 variant="h5"
                 sx={{ mb: 4, mt: { xs: 4, sm: 10 } }}
             >
-                Enjoy secret offers up to -70% off the best luxury hotels every
-                Sunday.
+                С ЗАБОТОЙ О ВАШИХ РОДНЫХ И БЛИЗКИХ
             </Typography>
             <Button
                 color="secondary"
@@ -46,11 +45,8 @@ export default function ProductHero() {
                 href="/sign-up"
                 sx={{ minWidth: 200 }}
             >
-                Register
+                Регистрация
             </Button>
-            <Typography variant="body2" color="inherit" sx={{ mt: 2 }}>
-                Discover the experience
-            </Typography>
         </ProductHeroLayout>
     )
 }

@@ -103,7 +103,7 @@ const Buy = () => {
                 />
                 <Step
                     title="Done"
-                    description="После оплаты у вас будет полный доступ к приложению Типуль"
+                    description="После оплаты у вас будет полный доступ к веб-приложению Типуль"
                     icon={<SmileOutlined />}
                 />
             </Steps>

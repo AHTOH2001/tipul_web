@@ -110,7 +110,7 @@ export default function ProductCategories() {
                 align="center"
                 component="h2"
             >
-                For all tastes and all desires
+                Возможности наших продуктов
             </Typography>
             <Box sx={{ mt: 8, display: 'flex', flexWrap: 'wrap' }}>
                 {images.map((image) => (
