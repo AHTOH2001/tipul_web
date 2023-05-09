@@ -15,7 +15,7 @@ const HomePage = () => (
                 </Link>,
             ]}
         />
-        <Layout.Content style={{ padding: '0 50px' }}>
+        <Layout.Content style={{ zIndex: 5 }}>
             <HomeSales />
         </Layout.Content>
         <Layout.Footer style={{ textAlign: 'center' }}>© Tipul</Layout.Footer>
