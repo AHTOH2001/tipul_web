@@ -1,16 +1,16 @@
-import { PlusOutlined } from '@ant-design/icons';
-import { Button, Layout, Select } from 'antd';
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Route, Switch } from 'react-router-dom';
-import { setCurrentPatient } from '../../../redux/patient/patient.actions';
-import Header from '../../header/header';
-import ConnectPatientModal from '../../modals/connect-patient-modal/connect-patient-modal';
-import Sider from '../../sider/sider';
-import Buy from './profile-contents/buy';
-import Home from './profile-contents/home';
-import Settings from './profile-contents/settings';
-import './profile-page.css';
+import { PlusOutlined } from '@ant-design/icons'
+import { Button, Layout, Select } from 'antd'
+import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { Route, Switch } from 'react-router-dom'
+import { setCurrentPatient } from '../../../redux/patient/patient.actions'
+import Header from '../../header/header'
+import ConnectPatientModal from '../../modals/connect-patient-modal/connect-patient-modal'
+import Sider from '../../sider/sider'
+import Buy from './profile-contents/buy'
+import Home from './profile-contents/home'
+import Settings from './profile-contents/settings'
+import './profile-page.css'
 
 const selectCurrentUser = (state) => state.user.currentUser
 

@@ -12,7 +12,7 @@ const ConnectPatientModal = ({ visible, setVisible }) => {
                 okButtonProps={{ hidden: true }}
                 onCancel={() => setVisible(false)}
             >
-                <ConnectPatientForm />
+                <ConnectPatientForm  setModalVisible={setVisible}/>
             </Modal>
         </>
     )

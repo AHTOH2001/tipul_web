@@ -1,4 +1,4 @@
-import { Button, Form, Input, InputNumber, message, Checkbox } from 'antd'
+import { Button, Form, Input, InputNumber, Switch, message } from 'antd'
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { setRefresh } from '../../../redux/refresh/refresh.actions.js'
@@ -10,10 +10,10 @@ const layout = {
 }
 
 const initialValues = {
-    // 'should_send_report': "should_send_report",
+    'should_send_report': false,
 }
 
-const ConnectPatientForm = () => {
+const ConnectPatientForm = ({ setModalVisible }) => {
     const [form] = Form.useForm()
     const { getFieldError, validateFields } = form
     const [isButtonDisabled, setIsButtonDisabled] = useState(true)
@@ -23,14 +23,13 @@ const ConnectPatientForm = () => {
     const dispatch = useDispatch()
 
     const getValidateStatus = (field) => {
-        let res = isValidating
+        return isValidating
             ? 'validating'
             : fieldsErrors[field] && fieldsErrors[field].length
                 ? 'error'
                 : ''
-        console.log(field, res)
-        return res
     }
+
     const getHelp = (field) => {
         return fieldsErrors[field] && fieldsErrors[field].length
             ? fieldsErrors[field][0]
@@ -39,31 +38,32 @@ const ConnectPatientForm = () => {
 
     const onFinish = (values) => {
         setIsValidating(true)
-        console.log(values)
-        // SmartRequest.post('managment/guardians/', {
-        //     first_name: values['first_name'],
-        //     last_name: values['last_name'],
-        //     age: values['age'],
-        //     phone: values['phone'],
-        // })
-        //     .then(() => {
-        //         message.success('Guardian account has been created succesfully')
-        //         setIsValidating(false)
-        //         dispatch(setRefresh())
-        //     })
-        //     .catch((error) => {
-        //         setIsValidating(false)
-        //         if (error.response && error.response.status === 400) {
-        //             setIsButtonDisabled(true)
-        //             if (typeof error.response.data !== 'object') {
-        //                 setFormError(error.response.data)
-        //             } else {
-        //                 setFieldsErrors(error.response.data)
-        //             }
-        //         } else {
-        //             console.error('Error in create guardian:', error)
-        //         }
-        //     })
+        setIsButtonDisabled(true)
+        SmartRequest.post('managment/connect/', values)
+            .then(() => {
+                message.success('Patient has been added succesfully')
+                setModalVisible(false)
+                setIsValidating(false)
+                dispatch(setRefresh())
+            })
+            .catch((error) => {
+                setIsValidating(false)
+                if (error.response && error.response.status === 400) {
+                    if (typeof error.response.data !== 'object') {
+                        setFormError(error.response.data)
+                    }
+                    if ('detail' in error.response.data) {
+                        setFormError(error.response.data['detail'])
+                    }
+                    else {
+                        setFieldsErrors(error.response.data)
+                    }
+
+                } else {
+                    message.error('Something went wrong :(')
+                    console.error('Error in create guardian:', error)
+                }
+            })
     }
 
     const onValuesChange = (changedValues) => {
@@ -99,53 +99,53 @@ const ConnectPatientForm = () => {
             onValuesChange={onValuesChange}
         >
             <Form.Item
-                name="form error"
+                name='form error'
                 hidden={!formError}
                 wrapperCol={{
                     offset: 8,
                     span: 16,
                 }}
             >
-                <span className="ant-form-item-explain ant-form-item-explain-error">
+                <span className='ant-form-item-explain ant-form-item-explain-error'>
                     {formError}
                 </span>
             </Form.Item>
             <Form.Item
-                label="Code"
+                label='Code'
                 hasFeedback
-                name="code"
+                name='code'
                 initialValue={initialValues['code']}
                 validateStatus={getValidateStatus('code')}
                 help={getHelp('code')}
                 rules={[
                     {
                         required: true,
-                        message: "Please input patient's code!",
+                        message: 'Please input patient\'s code!',
                     },
                 ]}
             >
                 <Input />
             </Form.Item>
             <Form.Item
-                label="Patient ID"
+                label='Patient ID'
                 hasFeedback
-                name="patient_id"
+                name='patient_id'
                 initialValue={initialValues['patient_id']}
                 validateStatus={getValidateStatus('patient_id')}
                 help={getHelp('patient_id')}
                 rules={[
                     {
                         required: true,
-                        message: "Please input patient's ID!",
+                        message: 'Please input patient\'s ID!',
                     },
                 ]}
             >
                 <InputNumber />
             </Form.Item>
             <Form.Item
-                label="Relationship"
+                label='Relationship'
                 hasFeedback
-                name="relationship"
+                name='relationship'
                 initialValue={initialValues['relationship']}
                 validateStatus={getValidateStatus('relationship')}
                 help={getHelp('relationship')}
@@ -159,14 +159,14 @@ const ConnectPatientForm = () => {
                 <Input />
             </Form.Item>
             <Form.Item
-                label="Recieve reports"
+                label='Recieve reports'
                 hasFeedback
-                name="should_send_report"
+                name='should_send_report'
                 initialValue={initialValues['should_send_report']}
                 validateStatus={getValidateStatus('should_send_report')}
                 help={getHelp('should_send_report')}
             >
-                <Checkbox />
+                <Switch />
             </Form.Item>
             <Form.Item
                 wrapperCol={{
@@ -176,8 +176,8 @@ const ConnectPatientForm = () => {
             >
                 <Button
                     disabled={isButtonDisabled}
-                    type="primary"
-                    htmlType="submit"
+                    type='primary'
+                    htmlType='submit'
                 >
                     Add
                 </Button>
