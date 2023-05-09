@@ -69,7 +69,6 @@ const ConnectPatientForm = ({ setModalVisible }) => {
     const onValuesChange = (changedValues) => {
         setTimeout(() => {
             setFormError('')
-            // https://stackoverflow.com/questions/56278830/how-to-know-when-all-fields-are-validated-values-added-in-ant-design-form
             let resFieldsErrors = { ...fieldsErrors }
             for (let val in changedValues) {
                 resFieldsErrors[val] = getFieldError(val)
