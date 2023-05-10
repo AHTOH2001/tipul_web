@@ -1,9 +1,10 @@
 import { PlusOutlined } from '@ant-design/icons'
-import { Button, Layout, Select } from 'antd'
-import React, { useState } from 'react'
+import { Button, Layout, message, Select } from 'antd'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Route, Switch } from 'react-router-dom'
 import { setCurrentPatient } from '../../../redux/patient/patient.actions'
+import { SmartRequest } from '../../../utils/utils'
 import Header from '../../header/header'
 import ConnectPatientModal from '../../modals/connect-patient-modal/connect-patient-modal'
 import Sider from '../../sider/sider'
@@ -18,12 +19,33 @@ const ProfilePage = () => {
     const currentUser = useSelector(selectCurrentUser)
     const dispatch = useDispatch()
     const [modalVisible, setModalVisible] = useState(false)
+    const [selectedPatientId, setSelectedPatientId] = useState(null)
 
-    const onSelectChange = (value) => {
-        let patient = currentUser.guardian.connected_patients.find(
-            (patient) => patient.id == value
-        )
-        dispatch(setCurrentPatient(patient))
+    useEffect(() => {
+        SmartRequest.get('managment/settings_guard/99/').then((resp) => {
+            let patient_id = resp.data.patient_current
+            setSelectedPatientId(patient_id)
+            let patient = currentUser.guardian.connected_patients.find(
+                (patient) => patient.id == patient_id
+            )
+            dispatch(setCurrentPatient(patient))
+        })
+    }, [])
+
+
+    const onSelectChangeChosenPatient = (patient_id) => {
+        SmartRequest.patch('managment/settings_guard/99/', {
+            'patient_current': patient_id,
+        }).then(() => {
+            setSelectedPatientId(patient_id)
+            let patient = currentUser.guardian.connected_patients.find(
+                (patient) => patient.id == patient_id
+            )
+            dispatch(setCurrentPatient(patient))
+        }).catch(() => {
+            message.error('Something went wrong :(')
+        })
+
     }
 
     const getHeaderContent = () => {
@@ -35,7 +57,8 @@ const ProfilePage = () => {
                     bordered={false}
                     key={1}
                     style={{ color: 'white' }}
-                    onChange={onSelectChange}
+                    onChange={onSelectChangeChosenPatient}
+                    value={selectedPatientId}
                     options={currentUser.guardian.connected_patients.map(
                         (patient) => {
                             return {
