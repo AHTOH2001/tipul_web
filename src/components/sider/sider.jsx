@@ -1,4 +1,5 @@
 import {
+    DisconnectOutlined,
     HomeOutlined,
     LogoutOutlined,
     SettingOutlined,
@@ -50,8 +51,15 @@ const Sider = () => {
                 >
                     Home
                 </Menu.Item>
+                <Menu.Item
+                    key="/profile/pills"
+                    onClick={() => history.push('/profile/pills')}
+                    icon={<DisconnectOutlined />}
+                >
+                    Pills
+                </Menu.Item>
                 <SubMenu
-                    key="sub1"
+                    key="profile"
                     icon={<UserOutlined />}
                     title={
                         currentUser.guardian

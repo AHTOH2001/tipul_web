@@ -11,6 +11,7 @@ import Sider from '../../sider/sider'
 import Buy from './profile-contents/buy'
 import Home from './profile-contents/home'
 import Settings from './profile-contents/settings'
+import Pills from './profile-contents/pills'
 import './profile-page.css'
 
 const selectCurrentUser = (state) => state.user.currentUser
@@ -102,6 +103,11 @@ const ProfilePage = () => {
                                     exact
                                     path="/profile/settings"
                                     component={Settings}
+                                />
+                                <Route
+                                    exact
+                                    path="/profile/pills"
+                                    component={Pills}
                                 />
                             </Switch>
                         ) : (
