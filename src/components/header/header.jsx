@@ -10,12 +10,12 @@ const Header = ({ header_link, content, justify }) => {
             <Row>
                 <Col flex="200px">
                     <Link to={header_link}>
-                        <img src={logo} alt="Paris" className="logo" />
+                        <img src={logo} alt="logo" className="logo" />
                     </Link>
                 </Col>
                 <Col flex="auto">
                     <Row justify={justify}>
-                        <Menu theme="dark" mode="horizontal">
+                        <Menu theme="dark" mode="horizontal" selectable={false} style={{ minWidth: 0, flex: "auto" }}>
                             {content.map((e) => (
                                 <Menu.Item key={e.key}>{e}</Menu.Item>
                             ))}
