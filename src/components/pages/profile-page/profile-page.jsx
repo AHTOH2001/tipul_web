@@ -13,6 +13,7 @@ import Home from './profile-contents/home'
 import Settings from './profile-contents/settings'
 import Pills from './profile-contents/pills'
 import './profile-page.css'
+import EditPill from './profile-contents/edit-pill'
 
 const selectCurrentUser = (state) => state.user.currentUser
 
@@ -108,6 +109,11 @@ const ProfilePage = () => {
                                     exact
                                     path="/profile/pills"
                                     component={Pills}
+                                />
+                                <Route
+                                    exact
+                                    path="/profile/pills/:pill_id"
+                                    component={EditPill}
                                 />
                             </Switch>
                         ) : (

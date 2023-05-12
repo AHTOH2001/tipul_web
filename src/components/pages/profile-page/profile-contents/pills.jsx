@@ -5,7 +5,6 @@ import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { SmartRequest } from '../../../../utils/utils'
 
-const selectCurrentUser = (state) => state.user.currentUser
 const selectCurrentPatient = (state) => state.patient.currentPatient
 
 // {
@@ -31,13 +30,11 @@ const selectCurrentPatient = (state) => state.patient.currentPatient
 //     "patient": 11
 // }
 const Pills = () => {
-    const currentUser = useSelector(selectCurrentUser)
     const currentPatient = useSelector(selectCurrentPatient)
     const [medicines, setMedicines] = useState([])
 
     useEffect(() => {
         SmartRequest.get('medicine/cure/').then((resp) => {
-            console.log('here', resp.data)
             setMedicines(resp.data)
         })
     }, [currentPatient])
