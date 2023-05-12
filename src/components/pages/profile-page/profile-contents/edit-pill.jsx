@@ -1,4 +1,4 @@
-import { Button, Col, Form, Input, InputNumber, Row, Select, Switch } from 'antd'
+import { Button, Col, Form, Input, InputNumber, Row, Select, Switch, DatePicker } from 'antd'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, useParams } from 'react-router-dom'
@@ -50,6 +50,13 @@ const FOOD_CHOICES = [
 const DOSE_CHOICES = [
     ['шт', 'pcs'],
     ['мл', 'ml'],
+]
+
+const TYPE_CHOICES = [
+    ['укол', 'injection'],
+    ['ампула', 'ampule'],
+    ['таблека', 'pill'],
+    ['суспензия', 'suspension'],
 ]
 
 const EditPill = () => {
@@ -181,6 +188,31 @@ const EditPill = () => {
                         <Input />
                     </Form.Item>
                     <Form.Item
+                        label='Type'
+                        hasFeedback
+                        name='type'
+                        initialValue={initialValues['type']}
+                        validateStatus={getValidateStatus('type')}
+                        help={getHelp('type')}
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Please choose medicine type',
+                            },
+                        ]}
+                    >
+                        <Select
+                            placeholder="Select medicine type"
+                            options={TYPE_CHOICES.map(([label, value]) => {
+                                return {
+                                    value: value,
+                                    label: label,
+                                }
+                            }
+                            )}
+                        />
+                    </Form.Item>
+                    <Form.Item
                         label='Dose'
                         hasFeedback
                         name='dose'
@@ -221,6 +253,47 @@ const EditPill = () => {
                             )}
                         />
                     </Form.Item>
+                    <Form.Item
+                        label='Cycle start'
+                        hasFeedback
+                        name='cycle_start'
+                        initialValue={initialValues['cycle_start']}
+                        validateStatus={getValidateStatus('cycle_start')}
+                        help={getHelp('cycle_start')}
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Please choose cycle start!',
+                            },
+                        ]}
+                    >
+                        <DatePicker />
+                    </Form.Item>
+                    <Form.Item
+                        label='Cycle end'
+                        hasFeedback
+                        name='cycle_end'
+                        initialValue={initialValues['cycle_end']}
+                        validateStatus={getValidateStatus('cycle_end')}
+                        help={getHelp('cycle_end')}
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Please choose cycle end!',
+                            },
+                        ]}
+                    >
+                        <DatePicker />
+                    </Form.Item>
+                    <Col offset={8} style={{paddingBottom: 10}}>
+                        <Button
+                            type='primary'
+                            block
+                            // onClick={} TODO
+                        >
+                            Add time for taking medicine
+                        </Button>
+                    </Col>
                     <Form.Item
                         label='Зависимость от еды'
                         hasFeedback
@@ -272,7 +345,7 @@ const EditPill = () => {
                     </Form.Item>
                 </Form>
             </Col>
-        </Row>
+        </Row >
     )
 }
 
