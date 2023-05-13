@@ -66,7 +66,15 @@ const EditPill = () => {
 
     useEffect(() => {
         SmartRequest.get(`medicine/cure/${pill_id}`).then((resp) => {
-            setInitialValues(resp.data)
+            let initial_values = resp.data
+            initial_values = {
+                ...initial_values,
+                'cycle_start': moment(resp.data['schedule']['cycle_start'], 'YYYY-MM-DD'),
+                'cycle_end': moment(resp.data['schedule']['cycle_end'], 'YYYY-MM-DD'),
+            }
+            setInitialValues(initial_values)
+
+            setTimesTake(resp.data['schedule']['timesheet'].map(time_obj => moment(time_obj.time, 'HH:mm:ss')))
             setIsLoading(false)
         }).catch(err => {
             console.error(err)
@@ -96,12 +104,9 @@ const EditPill = () => {
             : null
     }
 
-    const logE = () => {
-        console.log(initialValues)
-    }
-    
     const onFinish = (values) => {
         console.log(values)
+        console.log(timesTake)
         // setIsValidating(true)
         // setIsButtonDisabled(true)
         // SmartRequest.post('managment/connect/', values)
@@ -302,7 +307,7 @@ const EditPill = () => {
                                     >
                                         <TimePicker
                                             value={time_take}
-                                            onChange={(new_time) => setTimesTake([...timesTake.slice(0, id), new_time, ...timesTake.slice(id + 1)])}
+                                            onChange={(new_time) => setTimesTake(timesTake.map((cur_time, cur_id) => cur_id == id ? new_time : cur_time))}
                                         />
                                     </Form.Item>
                                 ))
@@ -344,10 +349,10 @@ const EditPill = () => {
                             <Form.Item
                                 label='Strict'
                                 hasFeedback
-                                name='string_status'
-                                initialValue={initialValues['string_status']}
-                                validateStatus={getValidateStatus('string_status')}
-                                help={getHelp('string_status')}
+                                name='strict_status'
+                                initialValue={initialValues['strict_status']}
+                                validateStatus={getValidateStatus('strict_status')}
+                                help={getHelp('strict_status')}
                             >
                                 <Switch />
                             </Form.Item>
@@ -361,7 +366,6 @@ const EditPill = () => {
                                     disabled={isButtonDisabled}
                                     type='primary'
                                     htmlType='submit'
-                                    onClick={logE}
                                 >
                                     Update
                                 </Button>
