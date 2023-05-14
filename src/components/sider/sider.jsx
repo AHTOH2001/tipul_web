@@ -3,7 +3,9 @@ import {
     HomeOutlined,
     LogoutOutlined,
     SettingOutlined,
+    SolutionOutlined,
     UserOutlined,
+    UsergroupAddOutlined,
 } from '@ant-design/icons'
 import { Layout, Menu, message } from 'antd'
 import React, { useState } from 'react'
@@ -57,6 +59,20 @@ const Sider = () => {
                     icon={<DisconnectOutlined />}
                 >
                     Pills
+                </Menu.Item>
+                <Menu.Item
+                    key="/profile/docs"
+                    onClick={() => history.push('/profile/docs')}
+                    icon={<UsergroupAddOutlined />}
+                >
+                    Doctors
+                </Menu.Item>
+                <Menu.Item
+                    key="/profile/visits"
+                    onClick={() => history.push('/profile/visits')}
+                    icon={<SolutionOutlined />}
+                >
+                    Doctor visits
                 </Menu.Item>
                 <SubMenu
                     key="profile"

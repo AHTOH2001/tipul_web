@@ -9,11 +9,12 @@ import Header from '../../header/header'
 import ConnectPatientModal from '../../modals/connect-patient-modal/connect-patient-modal'
 import Sider from '../../sider/sider'
 import Buy from './profile-contents/buy'
-import Home from './profile-contents/home'
-import Settings from './profile-contents/settings'
-import Pills from './profile-contents/pills'
-import './profile-page.css'
+import Docs from './profile-contents/docs'
 import EditPill from './profile-contents/edit-pill'
+import Home from './profile-contents/home'
+import Pills from './profile-contents/pills'
+import Settings from './profile-contents/settings'
+import './profile-page.css'
 
 const selectCurrentUser = (state) => state.user.currentUser
 
@@ -114,6 +115,11 @@ const ProfilePage = () => {
                                     exact
                                     path="/profile/pills/:pill_id"
                                     component={EditPill}
+                                />
+                                <Route
+                                    exact
+                                    path="/profile/docs/"
+                                    component={Docs}
                                 />
                             </Switch>
                         ) : (
