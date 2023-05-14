@@ -58,6 +58,12 @@ export class SmartRequest {
         return axios.patch(url, data, config)
     }
 
+    static async delete(url, config = {}) {
+        ;[url, config] = await this.prepareData(url, config)
+
+        return axios.delete(url, config)
+    }
+
     static async setAuthToken(token) {
         const cookies = new Cookies()
         if (token == '') {

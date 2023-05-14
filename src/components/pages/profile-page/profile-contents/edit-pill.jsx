@@ -319,7 +319,14 @@ const EditPill = () => {
                                     >
                                         <TimePicker
                                             value={time_take}
-                                            onChange={(new_time) => setTimesTake(timesTake.map((cur_time, cur_id) => cur_id == id ? new_time : cur_time))}
+                                            onChange={(new_time) => {
+                                                if (new_time === null) {
+                                                    setTimesTake(timesTake.filter((cur_time, cur_id) => cur_id != id))
+                                                } else {
+                                                    setTimesTake(timesTake.map((cur_time, cur_id) => cur_id == id ? new_time : cur_time))
+                                                }
+                                            }
+                                            }
                                         />
                                     </Form.Item>
                                 ))
@@ -327,7 +334,6 @@ const EditPill = () => {
                             <Col offset={8} style={{ paddingBottom: 10 }}>
                                 <Button
                                     type='primary'
-                                    block
                                     onClick={() => setTimesTake([...timesTake, moment('13:30:56', 'HH:mm:ss')])}
                                 >
                                     Add time for taking medicine
