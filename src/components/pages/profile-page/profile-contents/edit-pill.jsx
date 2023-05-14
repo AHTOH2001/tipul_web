@@ -1,7 +1,7 @@
-import { Button, Col, DatePicker, Form, Input, InputNumber, Row, Select, Switch, TimePicker } from 'antd'
+import { Button, Col, DatePicker, Form, Input, InputNumber, Row, Select, Switch, TimePicker, message } from 'antd'
 import moment from 'moment'
 import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { useHistory, useParams } from 'react-router-dom'
 import { SmartRequest } from '../../../../utils/utils'
 
@@ -14,26 +14,26 @@ const layout = {
 const selectCurrentPatient = (state) => state.patient.currentPatient
 
 // {
-//     "id": 42,
-//     "schedule": {
-//         "id": 46,
-//         "timesheet": [
+//     'id': 42,
+//     'schedule': {
+//         'id': 46,
+//         'timesheet': [
 //             {
-//                 "id": 63,
-//                 "time": "09:10:00"
+//                 'id': 63,
+//                 'time': '09:10:00'
 //             }
 //         ],
-//         "cycle_start": "2023-02-11",
-//         "cycle_end": "2023-02-11",
-//         "frequency": 0
+//         'cycle_start': '2023-02-11',
+//         'cycle_end': '2023-02-11',
+//         'frequency': 0
 //     },
-//     "title": "Новый медикамент",
-//     "dose": 1,
-//     "dose_type": "pcs",
-//     "type": "injection",
-//     "strict_status": false,
-//     "food": "Before meals",
-//     "patient": 11
+//     'title': 'Новый медикамент',
+//     'dose': 1,
+//     'dose_type': 'pcs',
+//     'type': 'injection',
+//     'strict_status': false,
+//     'food': 'Before meals',
+//     'patient': 11
 // }
 
 const FOOD_CHOICES = [
@@ -63,6 +63,12 @@ const EditPill = () => {
     const history = useHistory()
     const [isLoading, setIsLoading] = useState(true)
 
+    const [form] = Form.useForm()
+    const { getFieldError, validateFields } = form
+    const [isButtonDisabled, setIsButtonDisabled] = useState(false)
+    const [formError, setFormError] = useState('')
+    const [fieldsErrors, setFieldsErrors] = useState({})
+    const [isValidating, setIsValidating] = useState(false)
 
     useEffect(() => {
         SmartRequest.get(`medicine/cure/${pill_id}`).then((resp) => {
@@ -82,14 +88,6 @@ const EditPill = () => {
         })
     }, [currentPatient])
 
-    const [form] = Form.useForm()
-    const { getFieldError, validateFields } = form
-    const [isButtonDisabled, setIsButtonDisabled] = useState(false)
-    const [formError, setFormError] = useState('')
-    const [fieldsErrors, setFieldsErrors] = useState({})
-    const [isValidating, setIsValidating] = useState(false)
-    const dispatch = useDispatch()
-
     const getValidateStatus = (field) => {
         return isValidating
             ? 'validating'
@@ -106,34 +104,48 @@ const EditPill = () => {
 
     const onFinish = (values) => {
         console.log(values)
-        console.log(timesTake)
-        // setIsValidating(true)
-        // setIsButtonDisabled(true)
-        // SmartRequest.post('managment/connect/', values)
-        //     .then(() => {
-        //         message.success('Patient has been added succesfully')
-        //         setModalVisible(false)
-        //         setIsValidating(false)
-        //         dispatch(setRefresh())
-        //     })
-        //     .catch((error) => {
-        //         setIsValidating(false)
-        //         if (error.response && error.response.status === 400) {
-        //             if (typeof error.response.data !== 'object') {
-        //                 setFormError(error.response.data)
-        //             }
-        //             if ('detail' in error.response.data) {
-        //                 setFormError(error.response.data['detail'])
-        //             }
-        //             else {
-        //                 setFieldsErrors(error.response.data)
-        //             }
+        console.log(timesTake.map(e => e.format('HH:mm:ss')))
+        setIsValidating(true)
+        setIsButtonDisabled(true)
+        SmartRequest.patch(`medicine/cure/${pill_id}/`,
+            {
+                'schedule': {
+                    'timesheet': timesTake.map(e => {
+                        return { 'time': e.format('HH:mm:ss') }
+                    }),
+                    'cycle_start': values['cycle_start'].format('YYYY-MM-DD'),
+                    'cycle_end': values['cycle_end'].format('YYYY-MM-DD'),
+                    'frequency': 1
+                },
+                'title': values['title'],
+                'dose': values['dose'],
+                'dose_type': values['dose_type'],
+                'type': values['type'],
+                'strict_status': values['strict_status'],
+                'food': values['food'],
+            })
+            .then(() => {
+                message.success('Medicine has been updated successfully')
+                setIsValidating(false)
+                history.push('/profile/pills')
+            })
+            .catch((error) => {
+                setIsValidating(false)
+                if (error.response && error.response.status === 400) {
+                    if (typeof error.response.data !== 'object') {
+                        setFormError(error.response.data)
+                    }
+                    if ('detail' in error.response.data) {
+                        setFormError(error.response.data['detail'])
+                    }
+                    else {
+                        setFieldsErrors(error.response.data)
+                    }
 
-        //         } else {
-        //             message.error('Something went wrong :(')
-        //             console.error('Error in create guardian:', error)
-        //         }
-        //     })
+                } else {
+                    message.error('Something went wrong :(')
+                }
+            })
     }
 
     const onValuesChange = (changedValues) => {
@@ -214,7 +226,7 @@ const EditPill = () => {
                                 ]}
                             >
                                 <Select
-                                    placeholder="Select medicine type"
+                                    placeholder='Select medicine type'
                                     options={TYPE_CHOICES.map(([label, value]) => {
                                         return {
                                             value: value,
@@ -255,7 +267,7 @@ const EditPill = () => {
                                 ]}
                             >
                                 <Select
-                                    placeholder="Select dose type"
+                                    placeholder='Select dose type'
                                     options={DOSE_CHOICES.map(([label, value]) => {
                                         return {
                                             value: value,
@@ -336,7 +348,7 @@ const EditPill = () => {
                                 ]}
                             >
                                 <Select
-                                    placeholder="Select food type"
+                                    placeholder='Select food type'
                                     options={FOOD_CHOICES.map(([label, value]) => {
                                         return {
                                             value: value,
