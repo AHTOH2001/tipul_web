@@ -77,10 +77,10 @@ const Pills = () => {
                     <Card title={med.title}
                         extra={
                             <>
-                                <Button type='link' danger onClick={() => deleteMedicine(med)}>
+                                <Button type='link' danger onClick={() => deleteMedicine(med)} size='small'>
                                     <DeleteOutlined />
                                 </Button>
-                                <Button type='link'>
+                                <Button type='link' size='small'>
                                     <Link to={`/profile/pills/${med.id}`}>
                                         <EditOutlined />
                                     </Link>

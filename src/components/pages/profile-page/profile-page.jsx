@@ -15,6 +15,7 @@ import EditPill from './profile-contents/edit-pill'
 import Home from './profile-contents/home'
 import Pills from './profile-contents/pills'
 import Settings from './profile-contents/settings'
+import Visits from './profile-contents/visits'
 import './profile-page.css'
 
 const selectCurrentUser = (state) => state.user.currentUser
@@ -126,6 +127,11 @@ const ProfilePage = () => {
                                     exact
                                     path="/profile/docs/:doc_id"
                                     component={EditDoc}
+                                />
+                                <Route
+                                    exact
+                                    path="/profile/visits/"
+                                    component={Visits}
                                 />
                             </Switch>
                         ) : (

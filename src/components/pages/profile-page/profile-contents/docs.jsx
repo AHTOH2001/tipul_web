@@ -48,10 +48,10 @@ const Docs = () => {
                     <Card title={`${doc.last_name[0]}. ${doc.first_name}`}
                         extra={
                             <>
-                                <Button type='link' danger onClick={() => deleteDoctor(doc)}>
+                                <Button type='link' size='small' danger onClick={() => deleteDoctor(doc)}>
                                     <DeleteOutlined />
                                 </Button>
-                                <Button type='link'>
+                                <Button type='link' size='small'>
                                     <Link to={`/profile/docs/${doc.id}`}>
                                         <EditOutlined />
                                     </Link>
