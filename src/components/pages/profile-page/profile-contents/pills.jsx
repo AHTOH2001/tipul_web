@@ -1,5 +1,6 @@
-import { EditOutlined } from '@ant-design/icons'
-import { Card, Col, Row } from 'antd'
+import { EditOutlined, PlusOutlined } from '@ant-design/icons'
+import { Button, Card, Col, Row, message } from 'antd'
+import moment from 'moment'
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -39,6 +40,29 @@ const Pills = () => {
         })
     }, [currentPatient])
 
+    const createDefaultCure = () => {
+        SmartRequest.post('medicine/cure/', {
+            "schedule": {
+                "timesheet": [
+                    {
+                        "time": moment().format('HH:mm:ss')
+                    }
+                ],
+                "cycle_start": moment().format('YYYY-MM-DD'),
+                "cycle_end": moment().add(1, 'months').format('YYYY-MM-DD'),
+                "frequency": 0
+            },
+            "title": "Новый медикамент",
+            "dose": 1,
+            "dose_type": "pcs",
+            "type": "pill",
+            "strict_status": false,
+            "food": "Before meals",
+        }).then(resp => {
+            setMedicines([...medicines, resp.data])
+        }).catch(err => message.error('Something went wrong :('))
+    }
+
     return (
         <Row justify="space-evenly" gutter={[2, 16]}>
             {medicines.map(med => (
@@ -56,6 +80,17 @@ const Pills = () => {
                     </Card>
                 </Col>
             ))}
+            <Col md={12} xl={8} xxl={6}>
+                <Card title='Создать медикамент' style={{ width: 300 }}>
+                    <Button
+                        block
+                        style={{ height: 108, width: 250 }}
+                        type="primary"
+                        shape="round"
+                        onClick={createDefaultCure}
+                        icon={<PlusOutlined />} />
+                </Card>
+            </Col>
         </Row>
     )
 }
