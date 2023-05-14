@@ -10,6 +10,7 @@ import ConnectPatientModal from '../../modals/connect-patient-modal/connect-pati
 import Sider from '../../sider/sider'
 import Buy from './profile-contents/buy'
 import Docs from './profile-contents/docs'
+import EditDoc from './profile-contents/edit-doc'
 import EditPill from './profile-contents/edit-pill'
 import Home from './profile-contents/home'
 import Pills from './profile-contents/pills'
@@ -120,6 +121,11 @@ const ProfilePage = () => {
                                     exact
                                     path="/profile/docs/"
                                     component={Docs}
+                                />
+                                <Route
+                                    exact
+                                    path="/profile/docs/:doc_id"
+                                    component={EditDoc}
                                 />
                             </Switch>
                         ) : (

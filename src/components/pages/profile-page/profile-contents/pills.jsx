@@ -9,26 +9,26 @@ import { SmartRequest } from '../../../../utils/utils'
 const selectCurrentPatient = (state) => state.patient.currentPatient
 
 // {
-//     "id": 42,
-//     "schedule": {
-//         "id": 46,
-//         "timesheet": [
+//     'id': 42,
+//     'schedule': {
+//         'id': 46,
+//         'timesheet': [
 //             {
-//                 "id": 63,
-//                 "time": "09:10:00"
+//                 'id': 63,
+//                 'time': '09:10:00'
 //             }
 //         ],
-//         "cycle_start": "2023-02-11",
-//         "cycle_end": "2023-02-11",
-//         "frequency": 0
+//         'cycle_start': '2023-02-11',
+//         'cycle_end': '2023-02-11',
+//         'frequency': 0
 //     },
-//     "title": "Новый медикамент",
-//     "dose": 1,
-//     "dose_type": "pcs",
-//     "type": "injection",
-//     "strict_status": false,
-//     "food": "Before meals",
-//     "patient": 11
+//     'title': 'Новый медикамент',
+//     'dose': 1,
+//     'dose_type': 'pcs',
+//     'type': 'injection',
+//     'strict_status': false,
+//     'food': 'Before meals',
+//     'patient': 11
 // }
 const Pills = () => {
     const currentPatient = useSelector(selectCurrentPatient)
@@ -42,45 +42,45 @@ const Pills = () => {
 
     const createDefaultMedicine = () => {
         SmartRequest.post('medicine/cure/', {
-            "schedule": {
-                "timesheet": [
+            'schedule': {
+                'timesheet': [
                     {
-                        "time": moment().format('HH:mm:ss')
+                        'time': moment().format('HH:mm:ss')
                     }
                 ],
-                "cycle_start": moment().format('YYYY-MM-DD'),
-                "cycle_end": moment().add(1, 'months').format('YYYY-MM-DD'),
-                "frequency": 0
+                'cycle_start': moment().format('YYYY-MM-DD'),
+                'cycle_end': moment().add(1, 'months').format('YYYY-MM-DD'),
+                'frequency': 0
             },
-            "title": "Новый медикамент",
-            "dose": 1,
-            "dose_type": "pcs",
-            "type": "pill",
-            "strict_status": false,
-            "food": "Before meals",
+            'title': 'Новый медикамент',
+            'dose': 1,
+            'dose_type': 'pcs',
+            'type': 'pill',
+            'strict_status': false,
+            'food': 'Before meals',
         }).then(resp => {
             setMedicines([...medicines, resp.data])
-        }).catch(err => message.error('Something went wrong :('))
+        }).catch(() => message.error('Something went wrong :('))
     }
 
     const deleteMedicine = (med) => {
-        SmartRequest.delete(`medicine/cure/${med.id}`).then((resp) => {
+        SmartRequest.delete(`medicine/cure/${med.id}`).then(() => {
             setMedicines(medicines.filter((cur_med) => cur_med.id != med.id))
             message.success(`Deleted medicine ${med.title}`)
         })
     }
 
     return (
-        <Row justify="space-evenly" gutter={[2, 16]}>
+        <Row justify='space-evenly' gutter={[2, 16]}>
             {medicines.map(med => (
                 <Col md={12} xl={8} xxl={6} key={med.id}>
                     <Card title={med.title}
                         extra={
                             <>
-                                <Button type="link" danger onClick={() => deleteMedicine(med)}>
+                                <Button type='link' danger onClick={() => deleteMedicine(med)}>
                                     <DeleteOutlined />
                                 </Button>
-                                <Button type="link">
+                                <Button type='link'>
                                     <Link to={`/profile/pills/${med.id}`}>
                                         <EditOutlined />
                                     </Link>
@@ -99,8 +99,8 @@ const Pills = () => {
                     <Button
                         block
                         style={{ height: 108, width: 250 }}
-                        type="primary"
-                        shape="round"
+                        type='primary'
+                        shape='round'
                         onClick={createDefaultMedicine}
                         icon={<PlusOutlined />} />
                 </Card>
