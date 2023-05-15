@@ -12,6 +12,7 @@ import Buy from './profile-contents/buy'
 import Docs from './profile-contents/docs'
 import EditDoc from './profile-contents/edit-doc'
 import EditPill from './profile-contents/edit-pill'
+import EditVisit from './profile-contents/edit-visit'
 import Home from './profile-contents/home'
 import Pills from './profile-contents/pills'
 import Settings from './profile-contents/settings'
@@ -132,6 +133,11 @@ const ProfilePage = () => {
                                     exact
                                     path="/profile/visits/"
                                     component={Visits}
+                                />
+                                <Route
+                                    exact
+                                    path="/profile/visits/:visit_id"
+                                    component={EditVisit}
                                 />
                             </Switch>
                         ) : (

@@ -291,7 +291,7 @@ const EditPill = () => {
                                     },
                                 ]}
                             >
-                                <DatePicker />
+                                <DatePicker format='DD.MM.YYYY' />
                             </Form.Item>
                             <Form.Item
                                 label='Cycle end'
@@ -307,7 +307,7 @@ const EditPill = () => {
                                     },
                                 ]}
                             >
-                                <DatePicker />
+                                <DatePicker format='DD.MM.YYYY' />
                             </Form.Item>
                             {
                                 timesTake.map((time_take, id) => (
@@ -319,6 +319,7 @@ const EditPill = () => {
                                     >
                                         <TimePicker
                                             value={time_take}
+                                            format='HH:mm'
                                             onChange={(new_time) => {
                                                 if (new_time === null) {
                                                     setTimesTake(timesTake.filter((cur_time, cur_id) => cur_id != id))

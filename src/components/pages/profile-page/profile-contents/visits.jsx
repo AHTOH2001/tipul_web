@@ -47,11 +47,6 @@ const Visits = () => {
             'doctor': docs[docs.length - 1].id,
         }).then(resp => {
             let raw_visit = resp.data
-            console.log({
-                'id': raw_visit['id'],
-                'date': moment(raw_visit['date'], 'YYYY-MM-DDTHH:mm:ss'),
-                'doctor': docs[docs.length - 1]
-            })
             setVisits([...visits, {
                 'id': raw_visit['id'],
                 'date': moment(raw_visit['date'], 'YYYY-MM-DDTHH:mm:ss'),
