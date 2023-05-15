@@ -248,6 +248,11 @@ const EditPill = () => {
                                         required: true,
                                         message: 'Please input medicine\'s dose!',
                                     },
+                                    {
+                                        type: 'number',
+                                        min: 1,
+                                        message: 'Min dose is 1!',
+                                    },
                                 ]}
                             >
                                 <InputNumber />
