@@ -22,7 +22,7 @@ const selectCurrentPatient = (state) => state.patient.currentPatient
 
 const SPEC_CHOICES = [
     ['эндокринолог', 'endocrinologist'],
-    ['невролого', 'neurologist'],
+    ['невролог', 'neurologist'],
     ['терапевт', 'therapist'],
     ['кардиолог', 'cardiologist'],
     ['офтальмолог', 'ophthalmologist'],
