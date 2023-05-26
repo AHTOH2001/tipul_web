@@ -78,7 +78,7 @@ function SignUp() {
                                         disabled={submitting || sent}
                                         autoComplete="given-name"
                                         fullWidth
-                                        label="First name"
+                                        label="Имя"
                                         name="firstName"
                                         required
                                     />
@@ -89,7 +89,7 @@ function SignUp() {
                                         disabled={submitting || sent}
                                         autoComplete="family-name"
                                         fullWidth
-                                        label="Last name"
+                                        label="Фамилия"
                                         name="lastName"
                                         required
                                     />
@@ -100,7 +100,7 @@ function SignUp() {
                                 component={RFTextField}
                                 disabled={submitting || sent}
                                 fullWidth
-                                label="Email"
+                                label="Почта"
                                 margin="normal"
                                 name="email"
                                 required
@@ -112,7 +112,7 @@ function SignUp() {
                                 required
                                 name="password"
                                 autoComplete="new-password"
-                                label="Password"
+                                label="Пароль"
                                 type="password"
                                 margin="normal"
                             />

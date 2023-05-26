@@ -59,7 +59,7 @@ const ProfilePage = () => {
         if (currentUser.guardian) {
             header_content = [(
                 <Select
-                    placeholder="Select a patient"
+                    placeholder="Выберете пациента"
                     bordered={false}
                     key={1}
                     style={{ color: 'white' }}
@@ -83,7 +83,7 @@ const ProfilePage = () => {
                     icon={<PlusOutlined />}
                     onClick={() => setModalVisible(true)}
                 >
-                    Add patient
+                    Добавить пациента
                 </Button>
             ),
             ]

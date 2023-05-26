@@ -32,7 +32,7 @@ const PreferencesForm = () => {
             theme: values['theme'],
         })
             .then(() => {
-                message.success('Preferences has been successfully updated')
+                message.success('Настройки были успешно обновлены')
                 setIsValidating(false)
             })
             .catch((error) => {
@@ -110,7 +110,7 @@ const PreferencesForm = () => {
                         </span>
                     </Form.Item>
                     <Form.Item
-                        label="Language"
+                        label="Язык"
                         hasFeedback
                         name="language"
                         initialValue={initialValues['language']}
@@ -119,7 +119,7 @@ const PreferencesForm = () => {
                         rules={[
                             {
                                 required: true,
-                                message: 'Please input first name!',
+                                message: 'Пожалуйста введите язык!',
                             },
                         ]}
                     >
@@ -131,7 +131,7 @@ const PreferencesForm = () => {
                         />
                     </Form.Item>
                     <Form.Item
-                        label="Theme"
+                        label="Тема"
                         hasFeedback
                         name="theme"
                         initialValue={initialValues['theme']}
@@ -140,7 +140,7 @@ const PreferencesForm = () => {
                         rules={[
                             {
                                 required: true,
-                                message: 'Please input last name!',
+                                message: 'Введите тему!',
                             },
                         ]}
                     >
@@ -162,7 +162,7 @@ const PreferencesForm = () => {
                             type="primary"
                             htmlType="submit"
                         >
-                            Update preferences
+                            Обновить настройки
                         </Button>
                     </Form.Item>
                 </Form>

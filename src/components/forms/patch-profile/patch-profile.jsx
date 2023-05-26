@@ -28,7 +28,7 @@ const PatchProfile = () => {
                 check_whoiam().then((actualUser) => {
                     dispatch(setCurrentUserAsync(actualUser))
                 })
-                message.success('Successfully updated email')
+                message.success('Успешно обновлена почта')
             })
             .catch((error) => {
                 if (error.response && error.response.status === 400) {
@@ -91,7 +91,7 @@ const PatchProfile = () => {
 
             <Form.Item
                 initialValue={currentUser.user.email}
-                label="Email"
+                label="Почта"
                 hasFeedback
                 name="email"
                 validateStatus={
@@ -107,7 +107,7 @@ const PatchProfile = () => {
                 rules={[
                     {
                         required: true,
-                        message: 'Please input your email!',
+                        message: 'Пожалуйста введите свою почту!',
                     },
                 ]}
             >
@@ -125,7 +125,7 @@ const PatchProfile = () => {
                     type="primary"
                     htmlType="submit"
                 >
-                    Update email
+                    Обновить почту
                 </Button>
             </Form.Item>
         </Form>

@@ -50,7 +50,7 @@ function ProductCTA() {
                             </Typography>
                             <TextField
                                 noBorder
-                                placeholder="Your email"
+                                placeholder="Ваша почта "
                                 variant="standard"
                                 sx={{ width: '100%', mt: 3, mb: 2 }}
                             />
@@ -60,7 +60,7 @@ function ProductCTA() {
                                 variant="contained"
                                 sx={{ width: '100%' }}
                             >
-                                Keep me updated
+                                Хочу обновления
                             </Button>
                         </Box>
                     </Box>

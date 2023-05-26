@@ -22,12 +22,12 @@ const Settings = () => {
                     <Row>
                         <Col span={12}>
                             <Typography.Title style={headerTextStyle}>
-                                Preferences
+                                Настройки
                             </Typography.Title>
                         </Col>
                         <Col span={12}>
                             <Typography.Title style={headerTextStyle}>
-                                Guardian settings
+                                Настройки опекуна
                             </Typography.Title>
                         </Col>
                     </Row>
@@ -45,7 +45,7 @@ const Settings = () => {
             <Row>
                 <Col span={24}>
                     <Typography.Title style={headerTextStyle}>
-                        Account settings
+                        Настройки аккаунта
                     </Typography.Title>
                 </Col>
             </Row>

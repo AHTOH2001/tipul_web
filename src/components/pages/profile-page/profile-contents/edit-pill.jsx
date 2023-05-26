@@ -125,7 +125,7 @@ const EditPill = () => {
                 'food': values['food'],
             })
             .then(() => {
-                message.success('Medicine has been updated successfully')
+                message.success('Медикамент был успешно добавлен')
                 setIsValidating(false)
                 history.push('/profile/pills')
             })
@@ -143,7 +143,7 @@ const EditPill = () => {
                     }
 
                 } else {
-                    message.error('Something went wrong :(')
+                    message.error('Что-то пошло не так :(')
                 }
             })
     }
@@ -196,7 +196,7 @@ const EditPill = () => {
                                 </span>
                             </Form.Item>
                             <Form.Item
-                                label='Title'
+                                label='Название'
                                 hasFeedback
                                 name='title'
                                 initialValue={initialValues['title']}
@@ -205,14 +205,14 @@ const EditPill = () => {
                                 rules={[
                                     {
                                         required: true,
-                                        message: 'Please input medicine\'s title!',
+                                        message: 'Пожалуйста введите название лекарства',
                                     },
                                 ]}
                             >
                                 <Input />
                             </Form.Item>
                             <Form.Item
-                                label='Type'
+                                label='Тип'
                                 hasFeedback
                                 name='type'
                                 initialValue={initialValues['type']}
@@ -221,12 +221,12 @@ const EditPill = () => {
                                 rules={[
                                     {
                                         required: true,
-                                        message: 'Please choose medicine type',
+                                        message: 'Пожалуйста выберите тип лекарств',
                                     },
                                 ]}
                             >
                                 <Select
-                                    placeholder='Select medicine type'
+                                    placeholder='Выберите тип лекарств'
                                     options={TYPE_CHOICES.map(([label, value]) => {
                                         return {
                                             value: value,
@@ -237,7 +237,7 @@ const EditPill = () => {
                                 />
                             </Form.Item>
                             <Form.Item
-                                label='Dose'
+                                label='Доза'
                                 hasFeedback
                                 name='dose'
                                 initialValue={initialValues['dose']}
@@ -246,19 +246,19 @@ const EditPill = () => {
                                 rules={[
                                     {
                                         required: true,
-                                        message: 'Please input medicine\'s dose!',
+                                        message: 'Пожалуйста введите дозу',
                                     },
                                     {
                                         type: 'number',
                                         min: 1,
-                                        message: 'Min dose is 1!',
+                                        message: 'Минимальная доза 1!',
                                     },
                                 ]}
                             >
                                 <InputNumber />
                             </Form.Item>
                             <Form.Item
-                                label='Dose type'
+                                label='Тип дозы'
                                 hasFeedback
                                 name='dose_type'
                                 initialValue={initialValues['dose_type']}
@@ -267,12 +267,12 @@ const EditPill = () => {
                                 rules={[
                                     {
                                         required: true,
-                                        message: 'Please choose dose type of medicine!',
+                                        message: 'Пожалуйста введите тип дозы!',
                                     },
                                 ]}
                             >
                                 <Select
-                                    placeholder='Select dose type'
+                                    placeholder='Выберите тип дозы'
                                     options={DOSE_CHOICES.map(([label, value]) => {
                                         return {
                                             value: value,
@@ -283,7 +283,7 @@ const EditPill = () => {
                                 />
                             </Form.Item>
                             <Form.Item
-                                label='Cycle start'
+                                label='Начало цикла'
                                 hasFeedback
                                 name='cycle_start'
                                 initialValue={initialValues['cycle_start']}
@@ -292,14 +292,14 @@ const EditPill = () => {
                                 rules={[
                                     {
                                         required: true,
-                                        message: 'Please choose cycle start!',
+                                        message: 'Пожалуйста введите начало цикла!',
                                     },
                                 ]}
                             >
                                 <DatePicker format='DD.MM.YYYY' />
                             </Form.Item>
                             <Form.Item
-                                label='Cycle end'
+                                label='Конец цикла'
                                 hasFeedback
                                 name='cycle_end'
                                 initialValue={initialValues['cycle_end']}
@@ -308,7 +308,7 @@ const EditPill = () => {
                                 rules={[
                                     {
                                         required: true,
-                                        message: 'Please choose cycle end!',
+                                        message: 'Пожалуйста введите конец цикла!',
                                     },
                                 ]}
                             >
@@ -317,7 +317,7 @@ const EditPill = () => {
                             {
                                 timesTake.map((time_take, id) => (
                                     <Form.Item
-                                        label='Time for taking medicine'
+                                        label='Время принятия медикамента'
                                         hasFeedback
                                         help={getHelp('cycle_end')}
                                         key={id}
@@ -342,7 +342,7 @@ const EditPill = () => {
                                     type='primary'
                                     onClick={() => setTimesTake([...timesTake, moment('13:30:56', 'HH:mm:ss')])}
                                 >
-                                    Add time for taking medicine
+                                    Добавить время принятия лекарства
                                 </Button>
                             </Col>
                             <Form.Item
@@ -355,12 +355,12 @@ const EditPill = () => {
                                 rules={[
                                     {
                                         required: true,
-                                        message: 'Please choose food type of medicine!',
+                                        message: 'Пожалуйста введите соотношение с принятием пищи!',
                                     },
                                 ]}
                             >
                                 <Select
-                                    placeholder='Select food type'
+                                    placeholder='Выберите соотношение с принятием пищи'
                                     options={FOOD_CHOICES.map(([label, value]) => {
                                         return {
                                             value: value,
@@ -391,7 +391,7 @@ const EditPill = () => {
                                     type='primary'
                                     htmlType='submit'
                                 >
-                                    Update
+                                    Обновить
                                 </Button>
                             </Form.Item>
                         </Form>

@@ -92,7 +92,7 @@ const SignUp = () => {
                 </span>
             </Form.Item>
             <Form.Item
-                label="Username"
+                label="Имя пользователя"
                 hasFeedback
                 name="username"
                 validateStatus={
@@ -108,7 +108,7 @@ const SignUp = () => {
                 rules={[
                     {
                         required: true,
-                        message: 'Please input your username!',
+                        message: 'Пожалуйста введите имя пользователя!',
                     },
                 ]}
             >
@@ -116,7 +116,7 @@ const SignUp = () => {
             </Form.Item>
 
             <Form.Item
-                label="Email"
+                label="Почта"
                 hasFeedback
                 name="email"
                 validateStatus={
@@ -132,14 +132,14 @@ const SignUp = () => {
                 rules={[
                     {
                         required: true,
-                        message: 'Please input your email!',
+                        message: 'Пожалуйста введите почту!',
                     },
                 ]}
             >
                 <Input type="email" autoComplete="email" />
             </Form.Item>
             <Form.Item
-                label="Password"
+                label="Пароль"
                 hasFeedback
                 name="password"
                 validateStatus={
@@ -155,7 +155,7 @@ const SignUp = () => {
                 rules={[
                     {
                         required: true,
-                        message: 'Please input your password!',
+                        message: 'Пожалуйста введите пароль!',
                     },
                 ]}
             >
@@ -174,7 +174,7 @@ const SignUp = () => {
                     htmlType="submit"
                     loading={isButtonLoading}
                 >
-                    Sign up
+                    Регистрация
                 </Button>
             </Form.Item>
         </Form>

@@ -81,7 +81,7 @@ const ChangePassword = () => {
                 </span>
             </Form.Item>
             <Form.Item
-                label="Old password"
+                label="Старый пароль"
                 hasFeedback
                 name="password_old"
                 validateStatus={
@@ -99,14 +99,14 @@ const ChangePassword = () => {
                 rules={[
                     {
                         required: true,
-                        message: 'Please input your old password!',
+                        message: 'Пожалуйста введите ваш старый пароль!',
                     },
                 ]}
             >
                 <Input.Password autoComplete="off" />
             </Form.Item>
             <Form.Item
-                label="New password"
+                label="Новый пароль"
                 hasFeedback
                 name="password_new"
                 validateStatus={
@@ -124,7 +124,7 @@ const ChangePassword = () => {
                 rules={[
                     {
                         required: true,
-                        message: 'Please input your new password!',
+                        message: 'Пожалуйста введите ваш новый пароль!',
                     },
                 ]}
             >
@@ -141,7 +141,7 @@ const ChangePassword = () => {
                     type="primary"
                     htmlType="submit"
                 >
-                    Change password
+                    Изменить пароль
                 </Button>
             </Form.Item>
         </Form>

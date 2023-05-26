@@ -41,7 +41,7 @@ const ConnectPatientForm = ({ setModalVisible }) => {
         setIsButtonDisabled(true)
         SmartRequest.post('managment/connect/', values)
             .then(() => {
-                message.success('Patient has been added succesfully')
+                message.success('Пациент был успещно добавлен')
                 setModalVisible(false)
                 setIsValidating(false)
                 dispatch(setRefresh())
@@ -60,7 +60,7 @@ const ConnectPatientForm = ({ setModalVisible }) => {
                     }
 
                 } else {
-                    message.error('Something went wrong :(')
+                    message.error('Что-то пошло не так :(')
                     console.error('Error in create guardian:', error)
                 }
             })
@@ -110,7 +110,7 @@ const ConnectPatientForm = ({ setModalVisible }) => {
                 </span>
             </Form.Item>
             <Form.Item
-                label='Code'
+                label='Код'
                 hasFeedback
                 name='code'
                 initialValue={initialValues['code']}
@@ -119,14 +119,14 @@ const ConnectPatientForm = ({ setModalVisible }) => {
                 rules={[
                     {
                         required: true,
-                        message: 'Please input patient\'s code!',
+                        message: 'Пожалуйста введите код пациента!',
                     },
                 ]}
             >
                 <Input />
             </Form.Item>
             <Form.Item
-                label='Patient ID'
+                label='Пациент ID'
                 hasFeedback
                 name='patient_id'
                 initialValue={initialValues['patient_id']}
@@ -135,14 +135,14 @@ const ConnectPatientForm = ({ setModalVisible }) => {
                 rules={[
                     {
                         required: true,
-                        message: 'Please input patient\'s ID!',
+                        message: 'Пожалуйста введите ID пациента!',
                     },
                 ]}
             >
                 <InputNumber />
             </Form.Item>
             <Form.Item
-                label='Relationship'
+                label='Связь с пациентом'
                 hasFeedback
                 name='relationship'
                 initialValue={initialValues['relationship']}
@@ -151,14 +151,14 @@ const ConnectPatientForm = ({ setModalVisible }) => {
                 rules={[
                     {
                         required: true,
-                        message: 'Please input your relationship with patient!',
+                        message: 'Пожалуйста введите связь с пациентом!',
                     },
                 ]}
             >
                 <Input />
             </Form.Item>
             <Form.Item
-                label='Recieve reports'
+                label='Хотите ли вы получать отчеты'
                 hasFeedback
                 name='should_send_report'
                 initialValue={initialValues['should_send_report']}
@@ -178,7 +178,7 @@ const ConnectPatientForm = ({ setModalVisible }) => {
                     type='primary'
                     htmlType='submit'
                 >
-                    Add
+                    Добавить
                 </Button>
             </Form.Item>
         </Form>
