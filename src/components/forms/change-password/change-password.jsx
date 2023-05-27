@@ -19,7 +19,7 @@ const ChangePassword = () => {
         SmartRequest.patch('managment/change-password/', values)
             .then((resp) => {
                 console.log('success in change password:', resp)
-                message.success('Successfully changed password')
+                message.success('Пароль был успешно обновлен')
                 resetFields()
             })
             .catch((error) => {

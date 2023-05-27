@@ -11,7 +11,7 @@ const HomePage = () => (
             header_link={'/'}
             content={[
                 <Link to="/log-in" key={1}>
-                    Log in
+                    Войти
                 </Link>,
             ]}
         />

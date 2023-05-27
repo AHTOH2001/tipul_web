@@ -61,7 +61,7 @@ const Buy = () => {
             .then(() => {
                 dispatch(setRefresh())
                 message.success(
-                    'Application was successfully bought! We glad to help you!',
+                    'Приложение было успешно куплено! Мы рады Вам помогать!',
                     5
                 )
             })
@@ -87,22 +87,22 @@ const Buy = () => {
             </Typography>
             <Steps current={2}>
                 <Step
-                    title="Register"
+                    title="Регистрация"
                     description="Вы уже зарегистрировались"
                     icon={<UserOutlined />}
                 />
                 <Step
-                    title="Verification"
+                    title="Верификация"
                     description="Вы уже подтвердили свою почту"
                     icon={<SolutionOutlined />}
                 />
                 <Step
-                    title="Pay"
-                    description="You need to pay, to continue using our app"
+                    title="Оплата"
+                    description="Вам нужно оплатить, чтобы продолжить пользоваться нашим приложением"
                     icon={<LoadingOutlined />}
                 />
                 <Step
-                    title="Done"
+                    title="Готово"
                     description="После оплаты у вас будет полный доступ к веб-приложению Типуль"
                     icon={<SmileOutlined />}
                 />
@@ -138,7 +138,7 @@ const Buy = () => {
                     onClick={handleOnSubmit}
                     loading={isButtonLoading}
                 >
-                    Proceed buying 31 руб.
+                    Купить - 31 руб.
                 </Button>
             </Col>
         </div>

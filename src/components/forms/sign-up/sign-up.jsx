@@ -25,7 +25,7 @@ const SignUp = () => {
             .then(() => {
                 setIsButtonLoading(false)
                 message.success(
-                    `Activation message was sent to email ${values['email']}`
+                    `Письмо активации было отправлено на вашу почту ${values['email']}`
                 )
                 history.push('/log-in')
             })
@@ -174,7 +174,7 @@ const SignUp = () => {
                     htmlType="submit"
                     loading={isButtonLoading}
                 >
-                    Регистрация
+                    Зарегистрироваться
                 </Button>
             </Form.Item>
         </Form>

@@ -38,7 +38,7 @@ const UserActivatePage = () => {
                 justify="end"
                 content={[
                     <Link to="/log-in" key={1}>
-                        Log in
+                        Войти
                     </Link>,
                 ]}
             />

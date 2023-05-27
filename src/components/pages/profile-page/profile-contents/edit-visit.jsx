@@ -41,7 +41,7 @@ const EditVisit = () => {
             let received_doctors = resp.data
             setDocs(received_doctors)
             if (received_doctors.length == 0) {
-                message.warning('Create a doctor')
+                message.warning(' Создать врача')
                 history.push('/profile/docs')
             }
             SmartRequest.get(`managment/doctorvisit/${visit_id}`).then((resp) => {
@@ -58,7 +58,7 @@ const EditVisit = () => {
                 console.error(err)
                 history.push('/profile/pills')
             })
-        }).catch(() => message.error('Something went wrong :('))
+        }).catch(() => message.error('Что-то пошло не так :('))
     }, [currentPatient])
 
     const getValidateStatus = (field) => {
@@ -90,7 +90,7 @@ const EditVisit = () => {
                 'doctor': values['doctor'],
             })
             .then(() => {
-                message.success('Visit has been updated successfully')
+                message.success('Визит был успешно обновлен')
                 setIsValidating(false)
                 history.push('/profile/visits')
             })
@@ -107,7 +107,7 @@ const EditVisit = () => {
                         setFieldsErrors(error.response.data)
                     }
                 } else {
-                    message.error('Something went wrong :(')
+                    message.error('Что-то пошло не так :(')
                 }
             })
     }
@@ -227,7 +227,7 @@ const EditVisit = () => {
                                     type='primary'
                                     htmlType='submit'
                                 >
-                                    Update
+                                    Обновить
                                 </Button>
                             </Form.Item>
                         </Form>

@@ -60,13 +60,13 @@ const Pills = () => {
             'food': 'Before meals',
         }).then(resp => {
             setMedicines([...medicines, resp.data])
-        }).catch(() => message.error('Something went wrong :('))
+        }).catch(() => message.error('Что-то пошло не так :('))
     }
 
     const deleteMedicine = (med) => {
         SmartRequest.delete(`medicine/cure/${med.id}`).then(() => {
             setMedicines(medicines.filter((cur_med) => cur_med.id != med.id))
-            message.success(`Deleted medicine ${med.title}`)
+            message.success(`Удалено лекарство ${med.title}`)
         })
     }
 

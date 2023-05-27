@@ -49,7 +49,7 @@ const ProfilePage = () => {
             )
             dispatch(setCurrentPatient(patient))
         }).catch(() => {
-            message.error('Something went wrong :(')
+            message.error('Что-то пошло не так :(')
         })
 
     }
@@ -101,55 +101,69 @@ const ProfilePage = () => {
                 <Sider />
                 <Layout className="site-layout">
                     <Layout.Content style={{ padding: '10px' }}>
-                        {currentUser['bought'] ? (
-                            <Switch>
-                                <Route exact path="/profile" component={Home} />
-                                <Route
-                                    exact
-                                    path="/profile/settings"
-                                    component={Settings}
-                                />
-                                <Route
-                                    exact
-                                    path="/profile/pills"
-                                    component={Pills}
-                                />
-                                <Route
-                                    exact
-                                    path="/profile/pills/:pill_id"
-                                    component={EditPill}
-                                />
-                                <Route
-                                    exact
-                                    path="/profile/docs/"
-                                    component={Docs}
-                                />
-                                <Route
-                                    exact
-                                    path="/profile/docs/:doc_id"
-                                    component={EditDoc}
-                                />
-                                <Route
-                                    exact
-                                    path="/profile/visits/"
-                                    component={Visits}
-                                />
-                                <Route
-                                    exact
-                                    path="/profile/visits/:visit_id"
-                                    component={EditVisit}
-                                />
-                            </Switch>
-                        ) : (
-                            <Switch>
-                                <Route exact path="/profile" component={Buy} />
-                                <Route
-                                    exact
-                                    path="/profile/settings"
-                                    component={Settings}
-                                />
-                            </Switch>
-                        )}
+                        {currentUser['bought'] ?
+                            currentUser['guardian'] ?
+                                (
+                                    <Switch>
+                                        <Route exact path="/profile" component={Home} />
+                                        <Route
+                                            exact
+                                            path="/profile/settings"
+                                            component={Settings}
+                                        />
+                                        <Route
+                                            exact
+                                            path="/profile/pills"
+                                            component={Pills}
+                                        />
+                                        <Route
+                                            exact
+                                            path="/profile/pills/:pill_id"
+                                            component={EditPill}
+                                        />
+                                        <Route
+                                            exact
+                                            path="/profile/docs/"
+                                            component={Docs}
+                                        />
+                                        <Route
+                                            exact
+                                            path="/profile/docs/:doc_id"
+                                            component={EditDoc}
+                                        />
+                                        <Route
+                                            exact
+                                            path="/profile/visits/"
+                                            component={Visits}
+                                        />
+                                        <Route
+                                            exact
+                                            path="/profile/visits/:visit_id"
+                                            component={EditVisit}
+                                        />
+                                    </Switch>
+                                )
+                                :
+                                (
+                                    <Switch>
+                                        <Route
+                                            exact
+                                            path="/profile/settings"
+                                            component={Settings}
+                                        />
+                                        <Route path="/profile" component={Home} />
+                                    </Switch>
+                                )
+                            : (
+                                <Switch>
+                                    <Route exact path="/profile" component={Buy} />
+                                    <Route
+                                        exact
+                                        path="/profile/settings"
+                                        component={Settings}
+                                    />
+                                </Switch>
+                            )}
                     </Layout.Content>
                     <Layout.Footer style={{ textAlign: 'center' }}>
                         © Tipul
@@ -157,7 +171,7 @@ const ProfilePage = () => {
                 </Layout>
             </Layout>
             <ConnectPatientModal visible={modalVisible} setVisible={setModalVisible} />
-        </Layout>
+        </Layout >
     )
 }
 

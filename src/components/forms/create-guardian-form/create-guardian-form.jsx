@@ -28,7 +28,7 @@ const CreateGuardianForm = () => {
             phone: values['phone'],
         })
             .then(() => {
-                message.success('Guardian account has been created succesfully')
+                message.success('Аккаун опекуна был успешно создан')
                 setIsValidating(false)
                 dispatch(setRefresh())
             })
@@ -42,7 +42,7 @@ const CreateGuardianForm = () => {
                         setFieldsErrors(error.response.data)
                     }
                 } else {
-                    console.error('Error in create guardian:', error)
+                    console.error('Ошибка при создании опекуна:', error)
                 }
             })
     }
@@ -95,7 +95,7 @@ const CreateGuardianForm = () => {
                     type="primary"
                     htmlType="submit"
                 >
-                    Register
+                    Зарегистрироваться
                 </Button>
             </Form.Item>
         </Form>

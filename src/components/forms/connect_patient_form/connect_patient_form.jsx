@@ -5,7 +5,7 @@ import { setRefresh } from '../../../redux/refresh/refresh.actions.js'
 import { SmartRequest } from '../../../utils/utils'
 
 const layout = {
-    labelCol: { span: 8 },
+    labelCol: { span: 10 },
     wrapperCol: { span: 16 },
 }
 
@@ -158,7 +158,7 @@ const ConnectPatientForm = ({ setModalVisible }) => {
                 <Input />
             </Form.Item>
             <Form.Item
-                label='Хотите ли вы получать отчеты'
+                label='Получать уведомления'
                 hasFeedback
                 name='should_send_report'
                 initialValue={initialValues['should_send_report']}
@@ -169,7 +169,7 @@ const ConnectPatientForm = ({ setModalVisible }) => {
             </Form.Item>
             <Form.Item
                 wrapperCol={{
-                    offset: 8,
+                    offset: 10,
                     span: 16,
                 }}
             >

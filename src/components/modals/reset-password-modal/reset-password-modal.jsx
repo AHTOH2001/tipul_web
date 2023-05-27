@@ -15,9 +15,9 @@ const ResetPasswordModal = () => {
 
     return (
         <>
-            <a onClick={showModal}>Reset your password</a>
+            <a onClick={showModal}>Я забыл пароль</a>
             <Modal
-                title="Request a Password Reset"
+                title="Запросить сброс пароля"
                 visible={visible}
                 onCancel={handleCancel}
                 okButtonProps={{ hidden: true }}

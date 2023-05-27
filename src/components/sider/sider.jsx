@@ -34,7 +34,7 @@ const Sider = () => {
         console.log('call log out')
         SmartRequest.setAuthToken('').then(() => {
             dispatch(setCurrentUserAsync(null))
-            message.success('Successful log out')
+            message.success('Успешный выход ')
         })
     }
 
@@ -51,28 +51,28 @@ const Sider = () => {
                     icon={<HomeOutlined />}
                     onClick={() => history.push('/profile')}
                 >
-                    Home
+                    Домашняя страница
                 </Menu.Item>
                 <Menu.Item
                     key="/profile/pills"
                     onClick={() => history.push('/profile/pills')}
                     icon={<DisconnectOutlined />}
                 >
-                    Pills
+                    Таблетки
                 </Menu.Item>
                 <Menu.Item
                     key="/profile/docs"
                     onClick={() => history.push('/profile/docs')}
                     icon={<UsergroupAddOutlined />}
                 >
-                    Doctors
+                    Врачи
                 </Menu.Item>
                 <Menu.Item
                     key="/profile/visits"
                     onClick={() => history.push('/profile/visits')}
                     icon={<SolutionOutlined />}
                 >
-                    Doctor visits
+                    Визиты врачей
                 </Menu.Item>
                 <SubMenu
                     key="profile"
@@ -88,14 +88,14 @@ const Sider = () => {
                         icon={<SettingOutlined />}
                         onClick={() => history.push('/profile/settings')}
                     >
-                        Settings
+                        Настройки
                     </Menu.Item>
                     <Menu.Item
                         key="/log-out"
                         icon={<LogoutOutlined />}
                         onClick={onLogOut}
                     >
-                        Log out
+                        Выйти
                     </Menu.Item>
                 </SubMenu>
             </Menu>

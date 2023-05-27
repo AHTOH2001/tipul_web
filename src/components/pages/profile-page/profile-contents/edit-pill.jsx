@@ -371,7 +371,7 @@ const EditPill = () => {
                                 />
                             </Form.Item>
                             <Form.Item
-                                label='Strict'
+                                label='Строго'
                                 hasFeedback
                                 name='strict_status'
                                 initialValue={initialValues['strict_status']}

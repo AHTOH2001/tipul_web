@@ -27,7 +27,7 @@ const PasswordResetConfirm = () => {
                 SmartRequest.setAuthToken('').then(() => {
                     dispatch(setCurrentUserAsync(null))
                     console.log('success in get reset pass:', resp)
-                    message.success('Successfully reset password')
+                    message.success('Успешый сброс пароля!')
                     history.push('/log-in')
                 })
             })

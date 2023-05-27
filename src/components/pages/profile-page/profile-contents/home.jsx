@@ -12,17 +12,34 @@ const Home = () => {
     const currentUser = useSelector(selectCurrentUser)
     const currentPatient = useSelector(selectCurrentPatient)
     const [meds, setMeds] = useState([])
+    const [docs, setDocs] = useState([])
 
     useEffect(() => {
         SmartRequest.get(`medicine/cure_date/?date="${(new Date()).toISOString().slice(0, 10)}"`).then((resp) => {
             setMeds(resp.data)
         })
+        SmartRequest.get(`managment/doctorvisit_date/?date="${(new Date()).toISOString().slice(0, 10)}"`).then((resp) => {
+            setDocs(resp.data)
+        })
     }, [])
+
+    if (!('guardian' in currentUser)) {
+        return <CreateGuardianModal visible={!('guardian' in currentUser)} />
+    }
+
+    if (!(currentPatient)) {
+        return (
+            <Typography.Title>Это главная страница опекуна. Для начала работы с ней Вам нужно добавить или выбрать пациента сверху.</Typography.Title>
+        )
+    }
+
+    if (!meds && !docs) {
+        return <Typography.Title style={{ textAlign: 'center' }}>Пациент {currentPatient.last_name[0]}. {currentPatient.first_name} не имеет таблеток и визитов на сегодняшний день</Typography.Title>
+    }
 
     return (
         <>
-            {currentPatient
-                ?
+            {
                 meds
                     ?
                     <>
@@ -44,7 +61,7 @@ const Home = () => {
                                                 return null
                                             } else if (minutes == 0) {
                                                 delta_human = 'Пора принимать'
-                                            } else if (hours == 0){
+                                            } else if (hours == 0) {
                                                 delta_human = `Через ${minutes} мин`
                                             } else {
                                                 delta_human = `Через ${hours} ч`
@@ -60,9 +77,7 @@ const Home = () => {
                         </Row>
                     </>
                     :
-                    <Typography.Title style={{ textAlign: 'center' }}>Пациент {currentPatient.last_name[0]}. {currentPatient.first_name} не имеет таблеток и визитов на сегодняшний день</Typography.Title>
-                :
-                <Typography.Title>Это главная страница опекуна. Для начала работы с ней Вам нужно добавить или выбрать пациента сверху.</Typography.Title>
+                    <Typography.Title style={{ textAlign: 'center' }}>Пациент {currentPatient.last_name[0]}. {currentPatient.first_name} не имеет таблеток на сегодняшний день</Typography.Title>
             }
             <CreateGuardianModal visible={!('guardian' in currentUser)} />
         </>

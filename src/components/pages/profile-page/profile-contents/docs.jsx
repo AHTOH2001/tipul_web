@@ -31,13 +31,13 @@ const Docs = () => {
             'specialty': 'therapist',
         }).then(resp => {
             setDoctors([...doctors, resp.data])
-        }).catch(() => message.error('Something went wrong :('))
+        }).catch(() => message.error('Что-то пошло не так :('))
     }
 
     const deleteDoctor = (doc) => {
         SmartRequest.delete(`managment/doctor/${doc.id}`).then(() => {
             setDoctors(doctors.filter((cur_doc) => cur_doc.id != doc.id))
-            message.success(`Deleted doctor ${doc.last_name[0]}. ${doc.first_name}`)
+            message.success(`Удален доктор ${doc.last_name[0]}. ${doc.first_name}`)
         })
     }
 

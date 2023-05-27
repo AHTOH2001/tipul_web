@@ -212,7 +212,7 @@ const EditDoc = () => {
                                     type='primary'
                                     htmlType='submit'
                                 >
-                                    Update
+                                    Обновить
                                 </Button>
                             </Form.Item>
                         </Form>

@@ -15,7 +15,7 @@ const ResetPasswordForm = ({ setVisible }) => {
         SmartRequest.post('api/v1/auth/users/reset_password/', values)
             .then(() => {
                 message.success(
-                    'Mail for resetting password has been sent to your email',
+                    'Письмо для сброса пароля было отправлено на вашу почту',
                     5
                 )
                 setIsValidating(false)
@@ -70,7 +70,7 @@ const ResetPasswordForm = ({ setVisible }) => {
             }}
             onValuesChange={onValuesChange}
         >
-            <p>Enter the email you used to register</p>
+            <p>Введите почту, которую вы использовали при регистрации</p>
             <Form.Item
                 name="form error"
                 hidden={!formError}
@@ -101,7 +101,7 @@ const ResetPasswordForm = ({ setVisible }) => {
                 rules={[
                     {
                         required: true,
-                        message: 'Please input your email!',
+                        message: 'Пожалуйста, введите вашу почту!',
                     },
                 ]}
             >
@@ -113,7 +113,7 @@ const ResetPasswordForm = ({ setVisible }) => {
                     type="primary"
                     htmlType="submit"
                 >
-                    Request
+                    Запросить
                 </Button>
             </Form.Item>
         </Form>

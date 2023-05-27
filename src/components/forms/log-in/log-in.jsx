@@ -31,7 +31,7 @@ const LogIn = () => {
                     setIsButtonLoading(false)
                     dispatch(setCurrentUserAsync(actualUser))
                     history.push('/profile')
-                    message.success('Successfully logged in')
+                    message.success('Успешный вход')
                 })
             })
             .catch((error) => {

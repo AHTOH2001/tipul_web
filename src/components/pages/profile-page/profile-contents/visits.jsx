@@ -25,7 +25,7 @@ const Visits = () => {
             let received_doctors = resp.data
             setDocs(received_doctors)
             if (received_doctors.length == 0) {
-                message.warning('Before creating visits you need to create doctors')
+                message.warning('Перед созданием визита необходимо создать врача')
                 history.push('/profile/docs')
             }
             SmartRequest.get('managment/doctorvisit/').then((resp) => {
@@ -36,8 +36,8 @@ const Visits = () => {
                         'doctor': received_doctors.find(doc => doc.id == raw_visit['doctor'].id)
                     }
                 }))
-            }).catch(() => message.error('Something went wrong :('))
-        }).catch(() => message.error('Something went wrong :('))
+            }).catch(() => message.error('Что-то пошло не так :('))
+        }).catch(() => message.error('Что-то пошло не так :('))
 
     }, [currentPatient])
 
@@ -52,13 +52,13 @@ const Visits = () => {
                 'date': moment(raw_visit['date'], 'YYYY-MM-DDTHH:mm:ss'),
                 'doctor': docs[docs.length - 1]
             }])
-        }).catch(() => message.error('Something went wrong :('))
+        }).catch(() => message.error('Что-то пошло не так :('))
     }
 
     const deleteVisit = (visit) => {
         SmartRequest.delete(`managment/doctorvisit/${visit.id}`).then(() => {
             setVisits(visits.filter((cur_doc) => cur_doc.id != visit.id))
-            message.success(`Deleted visit ${visit.date.format('DD.MM.YY')} в ${visit.date.format('HH:mm')}`)
+            message.success(`Удален визит ${visit.date.format('DD.MM.YY')} в ${visit.date.format('HH:mm')}`)
         })
     }
 

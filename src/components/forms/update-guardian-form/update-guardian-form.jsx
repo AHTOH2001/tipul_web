@@ -29,7 +29,7 @@ const UpdateGuardianForm = () => {
             phone: values['phone'],
         })
             .then(() => {
-                message.success('Guardian account has been modified')
+                message.success('Аккаунт опекуна был изменен')
                 setIsValidating(false)
             })
             .catch((error) => {
@@ -98,7 +98,7 @@ const UpdateGuardianForm = () => {
                     type="primary"
                     htmlType="submit"
                 >
-                    Update guardian
+                    Обновить опекуна
                 </Button>
             </Form.Item>
         </Form>
