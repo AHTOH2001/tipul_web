@@ -35,7 +35,7 @@ const GuardianFields = ({
                 </span>
             </Form.Item>
             <Form.Item
-                label="First name"
+                label="Имя"
                 hasFeedback
                 name="first_name"
                 initialValue={initialValues['first_name']}
@@ -44,14 +44,14 @@ const GuardianFields = ({
                 rules={[
                     {
                         required: true,
-                        message: 'Please input first name!',
+                        message: 'Пожалуйста введите имя!',
                     },
                 ]}
             >
                 <Input />
             </Form.Item>
             <Form.Item
-                label="Last name"
+                label="Фамилия"
                 hasFeedback
                 name="last_name"
                 initialValue={initialValues['last_name']}
@@ -60,14 +60,14 @@ const GuardianFields = ({
                 rules={[
                     {
                         required: true,
-                        message: 'Please input last name!',
+                        message: 'Пожалуйста введите фамилию!',
                     },
                 ]}
             >
                 <Input />
             </Form.Item>
             <Form.Item
-                label="Age"
+                label="Возраст"
                 hasFeedback
                 name="age"
                 initialValue={initialValues['age']}
@@ -76,20 +76,20 @@ const GuardianFields = ({
                 rules={[
                     {
                         required: true,
-                        message: 'Please input age!',
+                        message: 'Пожалуйста введите возраст!',
                     },
                     {
                         type: 'number',
                         min: 1,
                         max: 99,
-                        message: 'Age must be between 1 and 99',
+                        message: 'Возраст должен быть между 1 и 99',
                     },
                 ]}
             >
                 <InputNumber />
             </Form.Item>
             <Form.Item
-                label="Phone"
+                label="Номер телефона"
                 hasFeedback
                 name="phone"
                 initialValue={initialValues['phone']}
@@ -98,12 +98,12 @@ const GuardianFields = ({
                 rules={[
                     {
                         required: true,
-                        message: 'Please input phone!',
+                        message: 'Пожалуйста введите номер телефона!',
                     },
                     {
                         pattern: '^[1-9][0-9]{10,11}$',
                         message:
-                            'Phone should consist only 11-12 numbers and start with 1',
+                            'Номер телефона должен состоять только из 11-12 цифр и не начинаться с нуля',
                     },
                 ]}
             >

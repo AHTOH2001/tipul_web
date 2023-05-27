@@ -92,7 +92,7 @@ const LogIn = () => {
                 </span>
             </Form.Item>
             <Form.Item
-                label="Username"
+                label="Имя пользователя"
                 hasFeedback
                 name="username"
                 validateStatus={usernameError ? 'error' : ''}
@@ -100,7 +100,7 @@ const LogIn = () => {
                 rules={[
                     {
                         required: true,
-                        message: 'Please input your username!',
+                        message: 'Пожалуйста введите имя пользователя!',
                     },
                 ]}
             >
@@ -108,7 +108,7 @@ const LogIn = () => {
             </Form.Item>
 
             <Form.Item
-                label="Password"
+                label="Пароль"
                 hasFeedback
                 name="password"
                 validateStatus={passwordError ? 'error' : ''}
@@ -116,7 +116,7 @@ const LogIn = () => {
                 rules={[
                     {
                         required: true,
-                        message: 'Please input your password!',
+                        message: 'Пожалуйста введите пароль!',
                     },
                 ]}
             >
@@ -135,7 +135,7 @@ const LogIn = () => {
                     htmlType="submit"
                     loading={isButtonLoading}
                 >
-                    Log in
+                    Авторизоваться
                 </Button>
             </Form.Item>
         </Form>

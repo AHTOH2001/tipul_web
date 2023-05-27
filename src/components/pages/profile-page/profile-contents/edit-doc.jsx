@@ -74,7 +74,7 @@ const EditDoc = () => {
         setIsButtonDisabled(true)
         SmartRequest.patch(`managment/doctor/${doc_id}/`, values)
             .then(() => {
-                message.success('Doctor has been updated successfully')
+                message.success('Доктор был успешно добавлен')
                 setIsValidating(false)
                 history.push('/profile/docs')
             })
@@ -92,7 +92,7 @@ const EditDoc = () => {
                     }
 
                 } else {
-                    message.error('Something went wrong :(')
+                    message.error('Что-то пошло не так :(')
                 }
             })
     }
@@ -145,7 +145,7 @@ const EditDoc = () => {
                                 </span>
                             </Form.Item>
                             <Form.Item
-                                label='First name'
+                                label='Имя'
                                 hasFeedback
                                 name='first_name'
                                 initialValue={initialValues['first_name']}
@@ -154,14 +154,14 @@ const EditDoc = () => {
                                 rules={[
                                     {
                                         required: true,
-                                        message: 'Please input doctor\'s first name!',
+                                        message: 'Введите имя врача!',
                                     },
                                 ]}
                             >
                                 <Input />
                             </Form.Item>
                             <Form.Item
-                                label='Last name'
+                                label='Фамилия'
                                 hasFeedback
                                 name='last_name'
                                 initialValue={initialValues['last_name']}
@@ -170,7 +170,7 @@ const EditDoc = () => {
                                 rules={[
                                     {
                                         required: true,
-                                        message: 'Please input doctor\'s last name!',
+                                        message: 'Введите фамилию врача!',
                                     },
                                 ]}
                             >

@@ -160,7 +160,7 @@ const EditVisit = () => {
                                 </span>
                             </Form.Item>
                             <Form.Item
-                                label='Doctor'
+                                label='Доктор'
                                 hasFeedback
                                 name='doctor'
                                 initialValue={initialValues['doctor']}
@@ -169,12 +169,12 @@ const EditVisit = () => {
                                 rules={[
                                     {
                                         required: true,
-                                        message: 'Please choose doctor',
+                                        message: 'Пожалуйста выберите врача!',
                                     },
                                 ]}
                             >
                                 <Select
-                                    placeholder='Select doctor'
+                                    placeholder='Выберите врача'
                                     options={docs.map((doc) => {
                                         return {
                                             value: doc.id,
@@ -185,7 +185,7 @@ const EditVisit = () => {
                                 />
                             </Form.Item>
                             <Form.Item
-                                label='Date'
+                                label='Дата'
                                 hasFeedback
                                 name='date'
                                 initialValue={initialValues['date']}
@@ -194,14 +194,14 @@ const EditVisit = () => {
                                 rules={[
                                     {
                                         required: true,
-                                        message: 'Please choose date!',
+                                        message: 'Пожалуйста выберите дату!',
                                     },
                                 ]}
                             >
                                 <DatePicker format='DD.MM.YYYY' />
                             </Form.Item>
                             <Form.Item
-                                label='Time'
+                                label='Время'
                                 hasFeedback
                                 name='time'
                                 initialValue={initialValues['time']}
@@ -210,7 +210,7 @@ const EditVisit = () => {
                                 rules={[
                                     {
                                         required: true,
-                                        message: 'Please choose time!',
+                                        message: 'Пожалуйста выберите время!',
                                     },
                                 ]}
                             >

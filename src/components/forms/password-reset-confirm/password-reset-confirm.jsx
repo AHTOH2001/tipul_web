@@ -99,7 +99,7 @@ const PasswordResetConfirm = () => {
             </Form.Item>
 
             <Form.Item
-                label="New password"
+                label="Новый пароль"
                 hasFeedback
                 name="new_password"
                 validateStatus={
@@ -117,7 +117,7 @@ const PasswordResetConfirm = () => {
                 rules={[
                     {
                         required: true,
-                        message: 'Please input your password!',
+                        message: 'Пожалуйста введите свой пароль',
                     },
                 ]}
             >
@@ -135,7 +135,7 @@ const PasswordResetConfirm = () => {
                     type="primary"
                     htmlType="submit"
                 >
-                    Update password
+                    Обновить пароль
                 </Button>
             </Form.Item>
         </Form>
