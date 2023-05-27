@@ -1,8 +1,9 @@
 import { Button, Form, message } from 'antd'
 import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { SmartRequest } from '../../../utils/utils'
 import GuardianFields from '../form-fields/guardian-fields'
+import { setRefresh } from '../../../redux/refresh/refresh.actions'
 
 const layout = {
     labelCol: { span: 8 },
@@ -19,6 +20,7 @@ const UpdateGuardianForm = () => {
     const [formError, setFormError] = useState('')
     const [fieldsErrors, setFieldsErrors] = useState({})
     const [isValidating, setIsValidating] = useState(false)
+    const dispatch = useDispatch()
 
     const onFinish = (values) => {
         setIsValidating(true)
@@ -30,6 +32,7 @@ const UpdateGuardianForm = () => {
         })
             .then(() => {
                 message.success('Аккаунт опекуна был изменен')
+                dispatch(setRefresh())
                 setIsValidating(false)
             })
             .catch((error) => {
