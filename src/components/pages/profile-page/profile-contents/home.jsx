@@ -28,7 +28,7 @@ const Home = () => {
                 }
             }))
         }).catch(() => message.error('Что-то пошло не так :('))
-    }, [])
+    }, [currentPatient])
 
     setInterval(function () {
         setRefresh(true)
