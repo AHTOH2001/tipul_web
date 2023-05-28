@@ -41,7 +41,7 @@ const ConnectPatientForm = ({ setModalVisible }) => {
         setIsButtonDisabled(true)
         SmartRequest.post('managment/connect/', values)
             .then(() => {
-                message.success('Пациент был успещно добавлен')
+                message.success('Пациент был успешно добавлен')
                 setModalVisible(false)
                 setIsValidating(false)
                 dispatch(setRefresh())
