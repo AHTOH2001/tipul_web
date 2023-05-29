@@ -16,10 +16,10 @@ const Home = () => {
     const [refresh, setRefresh] = useState(false)
 
     useEffect(() => {
-        SmartRequest.get(`medicine/cure_date/?date="${(new Date()).toISOString().slice(0, 10)}"`).then((resp) => {
+        SmartRequest.get(`medicine/cure_date/?date=${(new Date()).toISOString().slice(0, 10)}`).then((resp) => {
             setMeds(resp.data)
         }).catch(() => message.error('Что-то пошло не так :('))
-        SmartRequest.get(`managment/doctorvisit_date/?date="${(new Date()).toISOString().slice(0, 10)}"`).then((resp) => {
+        SmartRequest.get(`managment/doctorvisit_date/?date=${(new Date()).toISOString().slice(0, 10)}`).then((resp) => {
             setVisits(resp.data.map(raw_visit => {
                 return {
                     'id': raw_visit['id'],
@@ -32,7 +32,7 @@ const Home = () => {
 
     setInterval(function () {
         setRefresh(true)
-    }, 10 * 1000); // 60 * 1000 milsec
+    }, 10 * 1000); // 10 * 1000 milsec
     console.log('Refresh')
 
     if (refresh) {
