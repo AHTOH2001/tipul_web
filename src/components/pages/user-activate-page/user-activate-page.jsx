@@ -9,7 +9,7 @@ import Header from '../../header/header'
 const UserActivatePage = () => {
     let { uid, token } = useParams()
     const [isSent, setIsSent] = useState(false)
-    const [message, setMessage] = useState('Checking...')
+    const [message, setMessage] = useState('Проверка...')
 
     useEffect(() => {
         if (!isSent) {
@@ -21,11 +21,11 @@ const UserActivatePage = () => {
                 .then((resp) => {
                     console.log('success in activate user:', resp)
                     setMessage(
-                        'Your account has been successfully activated. You can leave this page.'
+                        'Ваш аккаунт был успешно активирован. Вы можете покинуть эту страницу.'
                     )
                 })
                 .catch((error) => {
-                    setMessage('You have already activated account.')
+                    setMessage('Вы уже активировали аккаунт.')
                     console.error('catch on activation: ', error)
                 })
         }
