@@ -137,6 +137,7 @@ const Buy = () => {
                     size={'large'}
                     onClick={handleOnSubmit}
                     loading={isButtonLoading}
+                    style={{marginBottom: 20}}
                 >
                     Купить - 31 руб.
                 </Button>

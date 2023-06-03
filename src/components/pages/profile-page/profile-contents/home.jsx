@@ -18,7 +18,7 @@ const Home = () => {
     useEffect(() => {
         SmartRequest.get(`medicine/cure_date/?date=${(new Date()).toISOString().slice(0, 10)}`).then((resp) => {
             setMeds(resp.data)
-        }).catch(() => message.error('Что-то пошло не так :('))
+        })
         SmartRequest.get(`managment/doctorvisit_date/?date=${(new Date()).toISOString().slice(0, 10)}`).then((resp) => {
             setVisits(resp.data.map(raw_visit => {
                 return {
@@ -27,7 +27,7 @@ const Home = () => {
                     'doctor': raw_visit.doctor
                 }
             }))
-        }).catch(() => message.error('Что-то пошло не так :('))
+        })
     }, [currentPatient])
 
     setInterval(function () {
