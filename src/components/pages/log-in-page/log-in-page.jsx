@@ -20,8 +20,8 @@ const LogInPage = () => {
                 ]}
             />
             <Layout.Content style={{ padding: '10px', minHeight: '93vh' }}>
-                <Row>
-                    <Col span={8}>
+                <Row style={{marginTop: '10vh'}}>
+                    <Col offset={7} span={8}>
                         <LogIn />
                         <Col offset={8}>
                             <ResetPasswordModal />

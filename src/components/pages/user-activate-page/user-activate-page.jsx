@@ -43,8 +43,8 @@ const UserActivatePage = () => {
                     </Link>,
                 ]}
             />
-            <Layout.Content style={{ padding: '10px' }}>
-                <Row>
+            <Layout.Content style={{ padding: '10px', minHeight: '93vh' }}>
+                <Row style={{marginTop: '40vh'}}>
                     <Col span={24} style={{ textAlign: 'center' }}>
                         <Typography.Title level={1}>{message}</Typography.Title>
                     </Col>
