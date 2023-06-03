@@ -7,7 +7,7 @@ const ConnectPatientModal = ({ visible, setVisible }) => {
     return (
         <>
             <Modal
-                title="Add patient"
+                title="Добавить пациента"
                 visible={visible}
                 okButtonProps={{ hidden: true }}
                 onCancel={() => setVisible(false)}

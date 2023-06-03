@@ -88,9 +88,9 @@ const Pills = () => {
                             </>
                         }
                         style={{ width: 300 }}>
-                        <p>Тип: {med.type}</p>
-                        <p>Когда принимать: {med.food}</p>
-                        <p>Сколько принимать: {med.dose} {med.dose_type}</p>
+                        <p>Тип: {med.type_label}</p>
+                        <p>Когда принимать: {med.food_label}</p>
+                        <p>Сколько принимать: {med.dose} {med.dose_type_label}</p>
                     </Card>
                 </Col>
             ))}

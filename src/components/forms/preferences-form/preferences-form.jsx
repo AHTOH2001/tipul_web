@@ -146,8 +146,8 @@ const PreferencesForm = () => {
                     >
                         <Select
                             options={[
-                                { value: 'black', label: 'Black' },
-                                { value: 'white', label: 'White' },
+                                { value: 'black', label: 'Чёрная' },
+                                { value: 'white', label: 'Белая' },
                             ]}
                         />
                     </Form.Item>

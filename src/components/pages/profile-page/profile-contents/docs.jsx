@@ -61,7 +61,7 @@ const Docs = () => {
                         style={{ width: 300 }}>
                         <p>Имя: {doc.first_name}</p>
                         <p>Фамилия: {doc.last_name}</p>
-                        <p>Специальность: {doc.specialty}</p>
+                        <p>Специальность: {doc.specialty_label}</p>
                     </Card>
                 </Col>
             ))}

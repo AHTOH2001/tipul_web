@@ -111,7 +111,6 @@ const ConnectPatientForm = ({ setModalVisible }) => {
             </Form.Item>
             <Form.Item
                 label='Код'
-                hasFeedback
                 name='code'
                 initialValue={initialValues['code']}
                 validateStatus={getValidateStatus('code')}
@@ -127,7 +126,6 @@ const ConnectPatientForm = ({ setModalVisible }) => {
             </Form.Item>
             <Form.Item
                 label='Пациент ID'
-                hasFeedback
                 name='patient_id'
                 initialValue={initialValues['patient_id']}
                 validateStatus={getValidateStatus('patient_id')}
@@ -143,7 +141,6 @@ const ConnectPatientForm = ({ setModalVisible }) => {
             </Form.Item>
             <Form.Item
                 label='Связь с пациентом'
-                hasFeedback
                 name='relationship'
                 initialValue={initialValues['relationship']}
                 validateStatus={getValidateStatus('relationship')}

@@ -82,7 +82,7 @@ const Visits = () => {
                         style={{ width: 300 }}>
                         <p>Имя: {visit.doctor.first_name}</p>
                         <p>Фамилия: {visit.doctor.last_name}</p>
-                        <p>Специальность: {visit.doctor.specialty}</p>
+                        <p>Специальность: {visit.doctor.specialty_label}</p>
                     </Card>
                 </Col>
             ))}

@@ -66,9 +66,9 @@ const Home = () => {
                                 <Col md={12} xl={8} xxl={6} key={med.id}>
                                     <Card title={med.title}
                                         style={{ width: 300 }}>
-                                        <p>Тип: {med.type}</p>
-                                        <p>Когда принимать: {med.food}</p>
-                                        <p>Сколько принимать: {med.dose} {med.dose_type}</p>
+                                        <p>Тип: {med.type_label}</p>
+                                        <p>Когда принимать: {med.food_label}</p>
+                                        <p>Сколько принимать: {med.dose} {med.dose_type_label}</p>
                                         {med.schedule.timesheet.map(({ time, id }) => {
                                             let timedelta = (moment(time, 'HH:mm').add(59, 'seconds') - moment()) / 1000
                                             let hours = Math.trunc(timedelta / 60 / 60)
@@ -111,7 +111,7 @@ const Home = () => {
                                             style={{ width: 300 }}>
                                             <p>Имя: {visit.doctor.first_name}</p>
                                             <p>Фамилия: {visit.doctor.last_name}</p>
-                                            <p>Специальность: {visit.doctor.specialty}</p>
+                                            <p>Специальность: {visit.doctor.specialty_label}</p>
                                             {(() => {
                                                 let time = visit.date
                                                 let timedelta = (moment(time, 'HH:mm').add(59, 'seconds') - moment()) / 1000
