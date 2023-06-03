@@ -6,7 +6,7 @@ import './header.css'
 
 const Header = ({ header_link, content, justify }) => {
     return (
-        <Layout.Header className='header' style={{ padding: 0 }}>
+        <Layout.Header className='header' style={{ padding: 0, position: 'sticky', top: 0, zIndex: 10, width: '100%' }} >
             <Row>
                 <Col flex='200px'>
                     <Link to={header_link}>

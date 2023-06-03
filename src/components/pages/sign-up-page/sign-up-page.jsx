@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import SignUp from '../../forms/sign-up/sign-up'
 import 'antd/dist/antd.css'
 import Header from '../../header/header'
+import Footer from '../../footer/footer'
 
 const SignUpPage = () => {
     return (
@@ -24,6 +25,7 @@ const SignUpPage = () => {
                     </Col>
                 </Row>
             </Layout.Content>
+            <Footer />
         </Layout>
     )
 }

@@ -44,6 +44,15 @@ const Sider = () => {
             collapsed={collapsed}
             onCollapse={onCollapse}
             className="sider"
+            style={{
+                overflow: 'auto',
+                height: '100vh',
+                position: 'fixed',
+                left: 0,
+                top: 64,
+                bottom: 0,
+                zIndex: 9,
+            }}
         >
             <Menu theme="dark" mode="inline" selectedKeys={location.pathname}>
                 <Menu.Item

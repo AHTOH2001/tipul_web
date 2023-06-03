@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import LogIn from '../../forms/log-in/log-in'
 import Header from '../../header/header'
 import ResetPasswordModal from '../../modals/reset-password-modal/reset-password-modal'
+import Footer from '../../footer/footer'
 
 const LogInPage = () => {
     return (
@@ -28,6 +29,7 @@ const LogInPage = () => {
                     </Col>
                 </Row>
             </Layout.Content>
+            <Footer />
         </Layout>
     )
 }

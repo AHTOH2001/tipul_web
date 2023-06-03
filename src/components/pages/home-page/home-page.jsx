@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import Header from '../../header/header'
 import './home-page.css'
 import HomeSales from '../../../sales-page/Home'
+import Footer from '../../footer/footer'
 
 const HomePage = () => (
     <Layout className="home">
@@ -18,7 +19,7 @@ const HomePage = () => (
         <Layout.Content style={{ zIndex: 5 }}>
             <HomeSales />
         </Layout.Content>
-        <Layout.Footer style={{ textAlign: 'center' }}>© Tipul</Layout.Footer>
+        <Footer />
     </Layout>
 )
 

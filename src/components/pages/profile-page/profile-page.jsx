@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Route, Switch } from 'react-router-dom'
 import { setCurrentPatient } from '../../../redux/patient/patient.actions'
 import { SmartRequest } from '../../../utils/utils'
+import Footer from '../../footer/footer'
 import Header from '../../header/header'
 import ConnectPatientModal from '../../modals/connect-patient-modal/connect-patient-modal'
 import Sider from '../../sider/sider'
@@ -97,9 +98,9 @@ const ProfilePage = () => {
                 header_link={'/profile'}
                 content={getHeaderContent()}
             />
-            <Layout style={{ minHeight: '100vh' }} className="profile">
+            <Layout style={{ minHeight: '100vh' }} className="profile" hasSider>
                 <Sider />
-                <Layout className="site-layout">
+                <Layout className="site-layout" style={{ marginLeft: 200, }}>
                     <Layout.Content style={{ padding: '10px' }}>
                         {currentUser['bought'] ?
                             currentUser['guardian'] ?
@@ -165,10 +166,8 @@ const ProfilePage = () => {
                                 </Switch>
                             )}
                     </Layout.Content>
-                    <Layout.Footer style={{ textAlign: 'center' }}>
-                        © Tipul
-                    </Layout.Footer>
                 </Layout>
+                <Footer />
             </Layout>
             <ConnectPatientModal visible={modalVisible} setVisible={setModalVisible} />
         </Layout >
