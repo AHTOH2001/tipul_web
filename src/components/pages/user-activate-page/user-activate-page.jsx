@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import { SmartRequest } from '../../../utils/utils'
 import Header from '../../header/header'
+import Footer from '../../footer/footer'
 
 const UserActivatePage = () => {
     let { uid, token } = useParams()
@@ -49,6 +50,7 @@ const UserActivatePage = () => {
                     </Col>
                 </Row>
             </Layout.Content>
+            <Footer />
         </Layout>
     )
 }
