@@ -17,18 +17,14 @@ import './sider.css'
 
 const selectCurrentUser = (state) => state.user.currentUser
 
-const Sider = () => {
-    const [collapsed, setCollapsed] = useState(true)
+const Sider = ({ collapsed, onCollapse }) => {
+
     const currentUser = useSelector(selectCurrentUser)
     const dispatch = useDispatch()
     const history = useHistory()
     const location = useLocation()
 
     const { SubMenu } = Menu
-
-    const onCollapse = () => {
-        setCollapsed(!collapsed)
-    }
 
     const onLogOut = () => {
         console.log('call log out')

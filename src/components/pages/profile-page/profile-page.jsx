@@ -27,6 +27,11 @@ const ProfilePage = () => {
     const dispatch = useDispatch()
     const [modalVisible, setModalVisible] = useState(false)
     const [selectedPatientId, setSelectedPatientId] = useState(null)
+    const [collapsed, setCollapsed] = useState(true)
+
+    const onCollapse = () => {
+        setCollapsed(!collapsed)
+    }
 
     useEffect(() => {
         SmartRequest.get('managment/settings_guard/99/').then((resp) => {
@@ -98,9 +103,9 @@ const ProfilePage = () => {
                 header_link={'/profile'}
                 content={getHeaderContent()}
             />
-            <Layout style={{ minHeight: '100vh' }} className="profile" hasSider>
-                <Sider />
-                <Layout className="site-layout" style={{ marginLeft: 200, }}>
+            <Layout style={{ minHeight: '93vh' }} className="profile" hasSider>
+                <Sider collapsed={collapsed} onCollapse={onCollapse} />
+                <Layout className="site-layout" style={{ marginLeft: collapsed ? 80 : 200 }}>
                     <Layout.Content style={{ padding: '10px' }}>
                         {currentUser['bought'] ?
                             currentUser['guardian'] ?

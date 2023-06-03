@@ -18,7 +18,7 @@ const SignUpPage = () => {
                     </Link>,
                 ]}
             />
-            <Layout.Content style={{ padding: '10px' }}>
+            <Layout.Content style={{ padding: '10px', minHeight: '93vh' }}>
                 <Row>
                     <Col span={8}>
                         <SignUp />
