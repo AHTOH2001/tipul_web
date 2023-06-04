@@ -10,6 +10,7 @@ import SignUpPage from './components/pages/sign-up-page/sign-up-page'
 import UserActivatePage from './components/pages/user-activate-page/user-activate-page'
 import { setCurrentUserAsync } from './redux/user/user.actions'
 import { check_whoiam } from './utils/api'
+import ConfidentialPage from './components/pages/confidential-page/confidential-page'
 
 const selectCurrentUser = (state) => state.user.currentUser
 const selectRefresh = (state) => state.refresh.refresh_token
@@ -32,6 +33,9 @@ function App() {
                 <Route exact path="/log-in">
                     {currentUser ? <Redirect to="/profile" /> : <LogInPage />}
                 </Route>
+                <Route
+                    exact path="/confidentiality"
+                    component={ConfidentialPage} />
                 <Route exact path="/" component={HomePage} />
                 <Route path="/profile">
                     {currentUser ? <ProfilePage /> : <Redirect to="/log-in" />}
