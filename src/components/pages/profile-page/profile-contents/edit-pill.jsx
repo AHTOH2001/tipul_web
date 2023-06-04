@@ -53,6 +53,9 @@ const TYPE_CHOICES = [
     ['ампула', 'ampule'],
     ['таблека', 'pill'],
     ['суспензия', 'suspension'],
+    ['пакетик', 'bag'],
+    ['аэрозоль', 'aerosols'],
+    ['капсула', 'capsules'],
 ]
 
 const EditPill = () => {
