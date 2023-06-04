@@ -4,6 +4,15 @@ import Box from '@mui/material/Box'
 import ButtonBase from '@mui/material/ButtonBase'
 import Container from '@mui/material/Container'
 import Typography from '../components/Typography'
+import web_1 from '../../../images/sales/web_1.png'
+import web_2 from '../../../images/sales/web_2.png'
+import web_3 from '../../../images/sales/web_3.png'
+import web_4 from '../../../images/sales/web_4.png'
+import web_5 from '../../../images/sales/web_5.png'
+import web_6 from '../../../images/sales/web_6.png'
+import mobile_1 from '../../../images/sales/mobile_1.jpg'
+import mobile_2 from '../../../images/sales/mobile_2.jpg'
+import mobile_3 from '../../../images/sales/mobile_3.jpg'
 
 const ImageBackdrop = styled('div')(({ theme }) => ({
     position: 'absolute',
@@ -55,48 +64,48 @@ const ImageIconButton = styled(ButtonBase)(({ theme }) => ({
 
 const images = [
     {
-        url: 'https://images.unsplash.com/photo-1534081333815-ae5019106622?auto=format&fit=crop&w=400',
-        title: 'Snorkeling',
+        url: web_1,
+        title: 'Настройки',
         width: '40%',
     },
     {
-        url: 'https://images.unsplash.com/photo-1531299204812-e6d44d9a185c?auto=format&fit=crop&w=400',
-        title: 'Massage',
+        url: mobile_1,
+        title: 'Главное меню',
         width: '20%',
     },
     {
-        url: 'https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?auto=format&fit=crop&w=400',
-        title: 'Hiking',
+        url: web_2,
+        title: 'Расписание',
         width: '40%',
     },
     {
-        url: 'https://images.unsplash.com/photo-1453747063559-36695c8771bd?auto=format&fit=crop&w=400',
-        title: 'Tour',
+        url: web_3,
+        title: 'Редактирование',
         width: '38%',
     },
     {
-        url: 'https://images.unsplash.com/photo-1523309996740-d5315f9cc28b?auto=format&fit=crop&w=400',
-        title: 'Gastronomy',
+        url: web_4,
+        title: 'Связь с пациентом',
         width: '38%',
     },
     {
-        url: 'https://images.unsplash.com/photo-1534452203293-494d7ddbf7e0?auto=format&fit=crop&w=400',
-        title: 'Shopping',
+        url: mobile_2,
+        title: 'Медикаменты',
         width: '24%',
     },
     {
-        url: 'https://images.unsplash.com/photo-1506941433945-99a2aa4bd50a?auto=format&fit=crop&w=400',
-        title: 'Walking',
+        url: web_5,
+        title: 'Медикаменты опекуемого',
         width: '40%',
     },
     {
-        url: 'https://images.unsplash.com/photo-1533727937480-da3a97967e95?auto=format&fit=crop&w=400',
-        title: 'Fitness',
+        url: mobile_3,
+        title: 'Распознавание медикамента',
         width: '20%',
     },
     {
-        url: 'https://images.unsplash.com/photo-1518136247453-74e7b5265980?auto=format&fit=crop&w=400',
-        title: 'Reading',
+        url: web_6,
+        title: 'Врачи опекуемого',
         width: '40%',
     },
 ]

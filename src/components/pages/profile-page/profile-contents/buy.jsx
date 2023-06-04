@@ -18,8 +18,12 @@ import {
 } from 'antd'
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import screen_test from '../../../../images/slider/screen_test.png'
-import settings_test from '../../../../images/slider/settings_test.png'
+import web_1 from '../../../../images/sales/web_1.png'
+import web_2 from '../../../../images/sales/web_2.png'
+import web_3 from '../../../../images/sales/web_3.png'
+import web_4 from '../../../../images/sales/web_4.png'
+import web_5 from '../../../../images/sales/web_5.png'
+import web_6 from '../../../../images/sales/web_6.png'
 import { setRefresh } from '../../../../redux/refresh/refresh.actions.js'
 import { SmartRequest } from '../../../../utils/utils'
 import './buy.css'
@@ -43,13 +47,33 @@ const Buy = () => {
     let slider_data = [
         {
             key: 1,
-            text: 'Просмотр таблеток опекуемых',
-            image: screen_test,
+            text: 'Персонализированный настройки',
+            image: web_1,
         },
         {
             key: 2,
-            text: 'Редактирование таблеток опекуемых',
-            image: settings_test,
+            text: 'Медикаменты и визиты опекуемых на сегодняшний день',
+            image: web_2,
+        },
+        {
+            key: 3,
+            text: 'Редактирование медикаментов опекуемых',
+            image: web_3,
+        },
+        {
+            key: 4,
+            text: 'Добавление до 3 опекуемых на один аккаунт',
+            image: web_4,
+        },
+        {
+            key: 5,
+            text: 'Удаление и добавление медикаментов для опекуемого',
+            image: web_5,
+        },
+        {
+            key: 6,
+            text: 'Удаление и добавление врачей и визитов к ним для опекуемого',
+            image: web_6,
         },
     ]
 

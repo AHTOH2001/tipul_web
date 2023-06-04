@@ -178,7 +178,7 @@ const EditVisit = () => {
                                     options={docs.map((doc) => {
                                         return {
                                             value: doc.id,
-                                            label: `${doc.last_name[0]}. ${doc.first_name} (${doc.specialty})`,
+                                            label: `${doc.last_name[0]}. ${doc.first_name} (${doc.specialty_label})`,
                                         }
                                     }
                                     )}
