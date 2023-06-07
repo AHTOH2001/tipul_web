@@ -1,7 +1,7 @@
 import axios from 'axios'
 import Cookies from 'universal-cookie'
 
-const backend_host = 'http://localhost:8000'
+const backend_host = 'https://tipul.pythonanywhere.com'
 
 let auth_token = ''
 
